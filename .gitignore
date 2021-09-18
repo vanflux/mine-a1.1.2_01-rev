@@ -1,3 +1,11 @@
 target/
 temp/
+src/main/java*
+src/main/resources*
 bin/minecraft.jar
+.classpath
+.project
+org.eclipse.jdt.apt.core.prefs
+org.eclipse.jdt.core.prefs
+org.eclipse.jdt.apt.core.prefs
+org.eclipse.m2e.core.prefs
