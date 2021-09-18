@@ -1,0 +1,1 @@
+git diff --patch --no-index temp\src\java src\main\java > %1.patch

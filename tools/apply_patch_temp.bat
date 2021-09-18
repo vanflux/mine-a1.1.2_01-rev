@@ -1,0 +1,1 @@
+git apply -vv -p2 --directory=temp/src/java %1.patch

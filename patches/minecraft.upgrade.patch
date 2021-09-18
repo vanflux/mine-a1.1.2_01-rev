@@ -1,0 +1,1261 @@
+diff -U 3 minecraft.src\aa.java patches\aa.java
+--- minecraft.src\aa.java	Tue Oct 19 01:22:08 2010
++++ patches\aa.java	Wed Oct 20 20:38:44 2010
+@@ -6,19 +6,19 @@
+ import java.awt.image.BufferedImage;
+ import java.io.IOException;
+ import javax.imageio.ImageIO;
+-import net.minecraft.client.Minecraft;
++//import Minecraft;
+ 
+ public class aa extends z
+ {
+ 
+     protected float g[];
+     protected float h[];
+-    private net.minecraft.client.Minecraft i;
++    private Minecraft i;
+     private int j[];
+     private double k;
+     private double l;
+ 
+-    public aa(net.minecraft.client.Minecraft minecraft)
++    public aa(Minecraft minecraft)
+     {
+         super(di.aO.a(((ev) (null))));
+         g = new float[320];
+@@ -28,7 +28,7 @@
+         f = 1;
+         try
+         {
+-            java.awt.image.BufferedImage bufferedimage = javax.imageio.ImageIO.read(net.minecraft.client.Minecraft.class.getResource("/gui/items.png"));
++            java.awt.image.BufferedImage bufferedimage = javax.imageio.ImageIO.read(Minecraft.class.getResource("/gui/items.png"));
+             int i1 = (b % 16) * 16;
+             int j1 = (b / 16) * 16;
+             bufferedimage.getRGB(i1, j1, 16, 16, j, 0, 16);
+diff -U 3 minecraft.src\au.java patches\au.java
+--- minecraft.src\au.java	Tue Oct 19 01:22:06 2010
++++ patches\au.java	Wed Oct 20 20:38:44 2010
+@@ -4,7 +4,7 @@
+ // Source File Name:   SourceFile
+ 
+ import java.util.List;
+-import net.minecraft.client.Minecraft;
++//import Minecraft;
+ import org.lwjgl.opengl.GL11;
+ 
+ public class au extends bh
+diff -U 3 minecraft.src\ay.java patches\ay.java
+--- minecraft.src\ay.java	Tue Oct 19 01:22:06 2010
++++ patches\ay.java	Wed Oct 20 20:38:44 2010
+@@ -4,7 +4,7 @@
+ // Source File Name:   SourceFile
+ 
+ import java.util.List;
+-import net.minecraft.client.Minecraft;
++//import Minecraft;
+ 
+ public class ay extends bh
+ {
+diff -U 3 minecraft.src\bf.java patches\bf.java
+--- minecraft.src\bf.java	Tue Oct 19 01:22:08 2010
++++ patches\bf.java	Wed Oct 20 20:38:44 2010
+@@ -12,7 +12,7 @@
+ import java.net.URL;
+ import javax.xml.parsers.DocumentBuilder;
+ import javax.xml.parsers.DocumentBuilderFactory;
+-import net.minecraft.client.Minecraft;
++//import Minecraft;
+ import org.w3c.dom.Document;
+ import org.w3c.dom.Element;
+ import org.w3c.dom.Node;
+@@ -22,10 +22,10 @@
+ {
+ 
+     public java.io.File a;
+-    private net.minecraft.client.Minecraft b;
++    private Minecraft b;
+     private boolean c;
+ 
+-    public bf(java.io.File file, net.minecraft.client.Minecraft minecraft)
++    public bf(java.io.File file, Minecraft minecraft)
+     {
+         c = false;
+         b = minecraft;
+diff -U 3 minecraft.src\bh.java patches\bh.java
+--- minecraft.src\bh.java	Tue Oct 19 01:22:06 2010
++++ patches\bh.java	Wed Oct 20 20:38:44 2010
+@@ -8,7 +8,7 @@
+ import java.awt.datatransfer.DataFlavor;
+ import java.awt.datatransfer.Transferable;
+ import java.util.ArrayList;
+-import net.minecraft.client.Minecraft;
++//import Minecraft;
+ import org.lwjgl.input.Keyboard;
+ import org.lwjgl.input.Mouse;
+ import org.lwjgl.opengl.GL11;
+@@ -16,7 +16,7 @@
+ public class bh extends lm
+ {
+ 
+-    protected net.minecraft.client.Minecraft b;
++    protected Minecraft b;
+     public int c;
+     public int d;
+     protected java.util.List e;
+@@ -96,7 +96,7 @@
+     {
+     }
+ 
+-    public void a(net.minecraft.client.Minecraft minecraft, int j, int k)
++    public void a(Minecraft minecraft, int j, int k)
+     {
+         b = minecraft;
+         g = minecraft.o;
+diff -U 3 minecraft.src\bi.java patches\bi.java
+--- minecraft.src\bi.java	Tue Oct 19 01:22:06 2010
++++ patches\bi.java	Wed Oct 20 20:42:37 2010
+@@ -4,15 +4,15 @@
+ // Source File Name:   SourceFile
+ 
+ import java.io.PrintStream;
+-import net.minecraft.client.Minecraft;
++//import Minecraft;
+ 
+ public class bi extends dm
+ {
+ 
+     public lv a;
+-    private net.minecraft.client.Minecraft bg;
++    private Minecraft bg;
+ 
+-    public bi(net.minecraft.client.Minecraft minecraft, cn cn, dl dl1)
++    public bi(Minecraft minecraft, cn cn, dl dl1)
+     {
+         super(cn);
+         bg = minecraft;
+diff -U 3 minecraft.src\cj.java patches\cj.java
+--- minecraft.src\cj.java	Tue Oct 19 01:22:06 2010
++++ patches\cj.java	Wed Oct 20 20:38:44 2010
+@@ -4,7 +4,7 @@
+ // Source File Name:   SourceFile
+ 
+ import java.util.List;
+-import net.minecraft.client.Minecraft;
++//import Minecraft;
+ 
+ public class cj extends bh
+ {
+diff -U 3 minecraft.src\cx.java patches\cx.java
+--- minecraft.src\cx.java	Tue Oct 19 01:22:08 2010
++++ patches\cx.java	Wed Oct 20 20:38:44 2010
+@@ -10,7 +10,7 @@
+ import java.util.Date;
+ import java.util.List;
+ import java.util.Random;
+-import net.minecraft.client.Minecraft;
++//import Minecraft;
+ import org.lwjgl.opengl.GL11;
+ import org.lwjgl.util.glu.GLU;
+ 
+diff -U 3 minecraft.src\de.java patches\de.java
+--- minecraft.src\de.java	Tue Oct 19 01:22:08 2010
++++ patches\de.java	Wed Oct 20 20:38:44 2010
+@@ -3,7 +3,7 @@
+ // Decompiler options: fullnames deadcode fieldsfirst safe 
+ // Source File Name:   SourceFile
+ 
+-import net.minecraft.client.Minecraft;
++//import Minecraft;
+ import org.lwjgl.input.Keyboard;
+ 
+ public class de extends bh
+diff -U 3 minecraft.src\e.java patches\e.java
+--- minecraft.src\e.java	Tue Oct 19 01:22:08 2010
++++ patches\e.java	Wed Oct 20 20:38:44 2010
+@@ -9,7 +9,7 @@
+ import java.util.Collections;
+ import java.util.List;
+ import java.util.Random;
+-import net.minecraft.client.Minecraft;
++//import Minecraft;
+ import org.lwjgl.opengl.ARBOcclusionQuery;
+ import org.lwjgl.opengl.GL11;
+ 
+@@ -27,7 +27,7 @@
+     private int q;
+     private int r;
+     private int s;
+-    private net.minecraft.client.Minecraft t;
++    private Minecraft t;
+     private bc u;
+     private java.nio.IntBuffer v;
+     private boolean w;
+@@ -65,7 +65,7 @@
+     public float i;
+     int j;
+ 
+-    public e(net.minecraft.client.Minecraft minecraft, ey ey1)
++    public e(Minecraft minecraft, ey ey1)
+     {
+         a = ((java.util.List) (new ArrayList()));
+         m = ((java.util.List) (new ArrayList()));
+diff -U 3 minecraft.src\ea.java patches\ea.java
+--- minecraft.src\ea.java	Tue Oct 19 01:22:06 2010
++++ patches\ea.java	Wed Oct 20 20:38:44 2010
+@@ -4,7 +4,7 @@
+ // Source File Name:   SourceFile
+ 
+ import java.util.List;
+-import net.minecraft.client.Minecraft;
++//import Minecraft;
+ import org.lwjgl.opengl.GL11;
+ 
+ public class ea extends ee
+diff -U 3 minecraft.src\ee.java patches\ee.java
+--- minecraft.src\ee.java	Tue Oct 19 01:22:08 2010
++++ patches\ee.java	Wed Oct 20 20:38:44 2010
+@@ -5,7 +5,7 @@
+ 
+ import java.util.ArrayList;
+ import java.util.List;
+-import net.minecraft.client.Minecraft;
++//import Minecraft;
+ import org.lwjgl.opengl.GL11;
+ 
+ public abstract class ee extends bh
+diff -U 3 minecraft.src\fk.java patches\fk.java
+--- minecraft.src\fk.java	Tue Oct 19 01:22:07 2010
++++ patches\fk.java	Wed Oct 20 20:38:44 2010
+@@ -3,7 +3,7 @@
+ // Decompiler options: fullnames deadcode fieldsfirst safe 
+ // Source File Name:   SourceFile
+ 
+-import net.minecraft.client.Minecraft;
++//import Minecraft;
+ import org.lwjgl.opengl.GL11;
+ 
+ public class fk extends lm
+@@ -48,7 +48,7 @@
+         return ((int) (byte0));
+     }
+ 
+-    public void a(net.minecraft.client.Minecraft minecraft, int i, int j)
++    public void a(Minecraft minecraft, int i, int j)
+     {
+         if(!h)
+             return;
+@@ -69,7 +69,7 @@
+             a(kd, e, c + a / 2, d + (b - 8) / 2, 0xe0e0e0);
+     }
+ 
+-    protected void b(net.minecraft.client.Minecraft minecraft, int i, int j)
++    protected void b(Minecraft minecraft, int i, int j)
+     {
+     }
+ 
+@@ -77,7 +77,7 @@
+     {
+     }
+ 
+-    public boolean c(net.minecraft.client.Minecraft minecraft, int i, int j)
++    public boolean c(Minecraft minecraft, int i, int j)
+     {
+         return g && i >= c && j >= d && i < c + a && j < d + b;
+     }
+diff -U 3 minecraft.src\fl.java patches\fl.java
+--- minecraft.src\fl.java	Tue Oct 19 01:22:08 2010
++++ patches\fl.java	Wed Oct 20 20:38:44 2010
+@@ -3,14 +3,14 @@
+ // Decompiler options: fullnames deadcode fieldsfirst safe 
+ // Source File Name:   SourceFile
+ 
+-import net.minecraft.client.Minecraft;
++//import Minecraft;
+ 
+ public class fl extends java.lang.Thread
+ {
+ 
+-    final net.minecraft.client.Minecraft a;
++    final Minecraft a;
+ 
+-    public fl(net.minecraft.client.Minecraft minecraft, java.lang.String s)
++    public fl(Minecraft minecraft, java.lang.String s)
+     {
+         super(s);
+         a = minecraft;
+diff -U 3 minecraft.src\fm.java patches\fm.java
+--- minecraft.src\fm.java	Tue Oct 19 01:22:08 2010
++++ patches\fm.java	Wed Oct 20 20:44:06 2010
+@@ -6,15 +6,17 @@
+ import java.awt.Canvas;
+ import java.awt.Component;
+ import java.awt.Frame;
+-import net.minecraft.client.Minecraft;
+-import net.minecraft.client.MinecraftApplet;
++//import Minecraft;
++//import MinecraftApplet;
++import java.io.File;
++import java.lang.reflect.Field;
+ 
+-public final class fm extends net.minecraft.client.Minecraft
++public final class fm extends Minecraft
+ {
+ 
+     final java.awt.Frame a;
+ 
+-    public fm(java.awt.Component component, java.awt.Canvas canvas, net.minecraft.client.MinecraftApplet minecraftapplet, int i, int j, boolean flag, java.awt.Frame frame)
++    public fm(java.awt.Component component, java.awt.Canvas canvas, MinecraftApplet minecraftapplet, int i, int j, boolean flag, java.awt.Frame frame)
+     {
+         super(component, canvas, minecraftapplet, i, j, flag);
+         a = frame;
+diff -U 3 minecraft.src\fp.java patches\fp.java
+--- minecraft.src\fp.java	Tue Oct 19 01:22:08 2010
++++ patches\fp.java	Wed Oct 20 20:38:44 2010
+@@ -5,15 +5,15 @@
+ 
+ import java.awt.event.WindowAdapter;
+ import java.awt.event.WindowEvent;
+-import net.minecraft.client.Minecraft;
++//import Minecraft;
+ 
+ public final class fp extends java.awt.event.WindowAdapter
+ {
+ 
+-    final net.minecraft.client.Minecraft a;
++    final Minecraft a;
+     final java.lang.Thread b;
+ 
+-    public fp(net.minecraft.client.Minecraft minecraft, java.lang.Thread thread)
++    public fp(Minecraft minecraft, java.lang.Thread thread)
+     {
+         super();
+         a = minecraft;
+diff -U 3 minecraft.src\fq.java patches\fq.java
+--- minecraft.src\fq.java	Tue Oct 19 01:22:07 2010
++++ patches\fq.java	Wed Oct 20 20:38:44 2010
+@@ -3,7 +3,7 @@
+ // Decompiler options: fullnames deadcode fieldsfirst safe 
+ // Source File Name:   SourceFile
+ 
+-import net.minecraft.client.Minecraft;
++//import Minecraft;
+ 
+ public class fq
+ {
+diff -U 3 minecraft.src\fr.java patches\fr.java
+--- minecraft.src\fr.java	Tue Oct 19 01:22:07 2010
++++ patches\fr.java	Wed Oct 20 20:38:44 2010
+@@ -9,7 +9,7 @@
+ import java.io.FileWriter;
+ import java.io.PrintStream;
+ import java.io.PrintWriter;
+-import net.minecraft.client.Minecraft;
++//import Minecraft;
+ import org.lwjgl.input.Keyboard;
+ 
+ public class fr
+@@ -41,13 +41,13 @@
+     public it r;
+     public it s;
+     public it t[];
+-    protected net.minecraft.client.Minecraft u;
++    protected Minecraft u;
+     private java.io.File A;
+     public int v;
+     public int w;
+     public boolean x;
+ 
+-    public fr(net.minecraft.client.Minecraft minecraft, java.io.File file)
++    public fr(Minecraft minecraft, java.io.File file)
+     {
+         a = 1.0F;
+         b = 1.0F;
+diff -U 3 minecraft.src\g.java patches\g.java
+--- minecraft.src\g.java	Tue Oct 19 01:22:08 2010
++++ patches\g.java	Wed Oct 20 20:38:44 2010
+@@ -6,15 +6,15 @@
+ import java.awt.BorderLayout;
+ import java.awt.Canvas;
+ import java.awt.Component;
+-import net.minecraft.client.Minecraft;
+-import net.minecraft.client.MinecraftApplet;
++//import Minecraft;
++//import MinecraftApplet;
+ 
+-public class g extends net.minecraft.client.Minecraft
++public class g extends Minecraft
+ {
+ 
+-    final net.minecraft.client.MinecraftApplet a;
++    final MinecraftApplet a;
+ 
+-    public g(net.minecraft.client.MinecraftApplet minecraftapplet, java.awt.Component component, java.awt.Canvas canvas, net.minecraft.client.MinecraftApplet minecraftapplet1, int i, int j, boolean flag)
++    public g(MinecraftApplet minecraftapplet, java.awt.Component component, java.awt.Canvas canvas, MinecraftApplet minecraftapplet1, int i, int j, boolean flag)
+     {
+         super(component, canvas, minecraftapplet1, i, j, flag);
+         a = minecraftapplet;
+diff -U 3 minecraft.src\gc.java patches\gc.java
+--- minecraft.src\gc.java	Tue Oct 19 01:22:08 2010
++++ patches\gc.java	Wed Oct 20 20:38:45 2010
+@@ -4,7 +4,7 @@
+ // Source File Name:   SourceFile
+ 
+ import java.util.List;
+-import net.minecraft.client.Minecraft;
++//import Minecraft;
+ 
+ public class gc extends bh
+ {
+diff -U 3 minecraft.src\gr.java patches\gr.java
+--- minecraft.src\gr.java	Tue Oct 19 01:22:07 2010
++++ patches\gr.java	Wed Oct 20 20:38:45 2010
+@@ -3,7 +3,7 @@
+ // Decompiler options: fullnames deadcode fieldsfirst safe 
+ // Source File Name:   SourceFile
+ 
+-import net.minecraft.client.Minecraft;
++//import Minecraft;
+ import org.lwjgl.opengl.Display;
+ import org.lwjgl.opengl.GL11;
+ 
+@@ -12,12 +12,12 @@
+ {
+ 
+     private java.lang.String a;
+-    private net.minecraft.client.Minecraft b;
++    private Minecraft b;
+     private java.lang.String c;
+     private long d;
+     private boolean e;
+ 
+-    public gr(net.minecraft.client.Minecraft minecraft)
++    public gr(Minecraft minecraft)
+     {
+         a = "";
+         c = "";
+diff -U 3 minecraft.src\gy.java patches\gy.java
+--- minecraft.src\gy.java	Tue Oct 19 01:22:08 2010
++++ patches\gy.java	Wed Oct 20 20:38:45 2010
+@@ -11,7 +11,7 @@
+ import java.net.URL;
+ import java.net.UnknownHostException;
+ import java.util.Random;
+-import net.minecraft.client.Minecraft;
++//import Minecraft;
+ 
+ public class gy extends lb
+ {
+@@ -19,12 +19,12 @@
+     private boolean c;
+     private ii d;
+     public java.lang.String a;
+-    private net.minecraft.client.Minecraft e;
++    private Minecraft e;
+     private gs f;
+     private boolean g;
+     java.util.Random b;
+ 
+-    public gy(net.minecraft.client.Minecraft minecraft, java.lang.String s, int i) throws UnknownHostException, IOException
++    public gy(Minecraft minecraft, java.lang.String s, int i) throws UnknownHostException, IOException
+     {
+         c = false;
+         g = false;
+diff -U 3 minecraft.src\h.java patches\h.java
+--- minecraft.src\h.java	Tue Oct 19 01:22:08 2010
++++ patches\h.java	Wed Oct 20 20:38:45 2010
+@@ -4,14 +4,14 @@
+ // Source File Name:   SourceFile
+ 
+ import java.awt.Canvas;
+-import net.minecraft.client.MinecraftApplet;
++//import MinecraftApplet;
+ 
+ public class h extends java.awt.Canvas
+ {
+ 
+-    final net.minecraft.client.MinecraftApplet a;
++    final MinecraftApplet a;
+ 
+-    public h(net.minecraft.client.MinecraftApplet minecraftapplet)
++    public h(MinecraftApplet minecraftapplet)
+     {
+         super();
+         a = minecraftapplet;
+diff -U 3 minecraft.src\hq.java patches\hq.java
+--- minecraft.src\hq.java	Tue Oct 19 01:22:07 2010
++++ patches\hq.java	Wed Oct 20 20:38:45 2010
+@@ -3,15 +3,15 @@
+ // Decompiler options: fullnames deadcode fieldsfirst safe 
+ // Source File Name:   SourceFile
+ 
+-import net.minecraft.client.Minecraft;
++//import Minecraft;
+ 
+ public class hq
+ {
+ 
+-    protected final net.minecraft.client.Minecraft a;
++    protected final Minecraft a;
+     public boolean b;
+ 
+-    public hq(net.minecraft.client.Minecraft minecraft)
++    public hq(Minecraft minecraft)
+     {
+         b = false;
+         a = minecraft;
+diff -U 3 minecraft.src\hx.java patches\hx.java
+--- minecraft.src\hx.java	Tue Oct 19 01:22:07 2010
++++ patches\hx.java	Wed Oct 20 20:38:45 2010
+@@ -4,7 +4,7 @@
+ // Source File Name:   SourceFile
+ 
+ import java.util.List;
+-import net.minecraft.client.Minecraft;
++//import Minecraft;
+ import org.lwjgl.opengl.GL11;
+ 
+ public class hx extends ee
+diff -U 3 minecraft.src\ia.java patches\ia.java
+--- minecraft.src\ia.java	Tue Oct 19 01:22:09 2010
++++ patches\ia.java	Wed Oct 20 20:38:45 2010
+@@ -3,7 +3,7 @@
+ // Decompiler options: fullnames deadcode fieldsfirst safe 
+ // Source File Name:   SourceFile
+ 
+-import net.minecraft.client.Minecraft;
++//import Minecraft;
+ 
+ public class ia extends hq
+ {
+@@ -18,7 +18,7 @@
+     private az j;
+     private az k;
+ 
+-    public ia(net.minecraft.client.Minecraft minecraft)
++    public ia(Minecraft minecraft)
+     {
+         super(minecraft);
+         c = -1;
+diff -U 3 minecraft.src\ib.java patches\ib.java
+--- minecraft.src\ib.java	Tue Oct 19 01:22:07 2010
++++ patches\ib.java	Wed Oct 20 20:38:45 2010
+@@ -4,7 +4,7 @@
+ // Source File Name:   SourceFile
+ 
+ import java.util.List;
+-import net.minecraft.client.Minecraft;
++//import Minecraft;
+ 
+ public class ib extends jq
+ {
+@@ -31,7 +31,7 @@
+     {
+         if(flag)
+         {
+-            java.io.File file = net.minecraft.client.Minecraft.b();
++            java.io.File file = Minecraft.b();
+             cn.b(file, d(i));
+         }
+         b.a(a);
+diff -U 3 minecraft.src\id.java patches\id.java
+--- minecraft.src\id.java	Tue Oct 19 01:22:07 2010
++++ patches\id.java	Wed Oct 20 20:38:45 2010
+@@ -4,7 +4,7 @@
+ // Source File Name:   SourceFile
+ 
+ import java.util.List;
+-import net.minecraft.client.Minecraft;
++//import Minecraft;
+ import org.lwjgl.opengl.GL11;
+ 
+ public class id extends ee
+diff -U 3 minecraft.src\ie.java patches\ie.java
+--- minecraft.src\ie.java	Tue Oct 19 01:22:07 2010
++++ patches\ie.java	Wed Oct 20 20:38:45 2010
+@@ -4,7 +4,7 @@
+ // Source File Name:   SourceFile
+ 
+ import java.util.List;
+-import net.minecraft.client.Minecraft;
++//import Minecraft;
+ 
+ public class ie extends bh
+ {
+diff -U 3 minecraft.src\ih.java patches\ih.java
+--- minecraft.src\ih.java	Tue Oct 19 01:22:09 2010
++++ patches\ih.java	Wed Oct 20 20:38:45 2010
+@@ -3,7 +3,7 @@
+ // Decompiler options: fullnames deadcode fieldsfirst safe 
+ // Source File Name:   SourceFile
+ 
+-import net.minecraft.client.Minecraft;
++//import Minecraft;
+ 
+ public enum ih
+ {
+diff -U 3 minecraft.src\il.java patches\il.java
+--- minecraft.src\il.java	Tue Oct 19 01:22:07 2010
++++ patches\il.java	Wed Oct 20 20:38:45 2010
+@@ -4,12 +4,12 @@
+ // Source File Name:   SourceFile
+ 
+ import java.util.List;
+-import net.minecraft.client.Minecraft;
++//import Minecraft;
+ 
+ public class il extends hq
+ {
+ 
+-    public il(net.minecraft.client.Minecraft minecraft)
++    public il(Minecraft minecraft)
+     {
+         super(minecraft);
+         b = true;
+diff -U 3 minecraft.src\iq.java patches\iq.java
+--- minecraft.src\iq.java	Tue Oct 19 01:22:09 2010
++++ patches\iq.java	Wed Oct 20 20:38:45 2010
+@@ -6,7 +6,7 @@
+ import java.nio.FloatBuffer;
+ import java.util.List;
+ import java.util.Random;
+-import net.minecraft.client.Minecraft;
++//import Minecraft;
+ import org.lwjgl.input.Mouse;
+ import org.lwjgl.opengl.ContextCapabilities;
+ import org.lwjgl.opengl.Display;
+@@ -17,7 +17,7 @@
+ public class iq
+ {
+ 
+-    private net.minecraft.client.Minecraft h;
++    private Minecraft h;
+     private float i;
+     public jh a;
+     private int j;
+@@ -33,7 +33,7 @@
+     private float n;
+     private float o;
+ 
+-    public iq(net.minecraft.client.Minecraft minecraft)
++    public iq(Minecraft minecraft)
+     {
+         i = 0.0F;
+         k = null;
+diff -U 3 minecraft.src\iv.java patches\iv.java
+--- minecraft.src\iv.java	Tue Oct 19 01:22:07 2010
++++ patches\iv.java	Wed Oct 20 20:38:45 2010
+@@ -4,7 +4,7 @@
+ // Source File Name:   SourceFile
+ 
+ import java.util.List;
+-import net.minecraft.client.Minecraft;
++//import Minecraft;
+ 
+ public class iv extends bh
+ {
+diff -U 3 minecraft.src\jh.java patches\jh.java
+--- minecraft.src\jh.java	Tue Oct 19 01:22:07 2010
++++ patches\jh.java	Wed Oct 20 20:38:45 2010
+@@ -3,19 +3,19 @@
+ // Decompiler options: fullnames deadcode fieldsfirst safe 
+ // Source File Name:   SourceFile
+ 
+-import net.minecraft.client.Minecraft;
++//import Minecraft;
+ import org.lwjgl.opengl.GL11;
+ 
+ public class jh
+ {
+ 
+-    private net.minecraft.client.Minecraft a;
++    private Minecraft a;
+     private ev b;
+     private float c;
+     private float d;
+     private bc e;
+ 
+-    public jh(net.minecraft.client.Minecraft minecraft)
++    public jh(Minecraft minecraft)
+     {
+         b = null;
+         c = 0.0F;
+diff -U 3 minecraft.src\jq.java patches\jq.java
+--- minecraft.src\jq.java	Tue Oct 19 01:22:07 2010
++++ patches\jq.java	Wed Oct 20 20:38:45 2010
+@@ -4,7 +4,7 @@
+ // Source File Name:   SourceFile
+ 
+ import java.util.List;
+-import net.minecraft.client.Minecraft;
++//import Minecraft;
+ 
+ public class jq extends bh
+ {
+@@ -22,7 +22,7 @@
+ 
+     public void a()
+     {
+-        java.io.File file = net.minecraft.client.Minecraft.b();
++        java.io.File file = Minecraft.b();
+         for(int k = 0; k < 5; k++)
+         {
+             hm hm1 = cn.a(file, (new StringBuilder()).append("World").append(k + 1).toString());
+@@ -43,7 +43,7 @@
+ 
+     protected java.lang.String d(int k)
+     {
+-        java.io.File file = net.minecraft.client.Minecraft.b();
++        java.io.File file = Minecraft.b();
+         return cn.a(file, (new StringBuilder()).append("World").append(k).toString()) == null ? null : (new StringBuilder()).append("World").append(k).toString();
+     }
+ 
+diff -U 3 minecraft.src\la.java patches\la.java
+--- minecraft.src\la.java	Tue Oct 19 01:22:07 2010
++++ patches\la.java	Wed Oct 20 20:38:45 2010
+@@ -4,7 +4,7 @@
+ // Source File Name:   SourceFile
+ 
+ import java.io.PrintStream;
+-import net.minecraft.client.Minecraft;
++//import Minecraft;
+ 
+ public class la extends bi
+ {
+@@ -19,7 +19,7 @@
+     private float bn;
+     private eu bo;
+ 
+-    public la(net.minecraft.client.Minecraft minecraft, cn cn, dl dl, gy gy1)
++    public la(Minecraft minecraft, cn cn, dl dl, gy gy1)
+     {
+         super(minecraft, cn, dl);
+         bh = 0;
+diff -U 3 minecraft.src\lo.java patches\lo.java
+--- minecraft.src\lo.java	Tue Oct 19 01:22:09 2010
++++ patches\lo.java	Wed Oct 20 20:38:45 2010
+@@ -4,7 +4,7 @@
+ // Source File Name:   SourceFile
+ 
+ import java.util.List;
+-import net.minecraft.client.Minecraft;
++//import Minecraft;
+ import org.lwjgl.opengl.GL11;
+ 
+ public class lo extends ee
+diff -U 3 minecraft.src\lu.java patches\lu.java
+--- minecraft.src\lu.java	Tue Oct 19 01:22:09 2010
++++ patches\lu.java	Wed Oct 20 20:38:45 2010
+@@ -6,7 +6,7 @@
+ import java.awt.Color;
+ import java.util.ArrayList;
+ import java.util.Random;
+-import net.minecraft.client.Minecraft;
++//import Minecraft;
+ import org.lwjgl.input.Keyboard;
+ import org.lwjgl.opengl.GL11;
+ 
+@@ -16,7 +16,7 @@
+     private static ab d = new ab();
+     private java.util.List e;
+     private java.util.Random f;
+-    private net.minecraft.client.Minecraft g;
++    private Minecraft g;
+     public java.lang.String a;
+     private int h;
+     private java.lang.String i;
+@@ -24,7 +24,7 @@
+     public float b;
+     float c;
+ 
+-    public lu(net.minecraft.client.Minecraft minecraft)
++    public lu(Minecraft minecraft)
+     {
+         e = ((java.util.List) (new ArrayList()));
+         f = new Random();
+diff -U 3 minecraft.src\lw.java patches\lw.java
+--- minecraft.src\lw.java	Tue Oct 19 01:22:07 2010
++++ patches\lw.java	Wed Oct 20 20:38:45 2010
+@@ -4,7 +4,7 @@
+ // Source File Name:   SourceFile
+ 
+ import java.util.List;
+-import net.minecraft.client.Minecraft;
++//import Minecraft;
+ 
+ public class lw extends bh
+ {
+diff -U 3 minecraft.src\Minecraft.java patches\Minecraft.java
+--- minecraft.src\Minecraft.java	Wed Oct 20 21:02:31 2010
++++ patches\Minecraft.java	Wed Oct 20 21:04:46 2010
+@@ -3,51 +3,51 @@
+ // Decompiler options: fullnames deadcode fieldsfirst safe 
+ // Source File Name:   SourceFile
+ 
+-package net.minecraft.client;
++//package net.minecraft.client;
+ 
+-import aa;
+-import aj;
+-import as;
+-import at;
+-import au;
+-import be;
+-import bf;
+-import bh;
+-import bi;
+-import bn;
+-import bq;
+-import cf;
+-import cn;
+-import cr;
+-import cx;
+-import de;
+-import df;
+-import dl;
+-import e;
+-import eg;
+-import eo;
+-import eu;
+-import ev;
+-import ey;
+-import fl;
+-import fm;
+-import fp;
+-import fq;
+-import fr;
+-import gd;
+-import go;
+-import gr;
+-import ho;
+-import hq;
+-import ht;
+-import ie;
+-import ih;
+-import il;
+-import iq;
+-import ir;
+-import it;
+-import iv;
+-import iy;
++//import aa;
++//import aj;
++//import as;
++//import at;
++//import au;
++//import be;
++//import bf;
++//import bh;
++//import bi;
++//import bn;
++//import bq;
++//import cf;
++//import cn;
++//import cr;
++//import cx;
++//import de;
++//import df;
++//import dl;
++//import e;
++//import eg;
++//import eo;
++//import eu;
++//import ev;
++//import ey;
++//import fl;
++//import fm;
++//import fp;
++//import fq;
++//import fr;
++//import gd;
++//import go;
++//import gr;
++//import ho;
++//import hq;
++//import ht;
++//import ie;
++//import ih;
++//import il;
++//import iq;
++//import ir;
++//import it;
++//import iv;
++//import iy;
+ import java.awt.BorderLayout;
+ import java.awt.Canvas;
+ import java.awt.Color;
+@@ -58,21 +58,21 @@
+ import java.io.File;
+ import java.io.IOException;
+ import java.io.PrintStream;
+-import jh;
+-import jz;
+-import kd;
+-import kx;
+-import lo;
+-import lu;
+-import lx;
+-import ly;
+-import mf;
+-import ml;
+-import mn;
+-import mp;
+-import my;
+-import nr;
+-import of;
++//import jh;
++//import jz;
++//import kd;
++//import kx;
++//import lo;
++//import lu;
++//import lx;
++//import ly;
++//import mf;
++//import ml;
++//import mn;
++//import mp;
++//import my;
++//import nr;
++//import of;
+ import org.lwjgl.LWJGLException;
+ import org.lwjgl.input.Controllers;
+ import org.lwjgl.input.Keyboard;
+@@ -121,7 +121,7 @@
+     public cr w;
+     public mf x;
+     public fr y;
+-    protected net.minecraft.client.MinecraftApplet z;
++    protected MinecraftApplet z;
+     public of A;
+     public mp B;
+     public java.io.File C;
+@@ -141,7 +141,7 @@
+     long K;
+     private int Y;
+ 
+-    public Minecraft(java.awt.Component component, java.awt.Canvas canvas, net.minecraft.client.MinecraftApplet minecraftapplet, int i1, int j1, boolean flag)
++    public Minecraft(java.awt.Component component, java.awt.Canvas canvas, MinecraftApplet minecraftapplet, int i1, int j1, boolean flag)
+     {
+         a = false;
+         M = new ir(20F);
+@@ -188,7 +188,7 @@
+         T = i1;
+     }
+ 
+-    public void a()
++    public void a() throws LWJGLException
+     {
+         if(k != null)
+         {
+@@ -230,7 +230,7 @@
+             org.lwjgl.opengl.Display.create();
+         }
+         kx.a.f = new jh(this);
+-        C = net.minecraft.client.Minecraft.b();
++        C = Minecraft.b();
+         y = new fr(this, C);
+         n = new ey(y);
+         o = new kd(y, "/default.png", n);
+@@ -285,7 +285,7 @@
+             a(((bh) (new cx())));
+     }
+ 
+-    private void p()
++    private void p() throws LWJGLException
+     {
+         iy iy1 = new iy(c, d);
+         int i1 = iy1.a();
+@@ -339,7 +339,7 @@
+     public static java.io.File b()
+     {
+         if(W == null)
+-            W = net.minecraft.client.Minecraft.a("minecraft");
++            W = Minecraft.a("minecraft");
+         return W;
+     }
+ 
+@@ -347,7 +347,7 @@
+     {
+         java.lang.String s2 = java.lang.System.getProperty("user.home", ".");
+         java.io.File file;
+-        switch(fq.a[net.minecraft.client.Minecraft.q().ordinal()])
++        switch(fq.a[Minecraft.q().ordinal()])
+         {
+         case 1: // '\001'
+         case 2: // '\002'
+@@ -444,6 +444,8 @@
+                 N.b();
+         }
+         catch(java.lang.Exception exception) { }
++        try
++        {
+         java.lang.System.out.println("Stopping!");
+         a(((cn) (null)));
+         try
+@@ -454,14 +456,12 @@
+         A.b();
+         org.lwjgl.input.Mouse.destroy();
+         org.lwjgl.input.Keyboard.destroy();
++        }
++        finally
++        {
+         org.lwjgl.opengl.Display.destroy();
+-        break MISSING_BLOCK_LABEL_77;
+-        java.lang.Exception exception2;
+-        exception2;
+-        org.lwjgl.opengl.Display.destroy();
+-        throw exception2;
++        }
+         java.lang.System.gc();
+-        return;
+     }
+ 
+     public void run()
+@@ -566,10 +566,9 @@
+             throwable.printStackTrace();
+             a(new go("Unexpected error", throwable));
+         }
+-        break MISSING_BLOCK_LABEL_599;
+-        java.lang.Exception exception1;
+-        exception1;
+-        throw exception1;
++        finally
++        {
++        }
+     }
+ 
+     private void r()
+@@ -992,7 +991,7 @@
+     {
+         a(((cn) (null)));
+         java.lang.System.gc();
+-        cn cn1 = new cn(new File(net.minecraft.client.Minecraft.b(), "saves"), s1);
++        cn cn1 = new cn(new File(Minecraft.b(), "saves"), s1);
+         if(cn1.r)
+             a(cn1, "Generating level");
+         else
+@@ -1015,7 +1014,7 @@
+             b.a(cn1);
+             cn1.m = ((java.lang.Object) (o));
+             if(!j())
+-                g = (bi)cn1.a(bi);
++                g = (bi)cn1.a(bi.class);
+             else
+             if(g != null)
+             {
+@@ -1136,7 +1135,7 @@
+ 
+     public static void a(java.lang.String s1, java.lang.String s2)
+     {
+-        net.minecraft.client.Minecraft.a(s1, s2, ((java.lang.String) (null)));
++        Minecraft.a(s1, s2, ((java.lang.String) (null)));
+     }
+ 
+     public static void a(java.lang.String s1, java.lang.String s2, java.lang.String s3)
+@@ -1150,7 +1149,7 @@
+         canvas.setPreferredSize(new Dimension(854, 480));
+         frame.pack();
+         frame.setLocationRelativeTo(((java.awt.Component) (null)));
+-        fm fm1 = new fm(((java.awt.Component) (frame)), canvas, ((net.minecraft.client.MinecraftApplet) (null)), 854, 480, flag, frame);
++        fm fm1 = new fm(((java.awt.Component) (frame)), canvas, ((MinecraftApplet) (null)), 854, 480, flag, frame);
+         java.lang.Thread thread = new Thread(((java.lang.Runnable) (fm1)), "Minecraft main thread");
+         thread.setPriority(10);
+         fm1.l = false;
+@@ -1162,10 +1161,10 @@
+         if(s3 != null)
+         {
+             java.lang.String as1[] = s3.split(":");
+-            ((net.minecraft.client.Minecraft) (fm1)).a(as1[0], java.lang.Integer.parseInt(as1[1]));
++            ((Minecraft) (fm1)).a(as1[0], java.lang.Integer.parseInt(as1[1]));
+         }
+         frame.setVisible(true);
+-        frame.addWindowListener(((java.awt.event.WindowListener) (new fp(((net.minecraft.client.Minecraft) (fm1)), thread))));
++        frame.addWindowListener(((java.awt.event.WindowListener) (new fp(((Minecraft) (fm1)), thread))));
+         thread.start();
+     }
+ 
+@@ -1177,7 +1176,7 @@
+         java.lang.String s2 = "-";
+         if(args.length > 1)
+             s2 = args[1];
+-        net.minecraft.client.Minecraft.a(s1, s2);
++        Minecraft.a(s1, s2);
+     }
+ 
+ }
+Only in patches: Minecraft.java.bak
+diff -U 3 minecraft.src\MinecraftApplet.java patches\MinecraftApplet.java
+--- minecraft.src\MinecraftApplet.java	Wed Oct 20 21:02:31 2010
++++ patches\MinecraftApplet.java	Wed Oct 20 20:38:44 2010
+@@ -3,11 +3,11 @@
+ // Decompiler options: fullnames deadcode fieldsfirst safe 
+ // Source File Name:   SourceFile
+ 
+-package net.minecraft.client;
++//package net.minecraft.client;
+ 
+-import dl;
+-import g;
+-import h;
++//import dl;
++//import g;
++//import h;
+ import java.applet.Applet;
+ import java.awt.BorderLayout;
+ import java.awt.Canvas;
+@@ -21,7 +21,7 @@
+ {
+ 
+     private java.awt.Canvas a;
+-    private net.minecraft.client.Minecraft b;
++    private Minecraft b;
+     private java.lang.Thread c;
+ 
+     public MinecraftApplet()
+@@ -35,22 +35,13 @@
+         boolean flag = false;
+         if(getParameter("fullscreen") != null)
+             flag = getParameter("fullscreen").equalsIgnoreCase("true");
+-        b = ((net.minecraft.client.Minecraft) (new g(this, ((java.awt.Component) (this)), a, this, getWidth(), getHeight(), flag)));
++
++        b = ((Minecraft) (new g(this, ((java.awt.Component) (this)), a, this, getWidth(), getHeight(), flag)));
+         b.j = getDocumentBase().getHost();
+-        if(getDocumentBase().getPort() <= 0) goto _L2; else goto _L1
+-_L1:
+-        new StringBuilder();
+-        b;
+-        JVM INSTR dup_x1 ;
+-        j;
+-        append();
+-        ":";
+-        append();
+-        getDocumentBase().getPort();
+-        append();
+-        toString();
+-        j;
+-_L2:
++        if (getDocumentBase().getPort() > 0)
++        {
++          b.j = (b.j + ":" + getDocumentBase().getPort());
++        }
+         if(getParameter("username") != null && getParameter("sessionid") != null)
+         {
+             b.i = new dl(getParameter("username"), getParameter("sessionid"));
+@@ -73,7 +64,6 @@
+         add(((java.awt.Component) (a)), "Center");
+         a.setFocusable(true);
+         validate();
+-        return;
+     }
+ 
+     public void a()
+diff -U 3 minecraft.src\mn.java patches\mn.java
+--- minecraft.src\mn.java	Tue Oct 19 01:22:07 2010
++++ patches\mn.java	Wed Oct 20 20:38:45 2010
+@@ -4,7 +4,7 @@
+ // Source File Name:   SourceFile
+ 
+ import java.util.List;
+-import net.minecraft.client.Minecraft;
++//import Minecraft;
+ 
+ public class mn extends bh
+ {
+@@ -12,7 +12,7 @@
+     private gy a;
+     private boolean h;
+ 
+-    public mn(net.minecraft.client.Minecraft minecraft, java.lang.String s, int i)
++    public mn(Minecraft minecraft, java.lang.String s, int i)
+     {
+         h = false;
+         minecraft.a(((cn) (null)));
+diff -U 3 minecraft.src\mo.java patches\mo.java
+--- minecraft.src\mo.java	Tue Oct 19 01:22:07 2010
++++ patches\mo.java	Wed Oct 20 20:38:45 2010
+@@ -3,7 +3,7 @@
+ // Decompiler options: fullnames deadcode fieldsfirst safe 
+ // Source File Name:   SourceFile
+ 
+-import net.minecraft.client.Minecraft;
++//import Minecraft;
+ import org.lwjgl.opengl.GL11;
+ 
+ public class mo extends fk
+@@ -28,7 +28,7 @@
+         return 0;
+     }
+ 
+-    protected void b(net.minecraft.client.Minecraft minecraft, int k, int i1)
++    protected void b(Minecraft minecraft, int k, int i1)
+     {
+         if(!h)
+             return;
+@@ -47,7 +47,7 @@
+         b(c + (int)(i * (float)(a - 8)) + 4, d, 196, 66, 4, 20);
+     }
+ 
+-    public boolean c(net.minecraft.client.Minecraft minecraft, int k, int i1)
++    public boolean c(Minecraft minecraft, int k, int i1)
+     {
+         if(super.c(minecraft, k, i1))
+         {
+diff -U 3 minecraft.src\nc.java patches\nc.java
+--- minecraft.src\nc.java	Tue Oct 19 01:22:09 2010
++++ patches\nc.java	Wed Oct 20 20:38:45 2010
+@@ -5,17 +5,17 @@
+ 
+ import java.net.ConnectException;
+ import java.net.UnknownHostException;
+-import net.minecraft.client.Minecraft;
++//import Minecraft;
+ 
+ class nc extends java.lang.Thread
+ {
+ 
+-    final net.minecraft.client.Minecraft a;
++    final Minecraft a;
+     final java.lang.String b;
+     final int c;
+     final mn d;
+ 
+-    nc(mn mn1, net.minecraft.client.Minecraft minecraft, java.lang.String s, int i)
++    nc(mn mn1, Minecraft minecraft, java.lang.String s, int i)
+     {
+         super();
+         d = mn1;
+diff -U 3 minecraft.src\nj.java patches\nj.java
+--- minecraft.src\nj.java	Tue Oct 19 01:22:09 2010
++++ patches\nj.java	Wed Oct 20 20:38:45 2010
+@@ -3,7 +3,7 @@
+ // Decompiler options: fullnames deadcode fieldsfirst safe 
+ // Source File Name:   SourceFile
+ 
+-import net.minecraft.client.Minecraft;
++//import Minecraft;
+ 
+ public class nj extends hq
+ {
+@@ -19,7 +19,7 @@
+     private gy k;
+     private int l;
+ 
+-    public nj(net.minecraft.client.Minecraft minecraft, gy gy1)
++    public nj(Minecraft minecraft, gy gy1)
+     {
+         super(minecraft);
+         c = -1;
+diff -U 3 minecraft.src\nv.java patches\nv.java
+--- minecraft.src\nv.java	Tue Oct 19 01:22:09 2010
++++ patches\nv.java	Wed Oct 20 20:38:45 2010
+@@ -4,7 +4,7 @@
+ // Source File Name:   SourceFile
+ 
+ import java.util.List;
+-import net.minecraft.client.Minecraft;
++//import Minecraft;
+ import org.lwjgl.input.Keyboard;
+ import org.lwjgl.opengl.GL11;
+ 
+Only in patches: Start.java

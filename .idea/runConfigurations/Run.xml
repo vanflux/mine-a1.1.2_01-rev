@@ -1,0 +1,11 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Run" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="net.minecraft.launchwrapper.Launch" />
+    <module name="mine-a1.1.2_01-rev" />
+    <option name="PROGRAM_PARAMETERS" value="test" />
+    <option name="VM_PARAMETERS" value="-Djava.library.path=&quot;$ProjectFileDir$\src\main\resources\natives&quot;" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

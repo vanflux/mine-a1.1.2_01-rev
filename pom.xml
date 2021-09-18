@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.vanflux</groupId>
+    <artifactId>mine-a1.1.2_01-rev</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <skipIfEmpty>true</skipIfEmpty>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>paulscode.sound</groupId>
+            <artifactId>Paulscode-SoundSystem-JPCT</artifactId>
+            <version>2012.01.01</version>
+            <scope>system</scope>
+            <systemPath>${pom.basedir}\src\main\resources\libs\SoundSystemJPCT.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>paulscode.sound.codecs</groupId>
+            <artifactId>CodecJOrbis</artifactId>
+            <version>2010.11.23</version>
+            <scope>system</scope>
+            <systemPath>${pom.basedir}\src\main\resources\libs\CodecJOrbis.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>org.objectweb.asm.all</groupId>
+            <artifactId>asm-all</artifactId>
+            <version>4.1</version>
+            <scope>system</scope>
+            <systemPath>${pom.basedir}\src\main\resources\libs\asm-all-4.1.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.jopt-simple</groupId>
+            <artifactId>jopt-simple</artifactId>
+            <version>4.5</version>
+            <scope>system</scope>
+            <systemPath>${pom.basedir}\src\main\resources\libs\jopt-simple-4.5.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>org.lwjgl</groupId>
+            <artifactId>lwjgl</artifactId>
+            <version>2.9.0</version>
+            <scope>system</scope>
+            <systemPath>${pom.basedir}\src\main\resources\libs\lwjgl-2.9.0.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>org.lwjgl.util</groupId>
+            <artifactId>lwjgl-util</artifactId>
+            <version>2.9.0</version>
+            <scope>system</scope>
+            <systemPath>${pom.basedir}\src\main\resources\libs\lwjgl_util-2.9.0.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>org.lwjgl.natives</groupId>
+            <artifactId>lwjgl-natives</artifactId>
+            <version>2.9.0</version>
+            <scope>system</scope>
+            <systemPath>${pom.basedir}\src\main\resources\libs\lwjgl-platform-2.9.0-natives-windows.jar</systemPath>
+        </dependency>
+    </dependencies>
+
+</project>

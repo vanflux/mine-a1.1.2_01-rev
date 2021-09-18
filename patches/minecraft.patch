@@ -1,0 +1,3487 @@
+diff -U 3 minecraft.src\aa.java patches\aa.java
+--- minecraft.src\aa.java	Sun Oct 17 19:04:15 2010
++++ patches\aa.java	Sun Oct 17 09:44:22 2010
+@@ -28,7 +28,7 @@
+         f = 1;
+         try
+         {
+-            java.awt.image.BufferedImage bufferedimage = javax.imageio.ImageIO.read(((java.lang.Class) (net/minecraft/client/Minecraft)).getResource("/gui/items.png"));
++            java.awt.image.BufferedImage bufferedimage = javax.imageio.ImageIO.read(net.minecraft.client.Minecraft.class.getResource("/gui/items.png"));
+             int i1 = (b % 16) * 16;
+             int j1 = (b / 16) * 16;
+             bufferedimage.getRGB(i1, j1, 16, 16, j, 0, 16);
+diff -U 3 minecraft.src\ab.java patches\ab.java
+--- minecraft.src\ab.java	Sun Oct 17 19:04:15 2010
++++ patches\ab.java	Sun Oct 17 09:44:22 2010
+@@ -192,8 +192,7 @@
+         ho1.a();
+     }
+ 
+-    public volatile void a(kh kh, double d1, double d2, double d3, 
+-            float f, float f1)
++    public void a(kh kh, double d1, double d2, double d3, float f, float f1)
+     {
+         a((dx)kh, d1, d2, d3, f, f1);
+     }
+diff -U 3 minecraft.src\ac.java patches\ac.java
+--- minecraft.src\ac.java	Sun Oct 17 19:04:15 2010
++++ patches\ac.java	Sun Oct 17 09:44:22 2010
+@@ -25,7 +25,7 @@
+         double d = dm1.ah + (dm1.ak - dm1.ah) * (double)f;
+         double d1 = dm1.ai + (dm1.al - dm1.ai) * (double)f;
+         double d2 = dm1.aj + (dm1.am - dm1.aj) * (double)f;
+-        aj aj1 = aj.b(d, d1, d2);
++        aj aj1 = ((aj)null).b(d, d1, d2);
+         float f3 = eo.b(-f2 * 0.01745329F - 3.141593F);
+         float f4 = eo.a(-f2 * 0.01745329F - 3.141593F);
+         float f5 = -eo.b(-f1 * 0.01745329F);
+diff -U 3 minecraft.src\af.java patches\af.java
+--- minecraft.src\af.java	Sun Oct 17 19:04:15 2010
++++ patches\af.java	Sun Oct 17 09:44:22 2010
+@@ -8,9 +8,9 @@
+ public interface af
+ {
+ 
+-    public abstract ga a(cn cn, int i, int j);
++    public abstract ga a(cn cn, int i, int j) throws IOException;
+ 
+-    public abstract void a(cn cn, ga ga);
++    public abstract void a(cn cn, ga ga) throws IOException;
+ 
+     public abstract void b(cn cn, ga ga);
+ 
+diff -U 3 minecraft.src\al.java patches\al.java
+--- minecraft.src\al.java	Sun Oct 17 19:04:15 2010
++++ patches\al.java	Sun Oct 17 09:44:22 2010
+@@ -94,9 +94,9 @@
+         if(a == js.a)
+             list = cn1.b(((kh) (null)), cf.b((float)i + f, j, (float)k + f, (float)(i + 1) - f, (double)j + 0.25D, (float)(k + 1) - f));
+         if(a == js.b)
+-            list = cn1.a(ge, cf.b((float)i + f, j, (float)k + f, (float)(i + 1) - f, (double)j + 0.25D, (float)(k + 1) - f));
++            list = cn1.a(ge.class, cf.b((float)i + f, j, (float)k + f, (float)(i + 1) - f, (double)j + 0.25D, (float)(k + 1) - f));
+         if(a == js.c)
+-            list = cn1.a(dm, cf.b((float)i + f, j, (float)k + f, (float)(i + 1) - f, (double)j + 0.25D, (float)(k + 1) - f));
++            list = cn1.a(dm.class, cf.b((float)i + f, j, (float)k + f, (float)(i + 1) - f, (double)j + 0.25D, (float)(k + 1) - f));
+         if(list.size() > 0)
+             flag1 = true;
+         if(flag1 && !flag)
+diff -U 3 minecraft.src\ao.java patches\ao.java
+--- minecraft.src\ao.java	Sun Oct 17 19:04:15 2010
++++ patches\ao.java	Sun Oct 17 09:44:22 2010
+@@ -113,13 +113,13 @@
+         {
+             i++;
+         }
+-        aj aj1 = aj.b(ak, al, am);
+-        aj aj2 = aj.b(ak + an, al + ao, am + ap);
++        aj aj1 = ((aj)null).b(ak, al, am);
++        aj aj2 = ((aj)null).b(ak + an, al + ao, am + ap);
+         mf mf1 = ag.a(aj1, aj2);
+-        aj1 = aj.b(ak, al, am);
+-        aj2 = aj.b(ak + an, al + ao, am + ap);
++        aj1 = ((aj)null).b(ak, al, am);
++        aj2 = ((aj)null).b(ak + an, al + ao, am + ap);
+         if(mf1 != null)
+-            aj2 = aj.b(mf1.f.a, mf1.f.b, mf1.f.c);
++            aj2 = ((aj)null).b(mf1.f.a, mf1.f.b, mf1.f.c);
+         kh kh1 = null;
+         java.util.List list = ag.b(((kh) (this)), au.a(an, ao, ap).b(1.0D, 1.0D, 1.0D));
+         double d1 = 0.0D;
+diff -U 3 minecraft.src\az.java patches\az.java
+--- minecraft.src\az.java	Sun Oct 17 19:04:16 2010
++++ patches\az.java	Sun Oct 17 09:44:22 2010
+@@ -110,7 +110,7 @@
+                         try
+                         {
+                             ge1 = (ge)c[j1].getConstructor(new java.lang.Class[] {
+-                                cn
++                                cn.class
+                             }).newInstance(new java.lang.Object[] {
+                                 cn1
+                             });
+diff -U 3 minecraft.src\bc.java patches\bc.java
+--- minecraft.src\bc.java	Sun Oct 17 19:04:16 2010
++++ patches\bc.java	Sun Oct 17 09:44:22 2010
+@@ -695,7 +695,7 @@
+         ho ho1 = ho.a;
+         float f1 = ly1.c(a, i1, j1, k1);
+         ho1.a(f1, f1, f1);
+-        a(ly1, a.e(i1, j1, k1), i1, j1, k1);
++        a(ly1, a.e(i1, j1, k1), (double)i1, (double)j1, (double)k1);
+         return true;
+     }
+ 
+@@ -704,7 +704,7 @@
+         ho ho1 = ho.a;
+         float f1 = ly1.c(a, i1, j1, k1);
+         ho1.a(f1, f1, f1);
+-        b(ly1, a.e(i1, j1, k1), i1, (float)j1 - 0.0625F, k1);
++        b(ly1, a.e(i1, j1, k1), (double)i1, (double)((float)j1 - 0.0625F), (double)k1);
+         return true;
+     }
+ 
+@@ -900,7 +900,7 @@
+         {
+             float f9 = ly1.c(a, i1, j1 - 1, k1);
+             ho1.a(f1 * f9, f1 * f9, f1 * f9);
+-            a(ly1, i1, j1, k1, ly1.a(0));
++            a(ly1, (double)i1, (double)j1, (double)k1, ly1.a(0));
+             flag2 = true;
+         }
+         for(int j2 = 0; j2 < 4; j2++)
+@@ -1095,7 +1095,7 @@
+         {
+             float f21 = ly1.c(a, i1, j1 - 1, k1);
+             ho1.a(f8 * f21, f12 * f21, f16 * f21);
+-            a(ly1, i1, j1, k1, ly1.a(a, i1, j1, k1, 0));
++            a(ly1, (double)i1, (double)j1, (double)k1, ly1.a(a, i1, j1, k1, 0));
+             flag = true;
+         }
+         if(d || ly1.c(a, i1, j1 + 1, k1, 1))
+@@ -1104,7 +1104,7 @@
+             if(ly1.bj != 1.0D && !ly1.bn.d())
+                 f22 = f20;
+             ho1.a(f9 * f22, f13 * f22, f17 * f22);
+-            b(ly1, i1, j1, k1, ly1.a(a, i1, j1, k1, 1));
++            b(ly1, (double)i1, (double)j1, (double)k1, ly1.a(a, i1, j1, k1, 1));
+             flag = true;
+         }
+         if(d || ly1.c(a, i1, j1, k1 - 1, 2))
+@@ -1181,7 +1181,7 @@
+         {
+             float f22 = ly1.c(a, i1, j1 - 1, k1);
+             ho1.a(f8 * f22, f12 * f22, f16 * f22);
+-            a(ly1, i1, j1, k1, ly1.a(a, i1, j1, k1, 0));
++            a(ly1, (double)i1, (double)j1, (double)k1, ly1.a(a, i1, j1, k1, 0));
+             flag = true;
+         }
+         if(d || ly1.c(a, i1, j1 + 1, k1, 1))
+@@ -1190,7 +1190,7 @@
+             if(ly1.bj != 1.0D && !ly1.bn.d())
+                 f23 = f21;
+             ho1.a(f9 * f23, f13 * f23, f17 * f23);
+-            b(ly1, i1, j1, k1, ly1.a(a, i1, j1, k1, 1));
++            b(ly1, (double)i1, (double)j1, (double)k1, ly1.a(a, i1, j1, k1, 1));
+             flag = true;
+         }
+         if(d || ly1.c(a, i1, j1, k1 - 1, 2))
+@@ -1345,7 +1345,7 @@
+         if(ly.t[ly1.bc] > 0)
+             f6 = 1.0F;
+         ho1.a(f1 * f6, f1 * f6, f1 * f6);
+-        a(ly1, i1, j1, k1, ly1.a(a, i1, j1, k1, 0));
++        a(ly1, (double)i1, (double)j1, (double)k1, ly1.a(a, i1, j1, k1, 0));
+         flag = true;
+         f6 = ly1.c(a, i1, j1 + 1, k1);
+         if(fw1.bj < 1.0D)
+@@ -1353,7 +1353,7 @@
+         if(ly.t[ly1.bc] > 0)
+             f6 = 1.0F;
+         ho1.a(f2 * f6, f2 * f6, f2 * f6);
+-        b(ly1, i1, j1, k1, ly1.a(a, i1, j1, k1, 1));
++        b(ly1, (double)i1, (double)j1, (double)k1, ly1.a(a, i1, j1, k1, 1));
+         flag = true;
+         f6 = ly1.c(a, i1, j1, k1 - 1);
+         if(fw1.bh > 0.0D)
+diff -U 3 minecraft.src\bf.java patches\bf.java
+--- minecraft.src\bf.java	Sun Oct 17 19:04:16 2010
++++ patches\bf.java	Sun Oct 17 09:44:22 2010
+@@ -40,6 +40,7 @@
+ 
+     public void run()
+     {
++        try {
+         java.net.URL url;
+         org.w3c.dom.NodeList nodelist;
+         int i;
+@@ -48,15 +49,8 @@
+         javax.xml.parsers.DocumentBuilder documentbuilder = documentbuilderfactory.newDocumentBuilder();
+         org.w3c.dom.Document document = documentbuilder.parse(url.openStream());
+         nodelist = document.getElementsByTagName("Contents");
+-        i = 0;
+-_L4:
+-        int j;
+-        if(i >= 2)
+-            break MISSING_BLOCK_LABEL_224;
+-        j = 0;
+-_L2:
+-        if(j >= nodelist.getLength())
+-            break MISSING_BLOCK_LABEL_200;
++            for (i = 0; i < 2; i++)
++              for (int j = 0; j < nodelist.getLength(); j++) {
+         org.w3c.dom.Node node = nodelist.item(j);
+         if(node.getNodeType() == 1)
+         {
+@@ -70,16 +64,13 @@
+                     return;
+             }
+         }
+-        j++;
+-        if(true) goto _L2; else goto _L1
+-_L1:
+-        i++;
+-        if(true) goto _L4; else goto _L3
+-_L3:
+-        java.lang.Exception exception;
+-        exception;
++              }
++          }
++          catch (java.lang.Exception exception)
++          {
+         a(a, "");
+         exception.printStackTrace();
++          }
+     }
+ 
+     public void a()
+@@ -111,13 +102,14 @@
+ 
+     private void a(java.net.URL url, java.lang.String s, long l, int i)
+     {
++        try
++        {
+         int j = s.indexOf("/");
+         java.lang.String s1 = s.substring(0, j);
+         if(s1.equals("sound") || s1.equals("newsound"))
+         {
+             if(i != 0)
+                 return;
+-            break MISSING_BLOCK_LABEL_50;
+         }
+         if(i != 1)
+             return;
+@@ -131,18 +123,15 @@
+             if(c)
+                 return;
+         }
+-        try
+-        {
+             b.a(s, file);
+         }
+         catch(java.lang.Exception exception)
+         {
+             exception.printStackTrace();
+         }
+-        return;
+     }
+ 
+-    private void a(java.net.URL url, java.io.File file, long l)
++    private void a(java.net.URL url, java.io.File file, long l) throws IOException
+     {
+         byte abyte0[] = new byte[4096];
+         java.io.DataInputStream datainputstream = new DataInputStream(url.openStream());
+diff -U 3 minecraft.src\bm.java patches\bm.java
+--- minecraft.src\bm.java	Sun Oct 17 19:04:16 2010
++++ patches\bm.java	Sun Oct 17 09:44:22 2010
+@@ -17,13 +17,13 @@
+     {
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         a = datainputstream.readInt();
+         b = datainputstream.readInt();
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(a);
+         dataoutputstream.writeInt(b);
+diff -U 3 minecraft.src\bn.java patches\bn.java
+--- minecraft.src\bn.java	Sun Oct 17 19:04:16 2010
++++ patches\bn.java	Sun Oct 17 09:44:22 2010
+@@ -147,7 +147,7 @@
+                             org.lwjgl.opengl.GL11.glScalef(f1, f1, f1);
+                             org.lwjgl.opengl.GL11.glTranslatef((float)h / 2.0F, (float)g / 2.0F, (float)h / 2.0F);
+                             D.b();
+-                            D.b(-c, -d, -e);
++                            D.b((double)-c, (double)-d, (double)-e);
+                         }
+                         if(i3 == 0 && ly.q[i4])
+                         {
+diff -U 3 minecraft.src\bu.java patches\bu.java
+--- minecraft.src\bu.java	Sun Oct 17 19:04:16 2010
++++ patches\bu.java	Sun Oct 17 09:44:22 2010
+@@ -146,29 +146,27 @@
+         f.d.a(0.0625F);
+     }
+ 
+-    protected volatile void a(ge ge, float f1)
++    protected void a(ge ge, float f1)
+     {
+         b((dm)ge, f1);
+     }
+ 
+-    protected volatile boolean a(ge ge, int j)
++    protected boolean a(ge ge, int j)
+     {
+         return a((dm)ge, j);
+     }
+ 
+-    protected volatile void b(ge ge, float f1)
++    protected void b(ge ge, float f1)
+     {
+         a((dm)ge, f1);
+     }
+ 
+-    public volatile void a(ge ge, double d, double d1, double d2, 
+-            float f1, float f2)
++    public void a(ge ge, double d, double d1, double d2, float f1, float f2)
+     {
+         a((dm)ge, d, d1, d2, f1, f2);
+     }
+ 
+-    public volatile void a(kh kh, double d, double d1, double d2, 
+-            float f1, float f2)
++    public void a(kh kh, double d, double d1, double d2, float f1, float f2)
+     {
+         a((dm)kh, d, d1, d2, f1, f2);
+     }
+diff -U 3 minecraft.src\bw.java patches\bw.java
+--- minecraft.src\bw.java	Sun Oct 17 19:04:16 2010
++++ patches\bw.java	Sun Oct 17 09:44:22 2010
+@@ -120,8 +120,7 @@
+         org.lwjgl.opengl.GL11.glColor3f(f2, f2, f2);
+     }
+ 
+-    public volatile void a(kh kh, double d1, double d2, double d3, 
+-            float f, float f1)
++    public void a(kh kh, double d1, double d2, double d3, float f, float f1)
+     {
+         a((jc)kh, d1, d2, d3, f, f1);
+     }
+diff -U 3 minecraft.src\by.java patches\by.java
+--- minecraft.src\by.java	Sun Oct 17 19:04:16 2010
++++ patches\by.java	Sun Oct 17 09:44:22 2010
+@@ -1,39 +1,12 @@
+-// Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
+-// Jad home page: http://www.kpdus.com/jad.html
+-// Decompiler options: fullnames deadcode fieldsfirst safe 
+-// Source File Name:   SourceFile
+-
+-
+-public final class by extends java.lang.Enum
++public enum by
+ {
+-
+-    public static final by a;
+-    public static final by b;
+-    public final int c;
+-    private static final by d[];
+-
+-    public static by[] values()
+-    {
+-        return (by[])((by []) (d)).clone();
+-    }
+-
+-    public static by valueOf(java.lang.String s)
+-    {
+-        return (by)java.lang.Enum.valueOf(by, s);
+-    }
+-
+-    private by(java.lang.String s, int i, int j)
+-    {
+-        super(s, i);
+-        c = j;
+-    }
+-
+-    static 
+-    {
+-        a = new by("Sky", 0, 15);
+-        b = new by("Block", 1, 0);
+-        d = (new by[] {
+-            a, b
+-        });
+-    }
++	a(15), // sky
++	b(0);  // block
++	
++  public final int c;
++
++  private by(int arg3)
++  {
++    this.c = arg3;
++  }
+ }
+diff -U 3 minecraft.src\bz.java patches\bz.java
+--- minecraft.src\bz.java	Sun Oct 17 19:04:16 2010
++++ patches\bz.java	Sun Oct 17 09:44:22 2010
+@@ -26,7 +26,7 @@
+         j = true;
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         java.util.zip.Inflater inflater;
+         a = datainputstream.readInt();
+@@ -49,15 +49,13 @@
+         {
+             throw new IOException("Bad compressed data format");
+         }
++        finally
++        {
+         inflater.end();
+-        break MISSING_BLOCK_LABEL_147;
+-        java.lang.Exception exception;
+-        exception;
+-        inflater.end();
+-        throw exception;
++        }
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(a);
+         dataoutputstream.writeShort(b);
+diff -U 3 minecraft.src\ch.java patches\ch.java
+--- minecraft.src\ch.java	Sun Oct 17 19:04:16 2010
++++ patches\ch.java	Sun Oct 17 09:44:22 2010
+@@ -29,7 +29,7 @@
+         h = true;
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         a = datainputstream.readDouble();
+         b = datainputstream.readDouble();
+@@ -40,7 +40,7 @@
+         super.a(datainputstream);
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeDouble(a);
+         dataoutputstream.writeDouble(b);
+diff -U 3 minecraft.src\cn.java patches\cn.java
+--- minecraft.src\cn.java	Sun Oct 17 19:04:16 2010
++++ patches\cn.java	Sun Oct 17 09:44:22 2010
+@@ -72,7 +72,7 @@
+         if(file3.exists())
+             try
+             {
+-                hm hm1 = x.a(((java.io.InputStream) (new FileInputStream(file3))));
++                hm hm1 = ((x)null).a(((java.io.InputStream) (new FileInputStream(file3))));
+                 hm hm2 = hm1.k("Data");
+                 return hm2;
+             }
+@@ -184,24 +184,29 @@
+         t = new File(file, s1);
+         t.mkdirs();
+         java.io.DataOutputStream dataoutputstream;
++        try
++        {
+         java.io.File file1 = new File(t, "session.lock");
+         dataoutputstream = new DataOutputStream(((java.io.OutputStream) (new FileOutputStream(file1))));
++        	try
++            {
+         dataoutputstream.writeLong(G);
++        	}
++            finally
++            {
+         dataoutputstream.close();
+-        break MISSING_BLOCK_LABEL_350;
+-        java.lang.Exception exception1;
+-        exception1;
+-        dataoutputstream.close();
+-        throw exception1;
+-        java.io.IOException ioexception;
+-        ioexception;
++        	}
++        }
++        catch (java.io.IOException ioexception)
++        {
+         throw new RuntimeException("Failed to check session lock, aborting");
++        }
+         java.io.File file2 = new File(t, "level.dat");
+         r = !file2.exists();
+         if(file2.exists())
+             try
+             {
+-                hm hm1 = x.a(((java.io.InputStream) (new FileInputStream(file2))));
++                hm hm1 = ((x)null).a(((java.io.InputStream) (new FileInputStream(file2))));
+                 hm hm2 = hm1.k("Data");
+                 u = hm2.f("RandomSeed");
+                 o = hm2.e("SpawnX");
+@@ -324,7 +329,7 @@
+             java.io.File file = new File(t, "level.dat_new");
+             java.io.File file1 = new File(t, "level.dat_old");
+             java.io.File file2 = new File(t, "level.dat");
+-            x.a(hm3, ((java.io.OutputStream) (new FileOutputStream(file))));
++            ((x)null).a(hm3, ((java.io.OutputStream) (new FileOutputStream(file))));
+             if(file1.exists())
+                 file1.delete();
+             file2.renameTo(file1);
+@@ -1880,20 +1885,24 @@
+ 
+     public void l()
+     {
++        try {
+         java.io.DataInputStream datainputstream;
+         java.io.File file = new File(t, "session.lock");
+         datainputstream = new DataInputStream(((java.io.InputStream) (new FileInputStream(file))));
++            try
++            {
+         if(datainputstream.readLong() != G)
+             throw new lx("The save is being accessed from another location, aborting");
++            }
++            finally
++            {
+         datainputstream.close();
+-        break MISSING_BLOCK_LABEL_80;
+-        java.lang.Exception exception;
+-        exception;
+-        datainputstream.close();
+-        throw exception;
+-        java.io.IOException ioexception;
+-        ioexception;
++            }
++        }
++        catch (java.io.IOException ioexception)
++        {
+         throw new lx("Failed to check session lock, aborting");
++        }
+     }
+ 
+     public void a(long l1)
+diff -U 3 minecraft.src\cp.java patches\cp.java
+--- minecraft.src\cp.java	Sun Oct 17 19:04:16 2010
++++ patches\cp.java	Sun Oct 17 09:44:23 2010
+@@ -38,8 +38,7 @@
+         org.lwjgl.opengl.GL11.glPopMatrix();
+     }
+ 
+-    public volatile void a(kh kh, double d1, double d2, double d3, 
+-            float f, float f1)
++    public void a(kh kh, double d1, double d2, double d3, float f, float f1)
+     {
+         a((dc)kh, d1, d2, d3, f, f1);
+     }
+diff -U 3 minecraft.src\cx.java patches\cx.java
+--- minecraft.src\cx.java	Sun Oct 17 19:04:16 2010
++++ patches\cx.java	Sun Oct 17 09:44:23 2010
+@@ -32,7 +32,7 @@
+         try
+         {
+             java.util.ArrayList arraylist = new ArrayList();
+-            java.io.BufferedReader bufferedreader = new BufferedReader(((java.io.Reader) (new InputStreamReader(((java.lang.Class) (cx)).getResourceAsStream("/title/splashes.txt")))));
++            java.io.BufferedReader bufferedreader = new BufferedReader(((java.io.Reader) (new InputStreamReader(cx.class.getResourceAsStream("/title/splashes.txt")))));
+             java.lang.String s = "";
+             do
+             {
+diff -U 3 minecraft.src\d.java patches\d.java
+--- minecraft.src\d.java	Sun Oct 17 19:04:16 2010
++++ patches\d.java	Sun Oct 17 09:44:23 2010
+@@ -46,12 +46,12 @@
+         return i << 24 | c << 16 | c1 << 8 | c2;
+     }
+ 
+-    protected volatile void a(ge ge, float f)
++    protected void a(ge ge, float f)
+     {
+         a((dd)ge, f);
+     }
+ 
+-    protected volatile int a(ge ge, float f, float f1)
++    protected int a(ge ge, float f, float f1)
+     {
+         return a((dd)ge, f, f1);
+     }
+diff -U 3 minecraft.src\db.java patches\db.java
+--- minecraft.src\db.java	Sun Oct 17 19:04:16 2010
++++ patches\db.java	Sun Oct 17 09:44:23 2010
+@@ -19,7 +19,7 @@
+     {
+         try
+         {
+-            a = javax.imageio.ImageIO.read(((java.lang.Class) (aq)).getResource("/gui/logo.png"));
++            a = javax.imageio.ImageIO.read(aq.class.getResource("/gui/logo.png"));
+         }
+         catch(java.io.IOException ioexception) { }
+         byte byte0 = 100;
+diff -U 3 minecraft.src\de.java patches\de.java
+--- minecraft.src\de.java	Sun Oct 17 19:04:17 2010
++++ patches\de.java	Sun Oct 17 09:44:23 2010
+@@ -50,18 +50,8 @@
+         }
+         if(i == 14 && a.length() > 0)
+             a = a.substring(0, a.length() - 1);
+-        if(" !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_'abcdefghijklmnopqrstuvwxyz{|}~\u2302\307\374\351\342\344\340\345\347\352\353\350\357\356\354\304\305\311\346\306\364\366\362\373\371\377\326\334\370\243\330\327\u0192\341\355\363\372\361\321\252\272\277\256\254\275\274\241\253\273".indexOf(((int) (c))) < 0 || a.length() >= 100) goto _L2; else goto _L1
+-_L1:
+-        new StringBuilder();
+-        this;
+-        JVM INSTR dup_x1 ;
+-        a;
+-        append();
+-        c;
+-        append();
+-        toString();
+-        a;
+-_L2:
++        if ((" !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_'abcdefghijklmnopqrstuvwxyz{|}~⌂ÇüéâäàåçêëèïîìÄÅÉæÆôöòûùÿÖÜø£Ø×ƒáíóúñÑªº¿®¬½¼¡«»".indexOf(c) >= 0) && (this.a.length() < 100))
++            this.a += c;
+     }
+ 
+     public void a(int i, int j, float f)
+@@ -70,33 +60,17 @@
+         b(g, (new StringBuilder()).append("> ").append(a).append((h / 6) % 2 != 0 ? "" : "_").toString(), 4, d - 12, 0xe0e0e0);
+     }
+ 
+-    protected void a(int i, int j, int k)
++    protected void a(int iparm, int j, int k)
+     {
+-        if(k != 0 || b.u.a == null)
+-            break MISSING_BLOCK_LABEL_129;
+-        if(a.length() <= 0 || a.endsWith(" ")) goto _L2; else goto _L1
+-_L1:
+-        new StringBuilder();
+-        this;
+-        JVM INSTR dup_x1 ;
+-        a;
+-        append();
+-        " ";
+-        append();
+-        toString();
+-        a;
+-_L2:
+-        new StringBuilder();
+-        this;
+-        JVM INSTR dup_x1 ;
+-        a;
+-        append();
+-        b.u.a;
+-        append();
+-        toString();
+-        a;
+-        byte byte0 = 100;
+-        if(a.length() > byte0)
+-            a = a.substring(0, ((int) (byte0)));
++        if ((k == 0) && 
++        	      (this.b.u.a != null)) {
++        	      if ((this.a.length() > 0) && (!this.a.endsWith(" "))) {
++        	        this.a += " ";
++        	      }
++        	      this.a += this.b.u.a;
++        	      int i = 100;
++        	      if (this.a.length() > i)
++        	        this.a = this.a.substring(0, i);
++        	    }
+     }
+ }
+diff -U 3 minecraft.src\dj.java patches\dj.java
+--- minecraft.src\dj.java	Sun Oct 17 19:04:17 2010
++++ patches\dj.java	Sun Oct 17 09:44:23 2010
+@@ -30,8 +30,7 @@
+         org.lwjgl.opengl.GL11.glPopMatrix();
+     }
+ 
+-    public volatile void a(kh kh, double d1, double d2, double d3, 
+-            float f, float f1)
++    public void a(kh kh, double d1, double d2, double d3, float f, float f1)
+     {
+         a((ff)kh, d1, d2, d3, f, f1);
+     }
+diff -U 3 minecraft.src\dn.java patches\dn.java
+--- minecraft.src\dn.java	Sun Oct 17 19:04:17 2010
++++ patches\dn.java	Sun Oct 17 09:44:23 2010
+@@ -153,8 +153,7 @@
+     {
+     }
+ 
+-    public volatile void a(kh kh, double d1, double d2, double d3, 
+-            float f, float f1)
++    public void a(kh kh, double d1, double d2, double d3, float f, float f1)
+     {
+         a((ge)kh, d1, d2, d3, f, f1);
+     }
+diff -U 3 minecraft.src\dofix.java patches\dofix.java
+--- minecraft.src\dofix.java	Sun Oct 17 19:04:17 2010
++++ patches\dofix.java	Sun Oct 17 09:44:23 2010
+@@ -1,13 +1,13 @@
+ // Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
+ // Jad home page: http://www.kpdus.com/jad.html
+-// Decompiler options: fullnames deadcode fieldsfirst safe 
++// Decompiler options: fullnames definits deadcode fieldsfirst safe 
+ // Source File Name:   SourceFile
+ 
+ import java.io.DataInputStream;
+ import java.io.DataOutputStream;
+ import java.io.IOException;
+ 
+-public class do extends fn
++public class dofix extends fn
+ {
+ 
+     public int a;
+@@ -16,11 +16,11 @@
+     public int d;
+     public int e;
+ 
+-    public do()
++    public dofix()
+     {
+     }
+ 
+-    public do(int i, int j, int k, int l, int i1)
++    public dofix(int i, int j, int k, int l, int i1)
+     {
+         a = i;
+         b = j;
+@@ -29,7 +29,7 @@
+         e = i1;
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         a = ((int) (datainputstream.readShort()));
+         b = datainputstream.readInt();
+@@ -38,7 +38,7 @@
+         e = datainputstream.read();
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeShort(a);
+         dataoutputstream.writeInt(b);
+diff -U 3 minecraft.src\du.java patches\du.java
+--- minecraft.src\du.java	Sun Oct 17 19:04:17 2010
++++ patches\du.java	Sun Oct 17 09:44:23 2010
+@@ -16,12 +16,12 @@
+     {
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         a = datainputstream.readLong();
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeLong(a);
+     }
+diff -U 3 minecraft.src\dw.java patches\dw.java
+--- minecraft.src\dw.java	Sun Oct 17 19:04:17 2010
++++ patches\dw.java	Sun Oct 17 09:44:23 2010
+@@ -148,7 +148,7 @@
+         java.lang.System.out.println((new StringBuilder()).append(b.size()).append(" recipes").toString());
+     }
+ 
+-    transient void a(ev ev1, java.lang.Object aobj[])
++    void a(ev ev1, java.lang.Object aobj[])
+     {
+         java.lang.String s = "";
+         int i = 0;
+diff -U 3 minecraft.src\dy.java patches\dy.java
+--- minecraft.src\dy.java	Sun Oct 17 19:04:17 2010
++++ patches\dy.java	Sun Oct 17 09:44:23 2010
+@@ -21,13 +21,13 @@
+         a = abyte0;
+     }
+ 
+-    void a(java.io.DataOutput dataoutput)
++    void a(java.io.DataOutput dataoutput) throws IOException
+     {
+         dataoutput.writeInt(a.length);
+         dataoutput.write(a);
+     }
+ 
+-    void a(java.io.DataInput datainput)
++    void a(java.io.DataInput datainput) throws IOException
+     {
+         int i = datainput.readInt();
+         a = new byte[i];
+diff -U 3 minecraft.src\dz.java patches\dz.java
+--- minecraft.src\dz.java	Sun Oct 17 19:04:17 2010
++++ patches\dz.java	Sun Oct 17 09:44:23 2010
+@@ -23,13 +23,13 @@
+         b = j;
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         a = datainputstream.readInt();
+         b = ((int) (datainputstream.readShort()));
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(a);
+         dataoutputstream.writeShort(b);
+diff -U 3 minecraft.src\e.java patches\e.java
+--- minecraft.src\e.java	Sun Oct 17 19:04:17 2010
++++ patches\e.java	Sun Oct 17 09:44:23 2010
+@@ -113,10 +113,10 @@
+             for(int l1 = -byte1 * i1; l1 <= byte1 * i1; l1 += ((int) (byte1)))
+             {
+                 ho1.b();
+-                ho1.a(j1 + 0, f1, l1 + 0);
+-                ho1.a(j1 + byte1, f1, l1 + 0);
+-                ho1.a(j1 + byte1, f1, l1 + byte1);
+-                ho1.a(j1 + 0, f1, l1 + byte1);
++                ho1.a((double)(j1 + 0), (double)f1, (double)(l1 + 0));
++                ho1.a((double)(j1 + byte1), (double)f1, (double)(l1 + 0));
++                ho1.a((double)(j1 + byte1), (double)f1, (double)(l1 + byte1));
++                ho1.a((double)(j1 + 0), (double)f1, (double)(l1 + byte1));
+                 ho1.a();
+             }
+ 
+@@ -131,10 +131,10 @@
+         {
+             for(int i2 = -byte1 * i1; i2 <= byte1 * i1; i2 += ((int) (byte1)))
+             {
+-                ho1.a(k1 + byte1, f1, i2 + 0);
+-                ho1.a(k1 + 0, f1, i2 + 0);
+-                ho1.a(k1 + 0, f1, i2 + byte1);
+-                ho1.a(k1 + byte1, f1, i2 + byte1);
++                ho1.a((double)(k1 + byte1), (double)f1, (double)(i2 + 0));
++                ho1.a((double)(k1 + 0), (double)f1, (double)(i2 + 0));
++                ho1.a((double)(k1 + 0), (double)f1, (double)(i2 + byte1));
++                ho1.a((double)(k1 + byte1), (double)f1, (double)(i2 + byte1));
+             }
+ 
+         }
+diff -U 3 minecraft.src\ee.java patches\ee.java
+--- minecraft.src\ee.java	Sun Oct 17 19:04:17 2010
++++ patches\ee.java	Sun Oct 17 09:44:23 2010
+@@ -31,7 +31,7 @@
+         a(f);
+         org.lwjgl.opengl.GL11.glPushMatrix();
+         org.lwjgl.opengl.GL11.glRotatef(180F, 1.0F, 0.0F, 0.0F);
+-        i.b();
++        ((i)null).b();
+         org.lwjgl.opengl.GL11.glPopMatrix();
+         org.lwjgl.opengl.GL11.glPushMatrix();
+         org.lwjgl.opengl.GL11.glTranslatef(i1, j1, 0.0F);
+@@ -61,7 +61,7 @@
+             j.b(g, b.n, eu1.e, k - i1 - 8, l - j1 - 8);
+         }
+         org.lwjgl.opengl.GL11.glDisable(32826);
+-        i.a();
++        ((i)null).a();
+         org.lwjgl.opengl.GL11.glDisable(2896);
+         org.lwjgl.opengl.GL11.glDisable(2929);
+         j();
+diff -U 3 minecraft.src\eh.java patches\eh.java
+--- minecraft.src\eh.java	Sun Oct 17 19:04:17 2010
++++ patches\eh.java	Sun Oct 17 09:44:23 2010
+@@ -34,12 +34,12 @@
+         lb1.a(this);
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         g = datainputstream.read() != 0;
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.write(g ? 1 : 0);
+     }
+diff -U 3 minecraft.src\ei.java patches\ei.java
+--- minecraft.src\ei.java	Sun Oct 17 19:04:17 2010
++++ patches\ei.java	Sun Oct 17 09:44:23 2010
+@@ -42,8 +42,7 @@
+         org.lwjgl.opengl.GL11.glPopMatrix();
+     }
+ 
+-    public volatile void a(kh kh, double d, double d1, double d2, 
+-            float f, float f1)
++    public void a(kh kh, double d, double d1, double d2, float f, float f1)
+     {
+         a((ao)kh, d, d1, d2, f, f1);
+     }
+diff -U 3 minecraft.src\el.java patches\el.java
+--- minecraft.src\el.java	Sun Oct 17 19:04:17 2010
++++ patches\el.java	Sun Oct 17 09:44:23 2010
+@@ -17,9 +17,9 @@
+         a = null;
+     }
+ 
+-    abstract void a(java.io.DataOutput dataoutput);
++    abstract void a(java.io.DataOutput dataoutput) throws IOException;
+ 
+-    abstract void a(java.io.DataInput datainput);
++    abstract void a(java.io.DataInput datainput) throws IOException;
+ 
+     public abstract byte a();
+ 
+@@ -37,7 +37,7 @@
+         return this;
+     }
+ 
+-    public static el b(java.io.DataInput datainput)
++    public static el b(java.io.DataInput datainput) throws IOException
+     {
+         byte byte0 = datainput.readByte();
+         if(byte0 == 0)
+@@ -52,7 +52,7 @@
+         }
+     }
+ 
+-    public static void a(el el1, java.io.DataOutput dataoutput)
++    public static void a(el el1, java.io.DataOutput dataoutput) throws IOException
+     {
+         dataoutput.writeByte(((int) (el1.a())));
+         if(el1.a() == 0)
+diff -U 3 minecraft.src\ep.java patches\ep.java
+--- minecraft.src\ep.java	Sun Oct 17 19:04:17 2010
++++ patches\ep.java	Sun Oct 17 09:44:23 2010
+@@ -17,6 +17,10 @@
+ 
+     protected java.io.InputStream openInputStream()
+     {
+-        return ((java.io.InputStream) (new hk(this, url, urlConnection.getInputStream())));
++        try {
++			return ((java.io.InputStream) (new hk(this, url, urlConnection.getInputStream())));
++		} catch (IOException e) {
++			return null;
++		}
+     }
+ }
+diff -U 3 minecraft.src\eq.java patches\eq.java
+--- minecraft.src\eq.java	Sun Oct 17 19:04:17 2010
++++ patches\eq.java	Sun Oct 17 09:44:23 2010
+@@ -25,19 +25,17 @@
+         return (eo.a(f1) + 1.0F) * f2;
+     }
+ 
+-    protected volatile float d(ge ge, float f)
++    protected float d(ge ge, float f)
+     {
+         return a((mz)ge, f);
+     }
+ 
+-    public volatile void a(ge ge, double d1, double d2, double d3, 
+-            float f, float f1)
++    public void a(ge ge, double d1, double d2, double d3, float f, float f1)
+     {
+         a((mz)ge, d1, d2, d3, f, f1);
+     }
+ 
+-    public volatile void a(kh kh, double d1, double d2, double d3, 
+-            float f, float f1)
++    public void a(kh kh, double d1, double d2, double d3, float f, float f1)
+     {
+         a((mz)kh, d1, d2, d3, f, f1);
+     }
+diff -U 3 minecraft.src\er.java patches\er.java
+--- minecraft.src\er.java	Sun Oct 17 19:04:17 2010
++++ patches\er.java	Sun Oct 17 09:44:23 2010
+@@ -1,93 +1,42 @@
+-// Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
+-// Jad home page: http://www.kpdus.com/jad.html
+-// Decompiler options: fullnames deadcode fieldsfirst safe 
+-// Source File Name:   SourceFile
+-
+-
+-public final class er extends java.lang.Enum
++public enum er
+ {
+-
+-    public static final er a;
+-    public static final er b;
+-    public static final er c;
+-    public static final er d;
+-    public static final er e;
+-    public static final er f;
+-    public static final er g;
+-    public static final er h;
+-    public static final er i;
+-    public static final er j;
+-    public static final er k;
+-    public static final er l;
+-    public static final er m;
+-    public static final er n;
+-    public static final er o;
+-    public static final er p;
+-    public static final er q;
+-    public static final er r;
+-    public static final er s;
+-    public static final er t;
+-    public static final er u;
+-    public static final er v;
+-    public static final er w;
+-    public static final er x;
+-    public final java.lang.String y;
+-    public final int z;
+-    public final int A;
+-    public final int B;
+-    public final int C;
+-    private static final er D[];
+-
+-    public static er[] values()
+-    {
+-        return (er[])((er []) (D)).clone();
+-    }
+-
+-    public static er valueOf(java.lang.String s1)
+-    {
+-        return (er)java.lang.Enum.valueOf(er, s1);
+-    }
+-
+-    private er(java.lang.String s1, int i1, java.lang.String s2, int j1, int k1, int l1, int i2)
+-    {
+-        super(s1, i1);
+-        y = s2;
+-        z = j1;
+-        A = k1;
+-        B = l1;
+-        C = i2;
+-    }
+-
+-    static 
+-    {
+-        a = new er("Kebab", 0, "Kebab", 16, 16, 0, 0);
+-        b = new er("Aztec", 1, "Aztec", 16, 16, 16, 0);
+-        c = new er("Alban", 2, "Alban", 16, 16, 32, 0);
+-        d = new er("Aztec2", 3, "Aztec2", 16, 16, 48, 0);
+-        e = new er("Bomb", 4, "Bomb", 16, 16, 64, 0);
+-        f = new er("Plant", 5, "Plant", 16, 16, 80, 0);
+-        g = new er("Wasteland", 6, "Wasteland", 16, 16, 96, 0);
+-        h = new er("Pool", 7, "Pool", 32, 16, 0, 32);
+-        i = new er("Courbet", 8, "Courbet", 32, 16, 32, 32);
+-        j = new er("Sea", 9, "Sea", 32, 16, 64, 32);
+-        k = new er("Sunset", 10, "Sunset", 32, 16, 96, 32);
+-        l = new er("Creebet", 11, "Creebet", 32, 16, 128, 32);
+-        m = new er("Wanderer", 12, "Wanderer", 16, 32, 0, 64);
+-        n = new er("Graham", 13, "Graham", 16, 32, 16, 64);
+-        o = new er("Match", 14, "Match", 32, 32, 0, 128);
+-        p = new er("Bust", 15, "Bust", 32, 32, 32, 128);
+-        q = new er("Stage", 16, "Stage", 32, 32, 64, 128);
+-        r = new er("Void", 17, "Void", 32, 32, 96, 128);
+-        s = new er("SkullAndRoses", 18, "SkullAndRoses", 32, 32, 128, 128);
+-        t = new er("Fighters", 19, "Fighters", 64, 32, 0, 96);
+-        u = new er("Pointer", 20, "Pointer", 64, 64, 0, 192);
+-        v = new er("Pigscene", 21, "Pigscene", 64, 64, 64, 192);
+-        w = new er("Skeleton", 22, "Skeleton", 64, 48, 192, 64);
+-        x = new er("DonkeyKong", 23, "DonkeyKong", 64, 48, 192, 112);
+-        D = (new er[] {
+-            a, b, c, d, e, f, g, h, i, j, 
+-            k, l, m, n, o, p, q, r, s, t, 
+-            u, v, w, x
+-        });
+-    }
++  a("Kebab", 16, 16, 0, 0),
++  b("Aztec", 16, 16, 16, 0),
++  c("Alban", 16, 16, 32, 0),
++  d("Aztec2", 16, 16, 48, 0),
++  e("Bomb", 16, 16, 64, 0),
++  f("Plant", 16, 16, 80, 0),
++  g("Wasteland", 16, 16, 96, 0),
++  h("Pool", 32, 16, 0, 32),
++  i("Courbet", 32, 16, 32, 32),
++  j("Sea", 32, 16, 64, 32),
++  k("Sunset", 32, 16, 96, 32),
++  l("Creebet", 32, 16, 128, 32),
++  m("Wanderer", 16, 32, 0, 64),
++  n("Graham", 16, 32, 16, 64),
++  o("Match", 32, 32, 0, 128),
++  p("Bust", 32, 32, 32, 128),
++  q("Stage", 32, 32, 64, 128),
++  r("Void", 32, 32, 96, 128),
++  s("SkullAndRoses", 32, 32, 128, 128),
++  t("Fighters", 64, 32, 0, 96),
++  u("Pointer", 64, 64, 0, 192),
++  v("Pigscene", 64, 64, 64, 192),
++  w("Skeleton", 64, 48, 192, 64),
++  x("DonkeyKong", 64, 48, 192, 112);
++	
++  public final String y;
++  public final int z;
++  public final int A;
++  public final int B;
++  public final int C;
++
++  private er(String paramInt2, int paramInt3, int paramInt4, int arg6, int arg7)
++  {
++    this.y = paramInt2;
++    this.z = paramInt3;
++    this.A = paramInt4;
++    this.B = arg6;
++    this.C = arg7;
++  }
+ }
+diff -U 3 minecraft.src\ew.java patches\ew.java
+--- minecraft.src\ew.java	Sun Oct 17 19:04:17 2010
++++ patches\ew.java	Sun Oct 17 09:44:23 2010
+@@ -36,7 +36,7 @@
+             java.lang.Class class1 = (java.lang.Class)a.get(((java.lang.Object) (s)));
+             if(class1 != null)
+                 kh1 = (kh)class1.getConstructor(new java.lang.Class[] {
+-                    cn
++                    cn.class
+                 }).newInstance(new java.lang.Object[] {
+                     cn1
+                 });
+@@ -56,7 +56,7 @@
+             java.lang.Class class1 = (java.lang.Class)a.get(((java.lang.Object) (hm1.i("id"))));
+             if(class1 != null)
+                 kh1 = (kh)class1.getConstructor(new java.lang.Class[] {
+-                    cn
++                    cn.class
+                 }).newInstance(new java.lang.Object[] {
+                     cn1
+                 });
+@@ -80,7 +80,7 @@
+             java.lang.Class class1 = (java.lang.Class)c.get(((java.lang.Object) (java.lang.Integer.valueOf(i))));
+             if(class1 != null)
+                 kh1 = (kh)class1.getConstructor(new java.lang.Class[] {
+-                    cn
++                    cn.class
+                 }).newInstance(new java.lang.Object[] {
+                     cn1
+                 });
+@@ -106,25 +106,25 @@
+ 
+     static 
+     {
+-        ew.a(kg, "Arrow", 10);
+-        ew.a(ao, "Snowball", 11);
+-        ew.a(dx, "Item", 1);
+-        ew.a(jc, "Painting", 9);
+-        ew.a(ge, "Mob", 48);
+-        ew.a(dq, "Monster", 49);
+-        ew.a(dd, "Creeper", 50);
+-        ew.a(cw, "Skeleton", 51);
+-        ew.a(ax, "Spider", 52);
+-        ew.a(hl, "Giant", 53);
+-        ew.a(mb, "Zombie", 54);
+-        ew.a(ma, "Slime", 55);
+-        ew.a(mv, "Pig", 90);
+-        ew.a(bo, "Sheep", 91);
+-        ew.a(am, "Cow", 91);
+-        ew.a(mz, "Chicken", 91);
+-        ew.a(jd, "PrimedTnt", 20);
+-        ew.a(ff, "FallingSand", 21);
+-        ew.a(oc, "Minecart", 40);
+-        ew.a(dc, "Boat", 41);
++        ew.a(kg.class, "Arrow", 10);
++        ew.a(ao.class, "Snowball", 11);
++        ew.a(dx.class, "Item", 1);
++        ew.a(jc.class, "Painting", 9);
++        ew.a(ge.class, "Mob", 48);
++        ew.a(dq.class, "Monster", 49);
++        ew.a(dd.class, "Creeper", 50);
++        ew.a(cw.class, "Skeleton", 51);
++        ew.a(ax.class, "Spider", 52);
++        ew.a(hl.class, "Giant", 53);
++        ew.a(mb.class, "Zombie", 54);
++        ew.a(ma.class, "Slime", 55);
++        ew.a(mv.class, "Pig", 90);
++        ew.a(bo.class, "Sheep", 91);
++        ew.a(am.class, "Cow", 91);
++        ew.a(mz.class, "Chicken", 91);
++        ew.a(jd.class, "PrimedTnt", 20);
++        ew.a(ff.class, "FallingSand", 21);
++        ew.a(oc.class, "Minecart", 40);
++        ew.a(dc.class, "Boat", 41);
+     }
+ }
+diff -U 3 minecraft.src\ey.java patches\ey.java
+--- minecraft.src\ey.java	Sun Oct 17 19:04:17 2010
++++ patches\ey.java	Sun Oct 17 09:44:23 2010
+@@ -54,16 +54,16 @@
+             df.a(d);
+             int j = d.get(0);
+             if(s.startsWith("##"))
+-                a(b(javax.imageio.ImageIO.read(((java.lang.Class) (ey)).getResourceAsStream(s.substring(2)))), j);
++                a(b(javax.imageio.ImageIO.read(ey.class.getResourceAsStream(s.substring(2)))), j);
+             else
+             if(s.startsWith("%%"))
+             {
+                 i = true;
+-                a(javax.imageio.ImageIO.read(((java.lang.Class) (ey)).getResourceAsStream(s.substring(2))), j);
++                a(javax.imageio.ImageIO.read(ey.class.getResourceAsStream(s.substring(2))), j);
+                 i = false;
+             } else
+             {
+-                a(javax.imageio.ImageIO.read(((java.lang.Class) (ey)).getResourceAsStream(s)), j);
++                a(javax.imageio.ImageIO.read(ey.class.getResourceAsStream(s)), j);
+             }
+             b.put(((java.lang.Object) (s)), ((java.lang.Object) (java.lang.Integer.valueOf(j))));
+             return j;
+@@ -374,16 +374,16 @@
+             {
+                 java.awt.image.BufferedImage bufferedimage1;
+                 if(s.startsWith("##"))
+-                    bufferedimage1 = b(javax.imageio.ImageIO.read(((java.lang.Class) (ey)).getResourceAsStream(s.substring(2))));
++                    bufferedimage1 = b(javax.imageio.ImageIO.read(ey.class.getResourceAsStream(s.substring(2))));
+                 else
+                 if(s.startsWith("%%"))
+                 {
+                     i = true;
+-                    bufferedimage1 = javax.imageio.ImageIO.read(((java.lang.Class) (ey)).getResourceAsStream(s.substring(2)));
++                    bufferedimage1 = javax.imageio.ImageIO.read(ey.class.getResourceAsStream(s.substring(2)));
+                     i = false;
+                 } else
+                 {
+-                    bufferedimage1 = javax.imageio.ImageIO.read(((java.lang.Class) (ey)).getResourceAsStream(s));
++                    bufferedimage1 = javax.imageio.ImageIO.read(ey.class.getResourceAsStream(s));
+                 }
+                 int k = ((java.lang.Integer)b.get(((java.lang.Object) (s)))).intValue();
+                 a(bufferedimage1, k);
+diff -U 3 minecraft.src\ez.java patches\ez.java
+--- minecraft.src\ez.java	Sun Oct 17 19:04:17 2010
++++ patches\ez.java	Sun Oct 17 09:44:23 2010
+@@ -33,7 +33,7 @@
+         g = (byte)(int)((ge1.ar * 256F) / 360F);
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         a = datainputstream.readInt();
+         b = datainputstream.readByte();
+@@ -44,7 +44,7 @@
+         g = datainputstream.readByte();
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(a);
+         dataoutputstream.writeByte(((int) (b)));
+diff -U 3 minecraft.src\f.java patches\f.java
+--- minecraft.src\f.java	Sun Oct 17 19:04:17 2010
++++ patches\f.java	Sun Oct 17 09:44:23 2010
+@@ -21,12 +21,12 @@
+         a = f1;
+     }
+ 
+-    void a(java.io.DataOutput dataoutput)
++    void a(java.io.DataOutput dataoutput) throws IOException
+     {
+         dataoutput.writeFloat(a);
+     }
+ 
+-    void a(java.io.DataInput datainput)
++    void a(java.io.DataInput datainput) throws IOException
+     {
+         a = datainput.readFloat();
+     }
+diff -U 3 minecraft.src\fa.java patches\fa.java
+--- minecraft.src\fa.java	Sun Oct 17 19:04:17 2010
++++ patches\fa.java	Sun Oct 17 09:44:23 2010
+@@ -1,43 +1,8 @@
+-// Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
+-// Jad home page: http://www.kpdus.com/jad.html
+-// Decompiler options: fullnames deadcode fieldsfirst safe 
+-// Source File Name:   SourceFile
+-
+-
+-final class fa extends java.lang.Enum
++ enum fa
+ {
+-
+-    public static final fa a;
+-    public static final fa b;
+-    public static final fa c;
+-    public static final fa d;
+-    public static final fa e;
+-    private static final fa f[];
+-
+-    public static fa[] values()
+-    {
+-        return (fa[])((fa []) (f)).clone();
+-    }
+-
+-    public static fa valueOf(java.lang.String s)
+-    {
+-        return (fa)java.lang.Enum.valueOf(fa, s);
+-    }
+-
+-    private fa(java.lang.String s, int i)
+-    {
+-        super(s, i);
+-    }
+-
+-    static 
+-    {
+-        a = new fa("linux", 0);
+-        b = new fa("solaris", 1);
+-        c = new fa("windows", 2);
+-        d = new fa("macos", 3);
+-        e = new fa("unknown", 4);
+-        f = (new fa[] {
+-            a, b, c, d, e
+-        });
+-    }
++	 a, // linux
++	 b, // solaris
++	 c, // windows
++	 d, // macos
++	 e; // unknown
+ }
+diff -U 3 minecraft.src\fb.java patches\fb.java
+--- minecraft.src\fb.java	Sun Oct 17 19:04:17 2010
++++ patches\fb.java	Sun Oct 17 09:44:23 2010
+@@ -21,7 +21,7 @@
+         return bn1.a(a) >= bn2.a(a) ? 1 : -1;
+     }
+ 
+-    public volatile int compare(java.lang.Object obj, java.lang.Object obj1)
++    public int compare(java.lang.Object obj, java.lang.Object obj1)
+     {
+         return a((bn)obj, (bn)obj1);
+     }
+diff -U 3 minecraft.src\ff.java patches\ff.java
+--- minecraft.src\ff.java	Sun Oct 17 19:04:17 2010
++++ patches\ff.java	Sun Oct 17 09:44:23 2010
+@@ -24,7 +24,7 @@
+         ad = true;
+         a(0.98F, 0.98F);
+         aB = aD / 2.0F;
+-        a(f, f1, f2);
++        a((double)f, (double)f1, (double)f2);
+         an = 0.0D;
+         ao = 0.0D;
+         ap = 0.0D;
+diff -U 3 minecraft.src\fg.java patches\fg.java
+--- minecraft.src\fg.java	Sun Oct 17 19:04:17 2010
++++ patches\fg.java	Sun Oct 17 09:44:23 2010
+@@ -29,7 +29,7 @@
+         d = i1;
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         e = datainputstream.read();
+         a = datainputstream.readInt();
+@@ -38,7 +38,7 @@
+         d = datainputstream.read();
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.write(e);
+         dataoutputstream.writeInt(a);
+diff -U 3 minecraft.src\fl.java patches\fl.java
+--- minecraft.src\fl.java	Sun Oct 17 19:04:17 2010
++++ patches\fl.java	Sun Oct 17 09:44:24 2010
+@@ -12,8 +12,8 @@
+ 
+     public fl(net.minecraft.client.Minecraft minecraft, java.lang.String s)
+     {
+-        a = minecraft;
+         super(s);
++        a = minecraft;
+         setDaemon(true);
+         start();
+     }
+diff -U 3 minecraft.src\fm.java patches\fm.java
+--- minecraft.src\fm.java	Sun Oct 17 19:04:17 2010
++++ patches\fm.java	Sun Oct 17 09:44:24 2010
+@@ -16,8 +16,8 @@
+ 
+     public fm(java.awt.Component component, java.awt.Canvas canvas, net.minecraft.client.MinecraftApplet minecraftapplet, int i, int j, boolean flag, java.awt.Frame frame)
+     {
+-        a = frame;
+         super(component, canvas, minecraftapplet, i, j, flag);
++        a = frame;
+     }
+ 
+     public void a(go go)
+diff -U 3 minecraft.src\fn.java patches\fn.java
+--- minecraft.src\fn.java	Sun Oct 17 19:04:17 2010
++++ patches\fn.java	Sun Oct 17 09:44:24 2010
+@@ -60,7 +60,7 @@
+         return ((java.lang.Integer)b.get(((java.lang.Object) (((java.lang.Object)this).getClass())))).intValue();
+     }
+ 
+-    public static fn b(java.io.DataInputStream datainputstream)
++    public static fn b(java.io.DataInputStream datainputstream) throws IOException
+     {
+         int i = datainputstream.read();
+         if(i == -1)
+@@ -76,15 +76,15 @@
+         }
+     }
+ 
+-    public static void a(fn fn1, java.io.DataOutputStream dataoutputstream)
++    public static void a(fn fn1, java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.write(fn1.b());
+         fn1.a(dataoutputstream);
+     }
+ 
+-    public abstract void a(java.io.DataInputStream datainputstream);
++    public abstract void a(java.io.DataInputStream datainputstream) throws IOException;
+ 
+-    public abstract void a(java.io.DataOutputStream dataoutputstream);
++    public abstract void a(java.io.DataOutputStream dataoutputstream) throws IOException;
+ 
+     public abstract void a(lb lb);
+ 
+@@ -92,38 +92,38 @@
+ 
+     static 
+     {
+-        fn.a(0, gi);
+-        fn.a(1, hp);
+-        fn.a(2, gt);
+-        fn.a(3, ij);
+-        fn.a(4, du);
+-        fn.a(5, m);
+-        fn.a(6, ji);
+-        fn.a(10, eh);
+-        fn.a(11, s);
+-        fn.a(12, mh);
+-        fn.a(13, ch);
+-        fn.a(14, fg);
+-        fn.a(15, do);
+-        fn.a(16, dz);
+-        fn.a(17, ld);
+-        fn.a(18, hf);
+-        fn.a(20, gp);
+-        fn.a(21, ha);
+-        fn.a(22, bm);
+-        fn.a(23, kj);
+-        fn.a(24, ez);
+-        fn.a(29, ju);
+-        fn.a(30, lq);
+-        fn.a(31, kp);
+-        fn.a(32, jx);
+-        fn.a(33, is);
+-        fn.a(34, jl);
+-        fn.a(50, ka);
+-        fn.a(51, bz);
+-        fn.a(52, na);
+-        fn.a(53, li);
+-        fn.a(59, ny);
+-        fn.a(255, oh);
++        fn.a(0, gi.class);
++        fn.a(1, hp.class);
++        fn.a(2, gt.class);
++        fn.a(3, ij.class);
++        fn.a(4, du.class);
++        fn.a(5, m.class);
++        fn.a(6, ji.class);
++        fn.a(10, eh.class);
++        fn.a(11, s.class);
++        fn.a(12, mh.class);
++        fn.a(13, ch.class);
++        fn.a(14, fg.class);
++        fn.a(15, dofix.class);
++        fn.a(16, dz.class);
++        fn.a(17, ld.class);
++        fn.a(18, hf.class);
++        fn.a(20, gp.class);
++        fn.a(21, ha.class);
++        fn.a(22, bm.class);
++        fn.a(23, kj.class);
++        fn.a(24, ez.class);
++        fn.a(29, ju.class);
++        fn.a(30, lq.class);
++        fn.a(31, kp.class);
++        fn.a(32, jx.class);
++        fn.a(33, is.class);
++        fn.a(34, jl.class);
++        fn.a(50, ka.class);
++        fn.a(51, bz.class);
++        fn.a(52, na.class);
++        fn.a(53, li.class);
++        fn.a(59, ny.class);
++        fn.a(255, oh.class);
+     }
+ }
+diff -U 3 minecraft.src\fp.java patches\fp.java
+--- minecraft.src\fp.java	Sun Oct 17 19:04:17 2010
++++ patches\fp.java	Sun Oct 17 09:44:24 2010
+@@ -15,9 +15,9 @@
+ 
+     public fp(net.minecraft.client.Minecraft minecraft, java.lang.Thread thread)
+     {
++        super();
+         a = minecraft;
+         b = thread;
+-        super();
+     }
+ 
+     public void windowClosing(java.awt.event.WindowEvent windowevent)
+diff -U 3 minecraft.src\fs.java patches\fs.java
+--- minecraft.src\fs.java	Sun Oct 17 19:04:17 2010
++++ patches\fs.java	Sun Oct 17 09:44:24 2010
+@@ -13,8 +13,8 @@
+ 
+     fs(dw dw1)
+     {
+-        a = dw1;
+         super();
++        a = dw1;
+     }
+ 
+     public int a(bv bv1, bv bv2)
+@@ -24,7 +24,7 @@
+         return bv2.a() <= bv1.a() ? 0 : 1;
+     }
+ 
+-    public volatile int compare(java.lang.Object obj, java.lang.Object obj1)
++    public int compare(java.lang.Object obj, java.lang.Object obj1)
+     {
+         return a((bv)obj, (bv)obj1);
+     }
+diff -U 3 minecraft.src\fz.java patches\fz.java
+--- minecraft.src\fz.java	Sun Oct 17 19:04:17 2010
++++ patches\fz.java	Sun Oct 17 09:44:24 2010
+@@ -30,8 +30,8 @@
+     private fz()
+     {
+         m = ((java.util.Map) (new HashMap()));
+-        m.put(ob, ((java.lang.Object) (new in())));
+-        m.put(bd, ((java.lang.Object) (new r())));
++        m.put(ob.class, ((java.lang.Object) (new in())));
++        m.put(bd.class, ((java.lang.Object) (new r())));
+         ex ex1;
+         for(java.util.Iterator iterator = m.values().iterator(); iterator.hasNext(); ex1.a(this))
+             ex1 = (ex)iterator.next();
+@@ -41,7 +41,7 @@
+     public ex a(java.lang.Class class1)
+     {
+         ex ex1 = (ex)m.get(((java.lang.Object) (class1)));
+-        if(ex1 == null && class1 != ic)
++        if(ex1 == null && class1 != ic.class)
+         {
+             ex1 = a(class1.getSuperclass());
+             m.put(((java.lang.Object) (class1)), ((java.lang.Object) (ex1)));
+diff -U 3 minecraft.src\g.java patches\g.java
+--- minecraft.src\g.java	Sun Oct 17 19:04:17 2010
++++ patches\g.java	Sun Oct 17 09:44:24 2010
+@@ -16,8 +16,8 @@
+ 
+     public g(net.minecraft.client.MinecraftApplet minecraftapplet, java.awt.Component component, java.awt.Canvas canvas, net.minecraft.client.MinecraftApplet minecraftapplet1, int i, int j, boolean flag)
+     {
+-        a = minecraftapplet;
+         super(component, canvas, minecraftapplet1, i, j, flag);
++        a = minecraftapplet;
+     }
+ 
+     public void a(go go)
+diff -U 3 minecraft.src\gc.java patches\gc.java
+--- minecraft.src\gc.java	Sun Oct 17 19:04:17 2010
++++ patches\gc.java	Sun Oct 17 09:44:24 2010
+@@ -47,48 +47,26 @@
+         }
+     }
+ 
+-    protected void a(char c, int j)
++    protected void a(char c, int jparm)
+     {
+-        if(c != '\026') goto _L2; else goto _L1
+-_L1:
+-        java.lang.String s;
+-        int k;
+-        s = bh.c();
+-        if(s == null)
+-            s = "";
+-        k = 32 - i.length();
+-        if(k > s.length())
+-            k = s.length();
+-        if(k <= 0) goto _L2; else goto _L3
+-_L3:
+-        new StringBuilder();
+-        this;
+-        JVM INSTR dup_x1 ;
+-        i;
+-        append();
+-        s.substring(0, k);
+-        append();
+-        toString();
+-        i;
+-_L2:
+-        if(c == '\r')
+-            a((fk)e.get(0));
+-        if(j == 14 && i.length() > 0)
+-            i = i.substring(0, i.length() - 1);
+-        if(" !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_'abcdefghijklmnopqrstuvwxyz{|}~\u2302\307\374\351\342\344\340\345\347\352\353\350\357\356\354\304\305\311\346\306\364\366\362\373\371\377\326\334\370\243\330\327\u0192\341\355\363\372\361\321\252\272\277\256\254\275\274\241\253\273".indexOf(((int) (c))) < 0 || i.length() >= 32) goto _L5; else goto _L4
+-_L4:
+-        new StringBuilder();
+-        this;
+-        JVM INSTR dup_x1 ;
+-        i;
+-        append();
+-        c;
+-        append();
+-        toString();
+-        i;
+-_L5:
+-        ((fk)e.get(0)).g = i.length() > 0;
+-        return;
++        if (c == '\026') {
++            String str = bh.c();
++            if (str == null) str = "";
++            int j = 32 - this.i.length();
++            if (j > str.length()) j = str.length();
++            if (j > 0) {
++              this.i += str.substring(0, j);
++            }
++          }
++          if (c == '\r') {
++            a((fk)this.e.get(0));
++          }
++
++          if ((c == 14) && (this.i.length() > 0)) this.i = this.i.substring(0, this.i.length() - 1);
++          if ((" !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_'abcdefghijklmnopqrstuvwxyz{|}~⌂ÇüéâäàåçêëèïîìÄÅÉæÆôöòûùÿÖÜø£Ø×ƒáíóúñÑªº¿®¬½¼¡«»".indexOf(c) >= 0) && (this.i.length() < 32)) {
++            this.i += c;
++          }
++          ((fk)this.e.get(0)).g = (this.i.length() > 0);
+     }
+ 
+     public void a(int j, int k, float f)
+diff -U 3 minecraft.src\ge.java patches\ge.java
+--- minecraft.src\ge.java	Sun Oct 17 19:04:17 2010
++++ patches\ge.java	Sun Oct 17 09:44:24 2010
+@@ -102,7 +102,7 @@
+ 
+     protected boolean c(kh kh1)
+     {
+-        return ag.a(aj.b(ak, al + (double)s(), am), aj.b(kh1.ak, kh1.al + (double)kh1.s(), kh1.am)) == null;
++        return ag.a(((aj)null).b(ak, al + (double)s(), am), ((aj)null).b(kh1.ak, kh1.al + (double)kh1.s(), kh1.am)) == null;
+     }
+ 
+     public java.lang.String x()
+@@ -670,13 +670,13 @@
+     {
+         if(f1 == 1.0F)
+         {
+-            return aj.b(ak, al, am);
++            return ((aj)null).b(ak, al, am);
+         } else
+         {
+             double d1 = ah + (ak - ah) * (double)f1;
+             double d2 = ai + (al - ai) * (double)f1;
+             double d3 = aj + (am - aj) * (double)f1;
+-            return aj.b(d1, d2, d3);
++            return ((aj)null).b(d1, d2, d3);
+         }
+     }
+ 
+@@ -688,7 +688,7 @@
+             float f4 = eo.a(-aq * 0.01745329F - 3.141593F);
+             float f6 = -eo.b(-ar * 0.01745329F);
+             float f8 = eo.a(-ar * 0.01745329F);
+-            return aj.b(f4 * f6, f8, f2 * f6);
++            return ((aj)null).b(f4 * f6, f8, f2 * f6);
+         } else
+         {
+             float f3 = at + (ar - at) * f1;
+@@ -697,7 +697,7 @@
+             float f9 = eo.a(-f5 * 0.01745329F - 3.141593F);
+             float f10 = -eo.b(-f3 * 0.01745329F);
+             float f11 = eo.a(-f3 * 0.01745329F);
+-            return aj.b(f9 * f10, f11, f7 * f10);
++            return ((aj)null).b(f9 * f10, f11, f7 * f10);
+         }
+     }
+ 
+diff -U 3 minecraft.src\gk.java patches\gk.java
+--- minecraft.src\gk.java	Sun Oct 17 19:04:17 2010
++++ patches\gk.java	Sun Oct 17 09:44:24 2010
+@@ -71,8 +71,7 @@
+         org.lwjgl.opengl.GL11.glPopMatrix();
+     }
+ 
+-    public volatile void a(kh kh, double d, double d1, double d2, 
+-            float f, float f1)
++    public void a(kh kh, double d, double d1, double d2, float f, float f1)
+     {
+         a((kg)kh, d, d1, d2, f, f1);
+     }
+diff -U 3 minecraft.src\gl.java patches\gl.java
+--- minecraft.src\gl.java	Sun Oct 17 19:04:17 2010
++++ patches\gl.java	Sun Oct 17 09:44:24 2010
+@@ -28,7 +28,7 @@
+             return bn1.a(((kh) (a))) >= bn2.a(((kh) (a))) ? -1 : 1;
+     }
+ 
+-    public volatile int compare(java.lang.Object obj, java.lang.Object obj1)
++    public int compare(java.lang.Object obj, java.lang.Object obj1)
+     {
+         return a((bn)obj, (bn)obj1);
+     }
+diff -U 3 minecraft.src\gm.java patches\gm.java
+--- minecraft.src\gm.java	Sun Oct 17 19:04:17 2010
++++ patches\gm.java	Sun Oct 17 09:44:24 2010
+@@ -19,7 +19,7 @@
+         return i == 0 && mv1.a;
+     }
+ 
+-    protected volatile boolean a(ge ge, int i)
++    protected boolean a(ge ge, int i)
+     {
+         return a((mv)ge, i);
+     }
+diff -U 3 minecraft.src\gn.java patches\gn.java
+--- minecraft.src\gn.java	Sun Oct 17 19:04:18 2010
++++ patches\gn.java	Sun Oct 17 09:44:24 2010
+@@ -21,12 +21,12 @@
+         a = l;
+     }
+ 
+-    void a(java.io.DataOutput dataoutput)
++    void a(java.io.DataOutput dataoutput) throws IOException
+     {
+         dataoutput.writeLong(a);
+     }
+ 
+-    void a(java.io.DataInput datainput)
++    void a(java.io.DataInput datainput) throws IOException
+     {
+         a = datainput.readLong();
+     }
+diff -U 3 minecraft.src\gp.java patches\gp.java
+--- minecraft.src\gp.java	Sun Oct 17 19:04:18 2010
++++ patches\gp.java	Sun Oct 17 09:44:24 2010
+@@ -36,7 +36,7 @@
+         h = ev1 != null ? ev1.c : 0;
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         a = datainputstream.readInt();
+         b = datainputstream.readUTF();
+@@ -48,7 +48,7 @@
+         h = ((int) (datainputstream.readShort()));
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(a);
+         dataoutputstream.writeUTF(b);
+diff -U 3 minecraft.src\gq.java patches\gq.java
+--- minecraft.src\gq.java	Sun Oct 17 19:04:18 2010
++++ patches\gq.java	Sun Oct 17 09:44:24 2010
+@@ -42,12 +42,12 @@
+         org.lwjgl.opengl.GL11.glScalef(f3 * f4, (1.0F / f3) * f4, f3 * f4);
+     }
+ 
+-    protected volatile void a(ge ge, float f1)
++    protected void a(ge ge, float f1)
+     {
+         a((ma)ge, f1);
+     }
+ 
+-    protected volatile boolean a(ge ge, int i)
++    protected boolean a(ge ge, int i)
+     {
+         return a((ma)ge, i);
+     }
+diff -U 3 minecraft.src\gt.java patches\gt.java
+--- minecraft.src\gt.java	Sun Oct 17 19:04:18 2010
++++ patches\gt.java	Sun Oct 17 09:44:24 2010
+@@ -21,12 +21,12 @@
+         a = s;
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         a = datainputstream.readUTF();
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeUTF(a);
+     }
+diff -U 3 minecraft.src\gy.java patches\gy.java
+--- minecraft.src\gy.java	Sun Oct 17 19:04:18 2010
++++ patches\gy.java	Sun Oct 17 09:44:24 2010
+@@ -9,6 +9,7 @@
+ import java.net.InetAddress;
+ import java.net.Socket;
+ import java.net.URL;
++import java.net.UnknownHostException;
+ import java.util.Random;
+ import net.minecraft.client.Minecraft;
+ 
+@@ -23,7 +24,7 @@
+     private boolean g;
+     java.util.Random b;
+ 
+-    public gy(net.minecraft.client.Minecraft minecraft, java.lang.String s, int i)
++    public gy(net.minecraft.client.Minecraft minecraft, java.lang.String s, int i) throws UnknownHostException, IOException
+     {
+         c = false;
+         g = false;
+@@ -74,15 +75,15 @@
+         double d1 = (double)kj1.b / 32D;
+         double d2 = (double)kj1.c / 32D;
+         double d3 = (double)kj1.d / 32D;
+-        java.lang.Object obj = null;
++        kh obj = null;
+         if(kj1.e == 10)
+-            obj = ((java.lang.Object) (new oc(((cn) (f)), d1, d2, d3, 0)));
++            obj = new oc(((cn) (f)), d1, d2, d3, 0);
+         if(kj1.e == 11)
+-            obj = ((java.lang.Object) (new oc(((cn) (f)), d1, d2, d3, 1)));
++            obj = new oc(((cn) (f)), d1, d2, d3, 1);
+         if(kj1.e == 12)
+-            obj = ((java.lang.Object) (new oc(((cn) (f)), d1, d2, d3, 2)));
++            obj = new oc(((cn) (f)), d1, d2, d3, 2);
+         if(kj1.e == 1)
+-            obj = ((java.lang.Object) (new dc(((cn) (f)), d1, d2, d3)));
++            obj = new dc(((cn) (f)), d1, d2, d3);
+         if(obj != null)
+         {
+             obj.bd = kj1.b;
+diff -U 3 minecraft.src\h.java patches\h.java
+--- minecraft.src\h.java	Sun Oct 17 19:04:18 2010
++++ patches\h.java	Sun Oct 17 09:44:24 2010
+@@ -13,8 +13,8 @@
+ 
+     public h(net.minecraft.client.MinecraftApplet minecraftapplet)
+     {
+-        a = minecraftapplet;
+         super();
++        a = minecraftapplet;
+     }
+ 
+     public synchronized void addNotify()
+diff -U 3 minecraft.src\ha.java patches\ha.java
+--- minecraft.src\ha.java	Sun Oct 17 19:04:18 2010
++++ patches\ha.java	Sun Oct 17 09:44:24 2010
+@@ -37,7 +37,7 @@
+         g = (byte)(int)(dx1.ap * 128D);
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         a = datainputstream.readInt();
+         h = ((int) (datainputstream.readShort()));
+@@ -50,7 +50,7 @@
+         g = datainputstream.readByte();
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(a);
+         dataoutputstream.writeShort(h);
+diff -U 3 minecraft.src\hf.java patches\hf.java
+--- minecraft.src\hf.java	Sun Oct 17 19:04:18 2010
++++ patches\hf.java	Sun Oct 17 09:44:24 2010
+@@ -23,13 +23,13 @@
+         b = i;
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         a = datainputstream.readInt();
+         b = ((int) (datainputstream.readByte()));
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(a);
+         dataoutputstream.writeByte(b);
+diff -U 3 minecraft.src\hk.java patches\hk.java
+--- minecraft.src\hk.java	Sun Oct 17 19:04:18 2010
++++ patches\hk.java	Sun Oct 17 09:44:24 2010
+@@ -17,8 +17,8 @@
+ 
+     public hk(ep ep1, java.net.URL url, java.io.InputStream inputstream)
+     {
+-        b = ep1;
+         super();
++        b = ep1;
+         a = new byte[1];
+         d = inputstream;
+         java.lang.String s = url.getPath();
+@@ -37,7 +37,11 @@
+ 
+     public int read(byte abyte0[], int i, int j)
+     {
+-        j = d.read(abyte0, i, j);
++        try {
++			j = d.read(abyte0, i, j);
++		} catch (IOException e) {
++			return 0;
++		}
+         for(int k = 0; k < j; k++)
+         {
+             byte byte0 = abyte0[i + k] ^= ((byte) (c >> 8));
+diff -U 3 minecraft.src\hm.java patches\hm.java
+--- minecraft.src\hm.java	Sun Oct 17 19:04:18 2010
++++ patches\hm.java	Sun Oct 17 09:44:24 2010
+@@ -21,7 +21,7 @@
+         a = ((java.util.Map) (new HashMap()));
+     }
+ 
+-    void a(java.io.DataOutput dataoutput)
++    void a(java.io.DataOutput dataoutput) throws IOException
+     {
+         el el1;
+         for(java.util.Iterator iterator = a.values().iterator(); iterator.hasNext(); el.a(el1, dataoutput))
+@@ -30,7 +30,7 @@
+         dataoutput.writeByte(0);
+     }
+ 
+-    void a(java.io.DataInput datainput)
++    void a(java.io.DataInput datainput) throws IOException
+     {
+         a.clear();
+         el el1;
+diff -U 3 minecraft.src\hp.java patches\hp.java
+--- minecraft.src\hp.java	Sun Oct 17 19:04:18 2010
++++ patches\hp.java	Sun Oct 17 09:44:24 2010
+@@ -25,14 +25,14 @@
+         a = i;
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         a = datainputstream.readInt();
+         b = datainputstream.readUTF();
+         c = datainputstream.readUTF();
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(a);
+         dataoutputstream.writeUTF(b);
+diff -U 3 minecraft.src\hw.java patches\hw.java
+--- minecraft.src\hw.java	Sun Oct 17 19:04:18 2010
++++ patches\hw.java	Sun Oct 17 09:44:24 2010
+@@ -52,8 +52,7 @@
+         org.lwjgl.opengl.GL11.glPopMatrix();
+     }
+ 
+-    public volatile void a(kh kh, double d1, double d2, double d3, 
+-            float f, float f1)
++    public void a(kh kh, double d1, double d2, double d3, float f, float f1)
+     {
+         a((jd)kh, d1, d2, d3, f, f1);
+     }
+diff -U 3 minecraft.src\ia.java patches\ia.java
+--- minecraft.src\ia.java	Sun Oct 17 19:04:18 2010
++++ patches\ia.java	Sun Oct 17 09:44:24 2010
+@@ -28,11 +28,11 @@
+         g = 0.0F;
+         h = 0.0F;
+         i = 0;
+-        j = ((az) (new k(this, 200, co, new java.lang.Class[] {
+-            mb, cw, dd, ax, ma
++        j = ((az) (new k(this, 200, co.class, new java.lang.Class[] {
++            mb.class, cw.class, dd.class, ax.class, ma.class
+         })));
+-        k = new az(15, ag, new java.lang.Class[] {
+-            bo, mv, am, mz
++        k = new az(15, ag.class, new java.lang.Class[] {
++            bo.class, mv.class, am.class, mz.class
+         });
+     }
+ 
+diff -U 3 minecraft.src\ic.java patches\ic.java
+--- minecraft.src\ic.java	Sun Oct 17 19:04:18 2010
++++ patches\ic.java	Sun Oct 17 09:44:24 2010
+@@ -106,9 +106,9 @@
+ 
+     static 
+     {
+-        ic.a(ke, "Furnace");
+-        ic.a(fe, "Chest");
+-        ic.a(ob, "Sign");
+-        ic.a(bd, "MobSpawner");
++        ic.a(ke.class, "Furnace");
++        ic.a(fe.class, "Chest");
++        ic.a(ob.class, "Sign");
++        ic.a(bd.class, "MobSpawner");
+     }
+ }
+diff -U 3 minecraft.src\iffix.java patches\iffix.java
+--- minecraft.src\iffix.java	Sun Oct 17 19:04:18 2010
++++ patches\iffix.java	Sun Oct 17 09:44:24 2010
+@@ -1,14 +1,14 @@
+ // Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
+ // Jad home page: http://www.kpdus.com/jad.html
+-// Decompiler options: fullnames deadcode fieldsfirst safe 
++// Decompiler options: fullnames definits deadcode fieldsfirst safe 
+ // Source File Name:   SourceFile
+ 
+ import java.util.Random;
+ 
+-public class if extends ly
++public class iffix extends ly
+ {
+ 
+-    protected if(int i, int j)
++    protected iffix(int i, int j)
+     {
+         super(i, j, gb.n);
+         a(0.0F, 0.0F, 0.0F, 1.0F, 0.125F, 1.0F);
+diff -U 3 minecraft.src\ih.java patches\ih.java
+--- minecraft.src\ih.java	Sun Oct 17 19:04:18 2010
++++ patches\ih.java	Sun Oct 17 09:44:24 2010
+@@ -5,40 +5,11 @@
+ 
+ import net.minecraft.client.Minecraft;
+ 
+-public final class ih extends java.lang.Enum
++public enum ih
+ {
+-
+-    public static final ih a;
+-    public static final ih b;
+-    public static final ih c;
+-    public static final ih d;
+-    public static final ih e;
+-    private static final ih f[];
+-
+-    public static ih[] values()
+-    {
+-        return (ih[])((ih []) (f)).clone();
+-    }
+-
+-    public static ih valueOf(java.lang.String s)
+-    {
+-        return (ih)java.lang.Enum.valueOf(ih, s);
+-    }
+-
+-    private ih(java.lang.String s, int i)
+-    {
+-        super(s, i);
+-    }
+-
+-    static 
+-    {
+-        a = new ih("linux", 0);
+-        b = new ih("solaris", 1);
+-        c = new ih("windows", 2);
+-        d = new ih("macos", 3);
+-        e = new ih("unknown", 4);
+-        f = (new ih[] {
+-            a, b, c, d, e
+-        });
+-    }
++	a, // linux
++	b, // solaris
++	c, // windows
++	d, // macos
++	e; // unknown
+ }
+diff -U 3 minecraft.src\ii.java patches\ii.java
+--- minecraft.src\ii.java	Sun Oct 17 19:04:18 2010
++++ patches\ii.java	Sun Oct 17 09:44:24 2010
+@@ -7,6 +7,7 @@
+ import java.io.DataOutputStream;
+ import java.io.IOException;
+ import java.net.Socket;
++import java.net.SocketException;
+ import java.util.Collections;
+ import java.util.LinkedList;
+ import java.util.List;
+@@ -35,7 +36,7 @@
+     private int s;
+     private int t;
+ 
+-    public ii(java.net.Socket socket, java.lang.String s1, lb lb1)
++    public ii(java.net.Socket socket, java.lang.String s1, lb lb1) throws IOException
+     {
+         d = new Object();
+         h = true;
+diff -U 3 minecraft.src\ij.java patches\ij.java
+--- minecraft.src\ij.java	Sun Oct 17 19:04:18 2010
++++ patches\ij.java	Sun Oct 17 09:44:24 2010
+@@ -21,12 +21,12 @@
+         a = s;
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         a = datainputstream.readUTF();
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeUTF(a);
+     }
+diff -U 3 minecraft.src\in.java patches\in.java
+--- minecraft.src\in.java	Sun Oct 17 19:04:18 2010
++++ patches\in.java	Sun Oct 17 09:44:24 2010
+@@ -72,8 +72,7 @@
+         org.lwjgl.opengl.GL11.glPopMatrix();
+     }
+ 
+-    public volatile void a(ic ic, double d, double d1, double d2, 
+-            float f)
++    public void a(ic ic, double d, double d1, double d2, float f)
+     {
+         a((ob)ic, d, d1, d2, f);
+     }
+diff -U 3 minecraft.src\io.java patches\io.java
+--- minecraft.src\io.java	Sun Oct 17 19:04:18 2010
++++ patches\io.java	Sun Oct 17 09:44:24 2010
+@@ -21,12 +21,12 @@
+         a = i;
+     }
+ 
+-    void a(java.io.DataOutput dataoutput)
++    void a(java.io.DataOutput dataoutput) throws IOException
+     {
+         dataoutput.writeInt(a);
+     }
+ 
+-    void a(java.io.DataInput datainput)
++    void a(java.io.DataInput datainput) throws IOException
+     {
+         a = datainput.readInt();
+     }
+diff -U 3 minecraft.src\iq.java patches\iq.java
+--- minecraft.src\iq.java	Sun Oct 17 19:04:18 2010
++++ patches\iq.java	Sun Oct 17 09:44:24 2010
+@@ -318,7 +318,7 @@
+             org.lwjgl.opengl.GL11.glClear(16640);
+             org.lwjgl.opengl.GL11.glEnable(2884);
+             a(f1, i1);
+-            j.a();
++            ((j)null).a();
+             if(h.y.e < 2)
+             {
+                 a(-1);
+@@ -333,12 +333,12 @@
+             a(0);
+             org.lwjgl.opengl.GL11.glEnable(2912);
+             org.lwjgl.opengl.GL11.glBindTexture(3553, h.n.a("/terrain.png"));
+-            i.a();
++            ((i)null).a();
+             e1.a(((dm) (bi1)), 0, f1);
+-            i.b();
++            ((i)null).b();
+             e1.a(((dm) (bi1)).e(f1), ((oe) (kl1)), f1);
+             bq1.b(((kh) (bi1)), f1);
+-            i.a();
++            ((i)null).a();
+             a(0);
+             bq1.a(((kh) (bi1)), f1);
+             if(h.x != null && ((dm) (bi1)).a(gb.f))
+diff -U 3 minecraft.src\is.java patches\is.java
+--- minecraft.src\is.java	Sun Oct 17 19:04:18 2010
++++ patches\is.java	Sun Oct 17 09:44:24 2010
+@@ -15,7 +15,7 @@
+         g = true;
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         super.a(datainputstream);
+         b = datainputstream.readByte();
+@@ -25,7 +25,7 @@
+         f = datainputstream.readByte();
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         super.a(dataoutputstream);
+         dataoutputstream.writeByte(((int) (b)));
+diff -U 3 minecraft.src\ix.java patches\ix.java
+--- minecraft.src\ix.java	Sun Oct 17 19:04:18 2010
++++ patches\ix.java	Sun Oct 17 09:44:24 2010
+@@ -21,12 +21,12 @@
+         a = byte0;
+     }
+ 
+-    void a(java.io.DataOutput dataoutput)
++    void a(java.io.DataOutput dataoutput) throws IOException
+     {
+         dataoutput.writeByte(((int) (a)));
+     }
+ 
+-    void a(java.io.DataInput datainput)
++    void a(java.io.DataInput datainput) throws IOException
+     {
+         a = datainput.readByte();
+     }
+diff -U 3 minecraft.src\jc.java patches\jc.java
+--- minecraft.src\jc.java	Sun Oct 17 19:04:18 2010
++++ patches\jc.java	Sun Oct 17 09:44:24 2010
+@@ -84,7 +84,7 @@
+         if(j == 3)
+             f6 -= c(b.z);
+         f5 += c(b.A);
+-        a(f4, f5, f6);
++        a((double)f4, (double)f5, (double)f6);
+         float f8 = -0.00625F;
+         au.c(f4 - f1 - f8, f5 - f2 - f8, f6 - f3 - f8, f4 + f1 + f8, f5 + f2 + f8, f6 + f3 + f8);
+     }
+diff -U 3 minecraft.src\jd.java patches\jd.java
+--- minecraft.src\jd.java	Sun Oct 17 19:04:18 2010
++++ patches\jd.java	Sun Oct 17 19:12:58 2010
+@@ -21,7 +21,7 @@
+     public jd(cn cn1, float f, float f1, float f2)
+     {
+         this(cn1);
+-        a(f, f1, f2);
++        a((double)f, (double)f1, (double)f2);
+         float f3 = (float)(java.lang.Math.random() * 3.1415927410125732D * 2D);
+         an = -eo.a((f3 * 3.141593F) / 180F) * 0.02F;
+         ao = 0.20000000298023224D;
+diff -U 3 minecraft.src\jf.java patches\jf.java
+--- minecraft.src\jf.java	Sun Oct 17 19:04:18 2010
++++ patches\jf.java	Sun Oct 17 09:44:24 2010
+@@ -59,7 +59,7 @@
+         return g <= jf1.g ? 0 : 1;
+     }
+ 
+-    public volatile int compareTo(java.lang.Object obj)
++    public int compareTo(java.lang.Object obj)
+     {
+         return a((jf)obj);
+     }
+diff -U 3 minecraft.src\ji.java patches\ji.java
+--- minecraft.src\ji.java	Sun Oct 17 19:04:18 2010
++++ patches\ji.java	Sun Oct 17 09:44:24 2010
+@@ -18,14 +18,14 @@
+     {
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         a = datainputstream.readInt();
+         b = datainputstream.readInt();
+         c = datainputstream.readInt();
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(a);
+         dataoutputstream.writeInt(b);
+diff -U 3 minecraft.src\jl.java patches\jl.java
+--- minecraft.src\jl.java	Sun Oct 17 19:04:18 2010
++++ patches\jl.java	Sun Oct 17 09:44:24 2010
+@@ -31,7 +31,7 @@
+         f = (byte)(int)((kh1.ar * 256F) / 360F);
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         a = datainputstream.readInt();
+         b = datainputstream.readInt();
+@@ -41,7 +41,7 @@
+         f = (byte)datainputstream.read();
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(a);
+         dataoutputstream.writeInt(b);
+diff -U 3 minecraft.src\jp.java patches\jp.java
+--- minecraft.src\jp.java	Sun Oct 17 19:04:18 2010
++++ patches\jp.java	Sun Oct 17 09:44:24 2010
+@@ -106,7 +106,7 @@
+ 
+     private aj e(nm nm1, int k, int l, int i1)
+     {
+-        aj aj1 = aj.b(0.0D, 0.0D, 0.0D);
++        aj aj1 = ((aj)null).b(0.0D, 0.0D, 0.0D);
+         int j1 = b(nm1, k, l, i1);
+         for(int k1 = 0; k1 < 4; k1++)
+         {
+diff -U 3 minecraft.src\js.java patches\js.java
+--- minecraft.src\js.java	Sun Oct 17 19:04:18 2010
++++ patches\js.java	Sun Oct 17 09:44:24 2010
+@@ -1,39 +1,6 @@
+-// Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
+-// Jad home page: http://www.kpdus.com/jad.html
+-// Decompiler options: fullnames deadcode fieldsfirst safe 
+-// Source File Name:   SourceFile
+-
+-
+-public final class js extends java.lang.Enum
++public enum js
+ {
+-
+-    public static final js a;
+-    public static final js b;
+-    public static final js c;
+-    private static final js d[];
+-
+-    public static js[] values()
+-    {
+-        return (js[])((js []) (d)).clone();
+-    }
+-
+-    public static js valueOf(java.lang.String s)
+-    {
+-        return (js)java.lang.Enum.valueOf(js, s);
+-    }
+-
+-    private js(java.lang.String s, int i)
+-    {
+-        super(s, i);
+-    }
+-
+-    static 
+-    {
+-        a = new js("everything", 0);
+-        b = new js("mobs", 1);
+-        c = new js("players", 2);
+-        d = (new js[] {
+-            a, b, c
+-        });
+-    }
++	a, // everything
++	b, // mobs
++	c; // players
+ }
+diff -U 3 minecraft.src\ju.java patches\ju.java
+--- minecraft.src\ju.java	Sun Oct 17 19:04:18 2010
++++ patches\ju.java	Sun Oct 17 09:44:24 2010
+@@ -16,12 +16,12 @@
+     {
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         a = datainputstream.readInt();
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(a);
+     }
+diff -U 3 minecraft.src\jx.java patches\jx.java
+--- minecraft.src\jx.java	Sun Oct 17 19:04:18 2010
++++ patches\jx.java	Sun Oct 17 09:44:24 2010
+@@ -15,14 +15,14 @@
+         g = true;
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         super.a(datainputstream);
+         e = datainputstream.readByte();
+         f = datainputstream.readByte();
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         super.a(dataoutputstream);
+         dataoutputstream.writeByte(((int) (e)));
+diff -U 3 minecraft.src\k.java patches\k.java
+--- minecraft.src\k.java	Sun Oct 17 19:04:19 2010
++++ patches\k.java	Sun Oct 17 09:44:24 2010
+@@ -12,8 +12,8 @@
+ 
+     k(ia ia1, int i, java.lang.Class class1, java.lang.Class aclass[])
+     {
+-        a = ia1;
+         super(i, class1, aclass);
++        a = ia1;
+     }
+ 
+     protected mt a(cn cn1, int i, int j)
+diff -U 3 minecraft.src\ka.java patches\ka.java
+--- minecraft.src\ka.java	Sun Oct 17 19:04:19 2010
++++ patches\ka.java	Sun Oct 17 09:44:24 2010
+@@ -18,14 +18,14 @@
+     {
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         a = datainputstream.readInt();
+         b = datainputstream.readInt();
+         c = datainputstream.read() != 0;
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(a);
+         dataoutputstream.writeInt(b);
+diff -U 3 minecraft.src\kc.java patches\kc.java
+--- minecraft.src\kc.java	Sun Oct 17 19:04:19 2010
++++ patches\kc.java	Sun Oct 17 09:44:24 2010
+@@ -15,8 +15,8 @@
+ 
+     public kc(cx cx1, int i, int j)
+     {
+-        d = cx1;
+         super();
++        d = cx1;
+         a = b = (double)(10 + j) + cx.j().nextDouble() * 32D + (double)i;
+     }
+ 
+diff -U 3 minecraft.src\kd.java patches\kd.java
+--- minecraft.src\kd.java	Sun Oct 17 19:04:19 2010
++++ patches\kd.java	Sun Oct 17 09:44:24 2010
+@@ -25,7 +25,7 @@
+         java.awt.image.BufferedImage bufferedimage;
+         try
+         {
+-            bufferedimage = javax.imageio.ImageIO.read(((java.lang.Class) (ey)).getResourceAsStream(s));
++            bufferedimage = javax.imageio.ImageIO.read(ey.class.getResourceAsStream(s));
+         }
+         catch(java.io.IOException ioexception)
+         {
+diff -U 3 minecraft.src\kg.java patches\kg.java
+--- minecraft.src\kg.java	Sun Oct 17 19:04:19 2010
++++ patches\kg.java	Sun Oct 17 09:44:24 2010
+@@ -105,13 +105,13 @@
+         {
+             i++;
+         }
+-        aj aj1 = aj.b(ak, al, am);
+-        aj aj2 = aj.b(ak + an, al + ao, am + ap);
++        aj aj1 = ((aj)null).b(ak, al, am);
++        aj aj2 = ((aj)null).b(ak + an, al + ao, am + ap);
+         mf mf1 = ag.a(aj1, aj2);
+-        aj1 = aj.b(ak, al, am);
+-        aj2 = aj.b(ak + an, al + ao, am + ap);
++        aj1 = ((aj)null).b(ak, al, am);
++        aj2 = ((aj)null).b(ak + an, al + ao, am + ap);
+         if(mf1 != null)
+-            aj2 = aj.b(mf1.f.a, mf1.f.b, mf1.f.c);
++            aj2 = ((aj)null).b(mf1.f.a, mf1.f.b, mf1.f.c);
+         kh kh1 = null;
+         java.util.List list = ag.b(((kh) (this)), au.a(an, ao, ap).b(1.0D, 1.0D, 1.0D));
+         double d1 = 0.0D;
+diff -U 3 minecraft.src\kh.java patches\kh.java
+--- minecraft.src\kh.java	Sun Oct 17 19:04:19 2010
++++ patches\kh.java	Sun Oct 17 09:44:24 2010
+@@ -733,7 +733,7 @@
+ 
+     protected abstract void a(hm hm1);
+ 
+-    protected transient ki a(double ad1[])
++    protected ki a(double ad1[])
+     {
+         ki ki1 = new ki();
+         double ad2[] = ad1;
+@@ -747,7 +747,7 @@
+         return ki1;
+     }
+ 
+-    protected transient ki a(float af1[])
++    protected ki a(float af1[])
+     {
+         ki ki1 = new ki();
+         float af2[] = af1;
+diff -U 3 minecraft.src\ki.java patches\ki.java
+--- minecraft.src\ki.java	Sun Oct 17 19:04:19 2010
++++ patches\ki.java	Sun Oct 17 09:44:24 2010
+@@ -20,7 +20,7 @@
+         a = ((java.util.List) (new ArrayList()));
+     }
+ 
+-    void a(java.io.DataOutput dataoutput)
++    void a(java.io.DataOutput dataoutput) throws IOException
+     {
+         if(a.size() > 0)
+             b = ((el)a.get(0)).a();
+@@ -33,7 +33,7 @@
+ 
+     }
+ 
+-    void a(java.io.DataInput datainput)
++    void a(java.io.DataInput datainput) throws IOException
+     {
+         b = datainput.readByte();
+         int i = datainput.readInt();
+diff -U 3 minecraft.src\kj.java patches\kj.java
+--- minecraft.src\kj.java	Sun Oct 17 19:04:19 2010
++++ patches\kj.java	Sun Oct 17 09:44:24 2010
+@@ -20,7 +20,7 @@
+     {
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         a = datainputstream.readInt();
+         e = ((int) (datainputstream.readByte()));
+@@ -29,7 +29,7 @@
+         d = datainputstream.readInt();
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(a);
+         dataoutputstream.writeByte(e);
+diff -U 3 minecraft.src\kp.java patches\kp.java
+--- minecraft.src\kp.java	Sun Oct 17 19:04:19 2010
++++ patches\kp.java	Sun Oct 17 09:44:24 2010
+@@ -14,7 +14,7 @@
+     {
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         super.a(datainputstream);
+         b = datainputstream.readByte();
+@@ -22,7 +22,7 @@
+         d = datainputstream.readByte();
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         super.a(dataoutputstream);
+         dataoutputstream.writeByte(((int) (b)));
+diff -U 3 minecraft.src\kr.java patches\kr.java
+--- minecraft.src\kr.java	Sun Oct 17 19:04:19 2010
++++ patches\kr.java	Sun Oct 17 09:44:24 2010
+@@ -21,12 +21,12 @@
+         a = d;
+     }
+ 
+-    void a(java.io.DataOutput dataoutput)
++    void a(java.io.DataOutput dataoutput) throws IOException
+     {
+         dataoutput.writeDouble(a);
+     }
+ 
+-    void a(java.io.DataInput datainput)
++    void a(java.io.DataInput datainput) throws IOException
+     {
+         a = datainput.readDouble();
+     }
+diff -U 3 minecraft.src\kt.java patches\kt.java
+--- minecraft.src\kt.java	Sun Oct 17 19:04:19 2010
++++ patches\kt.java	Sun Oct 17 09:44:24 2010
+@@ -76,8 +76,7 @@
+         org.lwjgl.opengl.GL11.glPopMatrix();
+     }
+ 
+-    public volatile void a(kh kh, double d1, double d2, double d3, 
+-            float f, float f1)
++    public void a(kh kh, double d1, double d2, double d3, float f, float f1)
+     {
+         a((oc)kh, d1, d2, d3, f, f1);
+     }
+diff -U 3 minecraft.src\kx.java patches\kx.java
+--- minecraft.src\kx.java	Sun Oct 17 19:04:19 2010
++++ patches\kx.java	Sun Oct 17 09:44:24 2010
+@@ -32,27 +32,27 @@
+     private kx()
+     {
+         o = ((java.util.Map) (new HashMap()));
+-        o.put(ax, ((java.lang.Object) (new ok())));
+-        o.put(mv, ((java.lang.Object) (new gm(((fo) (new ca())), ((fo) (new ca(0.5F))), 0.7F))));
+-        o.put(bo, ((java.lang.Object) (new ns(((fo) (new gx())), ((fo) (new bx())), 0.7F))));
+-        o.put(am, ((java.lang.Object) (new mc(((fo) (new dv())), 0.7F))));
+-        o.put(mz, ((java.lang.Object) (new eq(((fo) (new kv())), 0.3F))));
+-        o.put(dd, ((java.lang.Object) (new d())));
+-        o.put(cw, ((java.lang.Object) (new dn(((fo) (new fv())), 0.5F))));
+-        o.put(mb, ((java.lang.Object) (new dn(((fo) (new cb())), 0.5F))));
+-        o.put(ma, ((java.lang.Object) (new gq(((fo) (new hh(16))), ((fo) (new hh(0))), 0.25F))));
+-        o.put(dm, ((java.lang.Object) (new bu())));
+-        o.put(hl, ((java.lang.Object) (new nz(((fo) (new cb())), 0.5F, 6F))));
+-        o.put(ge, ((java.lang.Object) (new dn(((fo) (new cr())), 0.5F))));
+-        o.put(kh, ((java.lang.Object) (new gj())));
+-        o.put(jc, ((java.lang.Object) (new bw())));
+-        o.put(kg, ((java.lang.Object) (new gk())));
+-        o.put(ao, ((java.lang.Object) (new ei())));
+-        o.put(dx, ((java.lang.Object) (new ab())));
+-        o.put(jd, ((java.lang.Object) (new hw())));
+-        o.put(ff, ((java.lang.Object) (new dj())));
+-        o.put(oc, ((java.lang.Object) (new kt())));
+-        o.put(dc, ((java.lang.Object) (new cp())));
++        o.put(ax.class, ((java.lang.Object) (new ok())));
++        o.put(mv.class, ((java.lang.Object) (new gm(((fo) (new ca())), ((fo) (new ca(0.5F))), 0.7F))));
++        o.put(bo.class, ((java.lang.Object) (new ns(((fo) (new gx())), ((fo) (new bx())), 0.7F))));
++        o.put(am.class, ((java.lang.Object) (new mc(((fo) (new dv())), 0.7F))));
++        o.put(mz.class, ((java.lang.Object) (new eq(((fo) (new kv())), 0.3F))));
++        o.put(dd.class, ((java.lang.Object) (new d())));
++        o.put(cw.class, ((java.lang.Object) (new dn(((fo) (new fv())), 0.5F))));
++        o.put(mb.class, ((java.lang.Object) (new dn(((fo) (new cb())), 0.5F))));
++        o.put(ma.class, ((java.lang.Object) (new gq(((fo) (new hh(16))), ((fo) (new hh(0))), 0.25F))));
++        o.put(dm.class, ((java.lang.Object) (new bu())));
++        o.put(hl.class, ((java.lang.Object) (new nz(((fo) (new cb())), 0.5F, 6F))));
++        o.put(ge.class, ((java.lang.Object) (new dn(((fo) (new cr())), 0.5F))));
++        o.put(kh.class, ((java.lang.Object) (new gj())));
++        o.put(jc.class, ((java.lang.Object) (new bw())));
++        o.put(kg.class, ((java.lang.Object) (new gk())));
++        o.put(ao.class, ((java.lang.Object) (new ei())));
++        o.put(dx.class, ((java.lang.Object) (new ab())));
++        o.put(jd.class, ((java.lang.Object) (new hw())));
++        o.put(ff.class, ((java.lang.Object) (new dj())));
++        o.put(oc.class, ((java.lang.Object) (new kt())));
++        o.put(dc.class, ((java.lang.Object) (new cp())));
+         ak ak1;
+         for(java.util.Iterator iterator = o.values().iterator(); iterator.hasNext(); ak1.a(this))
+             ak1 = (ak)iterator.next();
+@@ -62,7 +62,7 @@
+     public ak a(java.lang.Class class1)
+     {
+         ak ak1 = (ak)o.get(((java.lang.Object) (class1)));
+-        if(ak1 == null && class1 != kh)
++        if(ak1 == null && class1 != kh.class)
+         {
+             ak1 = a(class1.getSuperclass());
+             o.put(((java.lang.Object) (class1)), ((java.lang.Object) (ak1)));
+diff -U 3 minecraft.src\kz.java patches\kz.java
+--- minecraft.src\kz.java	Sun Oct 17 19:04:19 2010
++++ patches\kz.java	Sun Oct 17 09:44:24 2010
+@@ -16,15 +16,16 @@
+ 
+     kz(cc cc1, java.lang.String s, hb hb1)
+     {
++        super();
+         c = cc1;
+         a = s;
+         b = hb1;
+-        super();
+     }
+ 
+     public void run()
+     {
+         java.net.HttpURLConnection httpurlconnection = null;
++        try {
+         java.net.URL url = new URL(a);
+         httpurlconnection = (java.net.HttpURLConnection)url.openConnection();
+         httpurlconnection.setDoInput(true);
+@@ -34,21 +35,19 @@
+         {
+             httpurlconnection.disconnect();
+             return;
+-        }
++          }
+         if(b == null)
+             c.a = javax.imageio.ImageIO.read(httpurlconnection.getInputStream());
+         else
+             c.a = b.a(javax.imageio.ImageIO.read(httpurlconnection.getInputStream()));
+-        httpurlconnection.disconnect();
+-        break MISSING_BLOCK_LABEL_124;
+-        java.lang.Exception exception;
+-        exception;
++        }
++        catch (java.lang.Exception exception)
++        {
+         exception.printStackTrace();
++        }
++        finally
++        {
+         httpurlconnection.disconnect();
+-        break MISSING_BLOCK_LABEL_124;
+-        java.lang.Exception exception1;
+-        exception1;
+-        httpurlconnection.disconnect();
+-        throw exception1;
++        }
+     }
+ }
+diff -U 3 minecraft.src\lb.java patches\lb.java
+--- minecraft.src\lb.java	Sun Oct 17 19:04:19 2010
++++ patches\lb.java	Sun Oct 17 09:44:24 2010
+@@ -73,7 +73,7 @@
+         b(((fn) (jl)));
+     }
+ 
+-    public void a(do do1)
++    public void a(dofix do1)
+     {
+         b(((fn) (do1)));
+     }
+diff -U 3 minecraft.src\lc.java patches\lc.java
+--- minecraft.src\lc.java	Sun Oct 17 19:04:19 2010
++++ patches\lc.java	Sun Oct 17 09:44:24 2010
+@@ -17,8 +17,8 @@
+ 
+     public lc(gs gs1, int i, int j, int k, int l, int i1)
+     {
+-        g = gs1;
+         super();
++        g = gs1;
+         a = i;
+         b = j;
+         c = k;
+diff -U 3 minecraft.src\ld.java patches\ld.java
+--- minecraft.src\ld.java	Sun Oct 17 19:04:19 2010
++++ patches\ld.java	Sun Oct 17 09:44:24 2010
+@@ -18,14 +18,14 @@
+     {
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         a = ((int) (datainputstream.readShort()));
+         b = ((int) (datainputstream.readByte()));
+         c = ((int) (datainputstream.readShort()));
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeShort(a);
+         dataoutputstream.writeByte(b);
+diff -U 3 minecraft.src\le.java patches\le.java
+--- minecraft.src\le.java	Sun Oct 17 19:04:19 2010
++++ patches\le.java	Sun Oct 17 09:44:24 2010
+@@ -53,8 +53,10 @@
+     {
+         java.io.File file;
+         file = a(i, j);
+-        if(file == null || !file.exists())
+-            break MISSING_BLOCK_LABEL_291;
++        if ((file != null) && (file.exists()))
++        {
++            try
++            {
+         hm hm1;
+         java.io.FileInputStream fileinputstream = new FileInputStream(file);
+         hm1 = x.a(((java.io.InputStream) (fileinputstream)));
+@@ -68,8 +70,6 @@
+             java.lang.System.out.println((new StringBuilder()).append("Chunk file at ").append(i).append(",").append(j).append(" is missing block data, skipping").toString());
+             return null;
+         }
+-        try
+-        {
+             ga ga1 = le.a(cn1, hm1.k("Level"));
+             if(!ga1.a(i, j))
+             {
+@@ -83,6 +83,7 @@
+         catch(java.lang.Exception exception)
+         {
+             exception.printStackTrace();
++        }
+         }
+         return null;
+     }
+diff -U 3 minecraft.src\lh.java patches\lh.java
+--- minecraft.src\lh.java	Sun Oct 17 19:04:19 2010
++++ patches\lh.java	Sun Oct 17 09:44:24 2010
+@@ -11,8 +11,8 @@
+ 
+     lh(ad ad1)
+     {
+-        a = ad1;
+         super();
++        a = ad1;
+     }
+ 
+     public void run()
+diff -U 3 minecraft.src\li.java patches\li.java
+--- minecraft.src\li.java	Sun Oct 17 19:04:19 2010
++++ patches\li.java	Sun Oct 17 09:44:24 2010
+@@ -21,7 +21,7 @@
+         j = true;
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         a = datainputstream.readInt();
+         b = datainputstream.read();
+@@ -30,7 +30,7 @@
+         e = datainputstream.read();
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(a);
+         dataoutputstream.write(b);
+diff -U 3 minecraft.src\lj.java patches\lj.java
+--- minecraft.src\lj.java	Sun Oct 17 19:04:19 2010
++++ patches\lj.java	Sun Oct 17 09:44:24 2010
+@@ -12,9 +12,9 @@
+ 
+     lj(lo lo1, ee ee, gh gh, int i, int j, int k, int l)
+     {
++        super(ee, gh, i, j, k);
+         d = lo1;
+         c = l;
+-        super(ee, gh, i, j, k);
+     }
+ 
+     public boolean a(ev ev1)
+diff -U 3 minecraft.src\lk.java patches\lk.java
+--- minecraft.src\lk.java	Sun Oct 17 19:04:19 2010
++++ patches\lk.java	Sun Oct 17 09:44:24 2010
+@@ -12,8 +12,8 @@
+ 
+     lk(ad ad1, java.io.File file, java.lang.String s)
+     {
+-        z = ad1;
+         super(file, s);
++        z = ad1;
+     }
+ 
+     protected aw a(java.io.File file)
+diff -U 3 minecraft.src\lo.java patches\lo.java
+--- minecraft.src\lo.java	Sun Oct 17 19:04:19 2010
++++ patches\lo.java	Sun Oct 17 09:44:24 2010
+@@ -77,7 +77,7 @@
+         float f5 = (float)(i1 + 51) - l;
+         float f6 = (float)((j1 + 75) - 50) - m;
+         org.lwjgl.opengl.GL11.glRotatef(135F, 0.0F, 1.0F, 0.0F);
+-        i.b();
++        ((i)null).b();
+         org.lwjgl.opengl.GL11.glRotatef(-135F, 0.0F, 1.0F, 0.0F);
+         org.lwjgl.opengl.GL11.glRotatef(-(float)java.lang.Math.atan(f6 / 40F) * 20F, 1.0F, 0.0F, 0.0F);
+         b.g.n = (float)java.lang.Math.atan(f5 / 40F) * 20F;
+@@ -89,7 +89,7 @@
+         b.g.aq = f3;
+         b.g.ar = f4;
+         org.lwjgl.opengl.GL11.glPopMatrix();
+-        i.a();
++        ((i)null).a();
+         org.lwjgl.opengl.GL11.glDisable(32826);
+     }
+ }
+diff -U 3 minecraft.src\lq.java patches\lq.java
+--- minecraft.src\lq.java	Sun Oct 17 19:04:19 2010
++++ patches\lq.java	Sun Oct 17 09:44:24 2010
+@@ -23,12 +23,12 @@
+         g = false;
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         a = datainputstream.readInt();
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(a);
+     }
+diff -U 3 minecraft.src\ls.java patches\ls.java
+--- minecraft.src\ls.java	Sun Oct 17 19:04:19 2010
++++ patches\ls.java	Sun Oct 17 09:44:24 2010
+@@ -21,12 +21,12 @@
+         a = word0;
+     }
+ 
+-    void a(java.io.DataOutput dataoutput)
++    void a(java.io.DataOutput dataoutput) throws IOException
+     {
+         dataoutput.writeShort(((int) (a)));
+     }
+ 
+-    void a(java.io.DataInput datainput)
++    void a(java.io.DataInput datainput) throws IOException
+     {
+         a = datainput.readShort();
+     }
+diff -U 3 minecraft.src\lt.java patches\lt.java
+--- minecraft.src\lt.java	Sun Oct 17 19:04:19 2010
++++ patches\lt.java	Sun Oct 17 09:44:24 2010
+@@ -30,7 +30,7 @@
+         g = new int[768];
+         try
+         {
+-            java.awt.image.BufferedImage bufferedimage = javax.imageio.ImageIO.read(((java.lang.Class) (lt)).getResource("/terrain.png"));
++            java.awt.image.BufferedImage bufferedimage = javax.imageio.ImageIO.read(lt.class.getResource("/terrain.png"));
+             int ai[] = new int[0x10000];
+             bufferedimage.getRGB(0, 0, 256, 256, ai, 0, 256);
+             for(int j = 0; j < 256; j++)
+diff -U 3 minecraft.src\lu.java patches\lu.java
+--- minecraft.src\lu.java	Sun Oct 17 19:04:19 2010
++++ patches\lu.java	Sun Oct 17 09:44:24 2010
+@@ -115,7 +115,7 @@
+         org.lwjgl.opengl.GL11.glEnable(32826);
+         org.lwjgl.opengl.GL11.glPushMatrix();
+         org.lwjgl.opengl.GL11.glRotatef(180F, 1.0F, 0.0F, 0.0F);
+-        i.b();
++        ((i)null).b();
+         org.lwjgl.opengl.GL11.glPopMatrix();
+         for(int j2 = 0; j2 < 9; j2++)
+         {
+@@ -124,7 +124,7 @@
+             a(j2, j3, j4, f1);
+         }
+ 
+-        i.a();
++        ((i)null).a();
+         org.lwjgl.opengl.GL11.glDisable(32826);
+         if(org.lwjgl.input.Keyboard.isKeyDown(61))
+         {
+diff -U 3 minecraft.src\ly.java patches\ly.java
+--- minecraft.src\ly.java	Sun Oct 17 19:04:19 2010
++++ patches\ly.java	Sun Oct 17 09:44:24 2010
+@@ -583,12 +583,12 @@
+         aB = (new mi(60)).c(0.6F).a(g);
+         aC = (new ku(61, false)).c(3.5F).a(i);
+         aD = (new ku(62, true)).c(3.5F).a(i).a(0.875F);
+-        aE = (new lr(63, ob, true)).c(1.0F).a(f);
++        aE = (new lr(63, ob.class, true)).c(1.0F).a(f);
+         aF = (new fw(64, gb.c)).c(3F).a(f);
+         aG = (new br(65, 83)).c(0.4F).a(f);
+-        aH = (new if(66, 128)).c(0.7F).a(j);
++        aH = (new iffix(66, 128)).c(0.7F).a(j);
+         aI = ((ly) (new km(67, x)));
+-        aJ = (new lr(68, ob, false)).c(1.0F).a(f);
++        aJ = (new lr(68, ob.class, false)).c(1.0F).a(f);
+         aK = (new no(69, 96)).c(0.5F).a(f);
+         aL = (new al(70, u.bb, js.b)).c(0.5F).a(i);
+         aM = (new fw(71, gb.e)).c(5F).a(j);
+diff -U 3 minecraft.src\m.java patches\m.java
+--- minecraft.src\m.java	Sun Oct 17 19:04:19 2010
++++ patches\m.java	Sun Oct 17 09:44:24 2010
+@@ -26,7 +26,7 @@
+ 
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         a = datainputstream.readInt();
+         short word0 = datainputstream.readShort();
+@@ -44,7 +44,7 @@
+ 
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(a);
+         dataoutputstream.writeShort(b.length);
+diff -U 3 minecraft.src\mc.java patches\mc.java
+--- minecraft.src\mc.java	Sun Oct 17 19:04:19 2010
++++ patches\mc.java	Sun Oct 17 09:44:24 2010
+@@ -18,14 +18,12 @@
+         super.a(((ge) (am1)), d, d1, d2, f, f1);
+     }
+ 
+-    public volatile void a(ge ge, double d, double d1, double d2, 
+-            float f, float f1)
++    public void a(ge ge, double d, double d1, double d2, float f, float f1)
+     {
+         a((am)ge, d, d1, d2, f, f1);
+     }
+ 
+-    public volatile void a(kh kh, double d, double d1, double d2, 
+-            float f, float f1)
++    public void a(kh kh, double d, double d1, double d2, float f, float f1)
+     {
+         a((am)kh, d, d1, d2, f, f1);
+     }
+diff -U 3 minecraft.src\me.java patches\me.java
+--- minecraft.src\me.java	Sun Oct 17 19:04:19 2010
++++ patches\me.java	Sun Oct 17 09:44:24 2010
+@@ -21,7 +21,7 @@
+         double d = dm1.ah + (dm1.ak - dm1.ah) * (double)f;
+         double d1 = dm1.ai + (dm1.al - dm1.ai) * (double)f;
+         double d2 = dm1.aj + (dm1.am - dm1.aj) * (double)f;
+-        aj aj1 = aj.b(d, d1, d2);
++        aj aj1 = ((aj)null).b(d, d1, d2);
+         float f3 = eo.b(-f2 * 0.01745329F - 3.141593F);
+         float f4 = eo.a(-f2 * 0.01745329F - 3.141593F);
+         float f5 = -eo.b(-f1 * 0.01745329F);
+diff -U 3 minecraft.src\mh.java patches\mh.java
+--- minecraft.src\mh.java	Sun Oct 17 19:04:19 2010
++++ patches\mh.java	Sun Oct 17 09:44:24 2010
+@@ -23,14 +23,14 @@
+         i = true;
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         e = datainputstream.readFloat();
+         f = datainputstream.readFloat();
+         super.a(datainputstream);
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeFloat(e);
+         dataoutputstream.writeFloat(f);
+diff -U 3 minecraft.src\mk.java patches\mk.java
+--- minecraft.src\mk.java	Sun Oct 17 19:04:19 2010
++++ patches\mk.java	Sun Oct 17 09:44:24 2010
+@@ -15,12 +15,12 @@
+     private int e;
+     private int f;
+     private java.util.List g;
+-    final if a;
++    final iffix a;
+ 
+-    public mk(if if1, cn cn1, int i, int j, int k)
++    public mk(iffix if1, cn cn1, int i, int j, int k)
+     {
+-        a = if1;
+         super();
++        a = if1;
+         g = ((java.util.List) (new ArrayList()));
+         b = cn1;
+         c = i;
+diff -U 3 minecraft.src\na.java patches\na.java
+--- minecraft.src\na.java	Sun Oct 17 19:04:19 2010
++++ patches\na.java	Sun Oct 17 09:44:24 2010
+@@ -22,7 +22,7 @@
+         j = true;
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         a = datainputstream.readInt();
+         b = datainputstream.readInt();
+@@ -37,7 +37,7 @@
+         datainputstream.readFully(e);
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(a);
+         dataoutputstream.writeInt(b);
+diff -U 3 minecraft.src\nc.java patches\nc.java
+--- minecraft.src\nc.java	Sun Oct 17 19:04:19 2010
++++ patches\nc.java	Sun Oct 17 09:44:24 2010
+@@ -17,20 +17,20 @@
+ 
+     nc(mn mn1, net.minecraft.client.Minecraft minecraft, java.lang.String s, int i)
+     {
++        super();
+         d = mn1;
+         a = minecraft;
+         b = s;
+         c = i;
+-        super();
+     }
+ 
+     public void run()
+     {
++        try
++        {
+         mn.a(d, new gy(a, b, c));
+         if(mn.a(d))
+             return;
+-        try
+-        {
+             mn.b(d).a(((fn) (new gt(a.i.b))));
+         }
+         catch(java.net.UnknownHostException unknownhostexception)
+@@ -52,6 +52,5 @@
+             exception.printStackTrace();
+             a.a(((bh) (new cj("Failed to connect to the server", exception.toString()))));
+         }
+-        return;
+     }
+ }
+diff -U 3 minecraft.src\ne.java patches\ne.java
+--- minecraft.src\ne.java	Sun Oct 17 19:04:19 2010
++++ patches\ne.java	Sun Oct 17 09:44:24 2010
+@@ -25,12 +25,12 @@
+             return;
+     }
+ 
+-    void a(java.io.DataOutput dataoutput)
++    void a(java.io.DataOutput dataoutput) throws IOException
+     {
+         dataoutput.writeUTF(a);
+     }
+ 
+-    void a(java.io.DataInput datainput)
++    void a(java.io.DataInput datainput) throws IOException
+     {
+         a = datainput.readUTF();
+     }
+diff -U 3 minecraft.src\nh.java patches\nh.java
+--- minecraft.src\nh.java	Sun Oct 17 19:04:19 2010
++++ patches\nh.java	Sun Oct 17 09:44:24 2010
+@@ -11,8 +11,8 @@
+ 
+     nh(ii ii1)
+     {
+-        a = ii1;
+         super();
++        a = ii1;
+     }
+ 
+     public void run()
+diff -U 3 minecraft.src\ni.java patches\ni.java
+--- minecraft.src\ni.java	Sun Oct 17 19:04:19 2010
++++ patches\ni.java	Sun Oct 17 09:44:24 2010
+@@ -11,8 +11,8 @@
+ 
+     ni(ii ii1, java.lang.String s)
+     {
+-        a = ii1;
+         super(s);
++        a = ii1;
+     }
+ 
+     public void run()
+@@ -21,18 +21,16 @@
+         {
+             ii.b++;
+         }
++	    try
++        {
+         for(; ii.a(a) && !ii.b(a); ii.c(a));
+-        synchronized(ii.a)
++	    }
++	    finally
+         {
+-            ii.b--;
+-        }
+-        break MISSING_BLOCK_LABEL_115;
+-        java.lang.Exception exception2;
+-        exception2;
+         synchronized(ii.a)
+         {
+             ii.b--;
+         }
+-        throw exception2;
++	    }
+     }
+ }
+diff -U 3 minecraft.src\nj.java patches\nj.java
+--- minecraft.src\nj.java	Sun Oct 17 19:04:19 2010
++++ patches\nj.java	Sun Oct 17 09:44:24 2010
+@@ -171,7 +171,7 @@
+     public boolean a(dm dm1, cn cn1, ev ev1, int i1, int j1, int k1, int l1)
+     {
+         e();
+-        k.a(((fn) (new do(ev1 == null ? -1 : ev1.c, i1, j1, k1, l1))));
++        k.a(((fn) (new dofix(ev1 == null ? -1 : ev1.c, i1, j1, k1, l1))));
+         return super.a(dm1, cn1, ev1, i1, j1, k1, l1);
+     }
+ 
+diff -U 3 minecraft.src\nk.java patches\nk.java
+--- minecraft.src\nk.java	Sun Oct 17 19:04:19 2010
++++ patches\nk.java	Sun Oct 17 09:44:24 2010
+@@ -11,8 +11,8 @@
+ 
+     nk(ii ii1, java.lang.String s)
+     {
+-        a = ii1;
+         super(s);
++        a = ii1;
+     }
+ 
+     public void run()
+@@ -21,18 +21,14 @@
+         {
+             ii.c++;
+         }
++	    try {
+         for(; ii.a(a); ii.d(a));
++	    }
++	    finally {
+         synchronized(ii.a)
+         {
+             ii.c--;
+         }
+-        break MISSING_BLOCK_LABEL_105;
+-        java.lang.Exception exception2;
+-        exception2;
+-        synchronized(ii.a)
+-        {
+-            ii.c--;
+-        }
+-        throw exception2;
++	    }
+     }
+ }
+diff -U 3 minecraft.src\ns.java patches\ns.java
+--- minecraft.src\ns.java	Sun Oct 17 19:04:20 2010
++++ patches\ns.java	Sun Oct 17 09:44:24 2010
+@@ -19,7 +19,7 @@
+         return i == 0 && !bo1.a;
+     }
+ 
+-    protected volatile boolean a(ge ge, int i)
++    protected boolean a(ge ge, int i)
+     {
+         return a((bo)ge, i);
+     }
+diff -U 3 minecraft.src\nv.java patches\nv.java
+--- minecraft.src\nv.java	Sun Oct 17 19:04:20 2010
++++ patches\nv.java	Sun Oct 17 09:44:24 2010
+@@ -59,19 +59,10 @@
+             j = j + 1 & 3;
+         if(k == 14 && h.a[j].length() > 0)
+             h.a[j] = h.a[j].substring(0, h.a[j].length() - 1);
+-        if(" !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_'abcdefghijklmnopqrstuvwxyz{|}~\u2302\307\374\351\342\344\340\345\347\352\353\350\357\356\354\304\305\311\346\306\364\366\362\373\371\377\326\334\370\243\330\327\u0192\341\355\363\372\361\321\252\272\277\256\254\275\274\241\253\273".indexOf(((int) (c))) < 0 || h.a[j].length() >= 15) goto _L2; else goto _L1
+-_L1:
+-        new StringBuilder();
+-        h.a;
+-        j;
+-        JVM INSTR dup2_x1 ;
+-        JVM INSTR aaload ;
+-        append();
+-        c;
+-        append();
+-        toString();
+-        JVM INSTR aastore ;
+-_L2:
++        if ((" !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_'abcdefghijklmnopqrstuvwxyz{|}~⌂ÇüéâäàåçêëèïîìÄÅÉæÆôöòûùÿÖÜø£Ø×ƒáíóúñÑªº¿®¬½¼¡«»".indexOf(c) >= 0) && (h.a[j].length() < 15))
++        {
++            h.a[j] = h.a[j] + c;
++        }
+     }
+ 
+     public void a(int k, int l, float f)
+diff -U 3 minecraft.src\ny.java patches\ny.java
+--- minecraft.src\ny.java	Sun Oct 17 19:04:20 2010
++++ patches\ny.java	Sun Oct 17 09:44:24 2010
+@@ -39,7 +39,7 @@
+         }
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         a = datainputstream.readInt();
+         b = ((int) (datainputstream.readShort()));
+@@ -50,7 +50,7 @@
+         e = x.a(d);
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(a);
+         dataoutputstream.writeShort(b);
+diff -U 3 minecraft.src\nz.java patches\nz.java
+--- minecraft.src\nz.java	Sun Oct 17 19:04:20 2010
++++ patches\nz.java	Sun Oct 17 09:44:24 2010
+@@ -21,7 +21,7 @@
+         org.lwjgl.opengl.GL11.glScalef(f, f, f);
+     }
+ 
+-    protected volatile void a(ge ge, float f1)
++    protected void a(ge ge, float f1)
+     {
+         a((hl)ge, f1);
+     }
+diff -U 3 minecraft.src\oc.java patches\oc.java
+--- minecraft.src\oc.java	Sun Oct 17 19:04:20 2010
++++ patches\oc.java	Sun Oct 17 09:44:24 2010
+@@ -520,7 +520,7 @@
+                 d2++;
+             if(d12 > 0.0D)
+                 d2 += 0.5D;
+-            return aj.b(d1, d2, d3);
++            return ((aj)null).b(d1, d2, d3);
+         } else
+         {
+             return null;
+diff -U 3 minecraft.src\of.java patches\of.java
+--- minecraft.src\of.java	Sun Oct 17 19:04:20 2010
++++ patches\of.java	Sun Oct 17 09:44:24 2010
+@@ -52,10 +52,10 @@
+             f.b = 0.0F;
+             f.a = 0.0F;
+             f.b();
+-            paulscode.sound.SoundSystemConfig.addLibrary(paulscode/sound/libraries/LibraryLWJGLOpenAL);
+-            paulscode.sound.SoundSystemConfig.setCodec("ogg", paulscode/sound/codecs/CodecJOrbis);
+-            paulscode.sound.SoundSystemConfig.setCodec("mus", ep);
+-            paulscode.sound.SoundSystemConfig.setCodec("wav", paulscode/sound/codecs/CodecWav);
++            paulscode.sound.SoundSystemConfig.addLibrary(LibraryLWJGLOpenAL.class);
++            paulscode.sound.SoundSystemConfig.setCodec("ogg", CodecJOrbis.class);
++            paulscode.sound.SoundSystemConfig.setCodec("mus", ep.class);
++            paulscode.sound.SoundSystemConfig.setCodec("wav", CodecWav.class);
+             a = new SoundSystem();
+             f.b = f1;
+             f.a = f2;
+diff -U 3 minecraft.src\oh.java patches\oh.java
+--- minecraft.src\oh.java	Sun Oct 17 19:04:20 2010
++++ patches\oh.java	Sun Oct 17 09:44:24 2010
+@@ -21,12 +21,12 @@
+         a = s;
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         a = datainputstream.readUTF();
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeUTF(a);
+     }
+diff -U 3 minecraft.src\ok.java patches\ok.java
+--- minecraft.src\ok.java	Sun Oct 17 19:04:20 2010
++++ patches\ok.java	Sun Oct 17 09:44:24 2010
+@@ -38,12 +38,12 @@
+         }
+     }
+ 
+-    protected volatile float a(ge ge)
++    protected float a(ge ge)
+     {
+         return a((ax)ge);
+     }
+ 
+-    protected volatile boolean a(ge ge, int i)
++    protected boolean a(ge ge, int i)
+     {
+         return a((ax)ge, i);
+     }
+diff -U 3 minecraft.src\r.java patches\r.java
+--- minecraft.src\r.java	Sun Oct 17 19:04:20 2010
++++ patches\r.java	Sun Oct 17 09:44:24 2010
+@@ -43,8 +43,7 @@
+         org.lwjgl.opengl.GL11.glPopMatrix();
+     }
+ 
+-    public volatile void a(ic ic, double d, double d1, double d2, 
+-            float f)
++    public void a(ic ic, double d, double d1, double d2, float f)
+     {
+         a((bd)ic, d, d1, d2, f);
+     }
+diff -U 3 minecraft.src\s.java patches\s.java
+--- minecraft.src\s.java	Sun Oct 17 19:04:20 2010
++++ patches\s.java	Sun Oct 17 09:44:24 2010
+@@ -25,7 +25,7 @@
+         h = true;
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         a = datainputstream.readDouble();
+         b = datainputstream.readDouble();
+@@ -34,7 +34,7 @@
+         super.a(datainputstream);
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeDouble(a);
+         dataoutputstream.writeDouble(b);
+Only in minecraft.src: Start.java
+diff -U 3 minecraft.src\x.java patches\x.java
+--- minecraft.src\x.java	Sun Oct 17 19:04:20 2010
++++ patches\x.java	Sun Oct 17 09:44:24 2010
+@@ -22,59 +22,67 @@
+     {
+     }
+ 
+-    public static hm a(java.io.InputStream inputstream)
++    public static hm a(java.io.InputStream inputstream) throws IOException
+     {
+         java.io.DataInputStream datainputstream = new DataInputStream(((java.io.InputStream) (new GZIPInputStream(inputstream))));
++        try
++        {
+         hm hm1 = x.a(((java.io.DataInput) (datainputstream)));
+-        datainputstream.close();
+         return hm1;
+-        java.lang.Exception exception;
+-        exception;
++        }
++        finally
++        {
+         datainputstream.close();
+-        throw exception;
++        }
+     }
+ 
+-    public static void a(hm hm1, java.io.OutputStream outputstream)
++    public static void a(hm hm1, java.io.OutputStream outputstream) throws IOException
+     {
+         java.io.DataOutputStream dataoutputstream = new DataOutputStream(((java.io.OutputStream) (new GZIPOutputStream(outputstream))));
++    try
++    {
+         x.a(hm1, ((java.io.DataOutput) (dataoutputstream)));
++    }
++    finally
++    {
+         dataoutputstream.close();
+-        break MISSING_BLOCK_LABEL_35;
+-        java.lang.Exception exception;
+-        exception;
+-        dataoutputstream.close();
+-        throw exception;
++
++    }
+     }
+ 
+-    public static hm a(byte abyte0[])
++    public static hm a(byte abyte0[]) throws IOException
+     {
+         java.io.DataInputStream datainputstream = new DataInputStream(((java.io.InputStream) (new GZIPInputStream(((java.io.InputStream) (new ByteArrayInputStream(abyte0)))))));
++        try
++        {
+         hm hm1 = x.a(((java.io.DataInput) (datainputstream)));
+-        datainputstream.close();
+         return hm1;
+-        java.lang.Exception exception;
+-        exception;
++        }
++        finally
++        {
+         datainputstream.close();
+-        throw exception;
++        }
+     }
+ 
+-    public static byte[] a(hm hm1)
++    public static byte[] a(hm hm1) throws IOException
+     {
+         java.io.ByteArrayOutputStream bytearrayoutputstream;
+         java.io.DataOutputStream dataoutputstream;
+         bytearrayoutputstream = new ByteArrayOutputStream();
+         dataoutputstream = new DataOutputStream(((java.io.OutputStream) (new GZIPOutputStream(((java.io.OutputStream) (bytearrayoutputstream))))));
++        try
++        {
+         x.a(hm1, ((java.io.DataOutput) (dataoutputstream)));
++        }
++        finally
++        {
+         dataoutputstream.close();
+-        break MISSING_BLOCK_LABEL_43;
+-        java.lang.Exception exception;
+-        exception;
+-        dataoutputstream.close();
+-        throw exception;
++
++        }
+         return bytearrayoutputstream.toByteArray();
+     }
+ 
+-    public static hm a(java.io.DataInput datainput)
++    public static hm a(java.io.DataInput datainput) throws IOException
+     {
+         el el1 = el.b(datainput);
+         if(el1 instanceof hm)
+@@ -83,7 +91,7 @@
+             throw new IOException("Root tag must be a named compound tag");
+     }
+ 
+-    public static void a(hm hm1, java.io.DataOutput dataoutput)
++    public static void a(hm hm1, java.io.DataOutput dataoutput) throws IOException
+     {
+         el.a(((el) (hm1)), dataoutput);
+     }
