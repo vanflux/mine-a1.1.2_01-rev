@@ -22,7 +22,7 @@ move temp\unpacked\art temp\resources\art
 move temp\unpacked\gui temp\resources\gui
 move temp\unpacked\item temp\resources\item
 move temp\unpacked\misc temp\resources\misc
-move temp\unpacked\mob temp\resources\mob
+move temp\unpacked\entityMob temp\resources\entityMob
 move temp\unpacked\terrain temp\resources\terrain
 move temp\unpacked\title temp\resources\title
 move temp\unpacked\*.png temp\resources
@@ -66,6 +66,7 @@ cd ..\..
 echo -=#=- >logs.log
 echo Applying patches
 call tools\apply_patch_temp patches\0
+call tools\apply_patch_temp patches\1
 echo Patches applied, waiting 3 seconds
 timeout /t 3
 
@@ -75,10 +76,9 @@ mkdir src
 mkdir src\main
 rd /s /q src\main\java
 rd /s /q src\main\resources
-move temp\src\java src\main
-move temp\resources src\main
+xcopy temp\src\java src\main\java\ /E
+xcopy temp\resources src\main\resources\ /E
 
 echo -=#=- >logs.log
 echo Finished!
-call tools\cleanup
 timeout /t 3
