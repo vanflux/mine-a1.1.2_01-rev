@@ -6,6 +6,9 @@
 
 ---
 
+## Stability? Completeness?
+No, if you need it, go DIRECTLY to the MCP (99.999999% of cases)
+
 ## How I run this?
 
 - Firstly, I tested this project on windows only, then... use linux or mac at your own risk (I believe this is ONLY due to the **.bat** scripts).
