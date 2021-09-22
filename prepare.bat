@@ -22,7 +22,7 @@ move temp\unpacked\art temp\resources\art
 move temp\unpacked\gui temp\resources\gui
 move temp\unpacked\item temp\resources\item
 move temp\unpacked\misc temp\resources\misc
-move temp\unpacked\entityMob temp\resources\entityMob
+move temp\unpacked\mob temp\resources\mob
 move temp\unpacked\terrain temp\resources\terrain
 move temp\unpacked\title temp\resources\title
 move temp\unpacked\*.png temp\resources
