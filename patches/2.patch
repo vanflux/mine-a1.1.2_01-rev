@@ -1,0 +1,3362 @@
+diff --git "a/temp\\src\\java/Boat.java" "b/src\\main\\java/Boat.java"
+index e18b9f4..5cdf2db 100644
+--- "a/temp\\src\\java/Boat.java"
++++ "b/src\\main\\java/Boat.java"
+@@ -61,10 +61,10 @@ public class Boat extends Entity
+         if(a > 40)
+         {
+             for(int j = 0; j < 3; j++)
+-                a(ly.y.bc, 1, 0.0F);
++                a(ly.WoodPlank.bc, 1, 0.0F);
+ 
+             for(int k = 0; k < 2; k++)
+-                a(di.B.aS, 1, 0.0F);
++                a(di.Stick.aS, 1, 0.0F);
+ 
+             F();
+         }
+@@ -147,10 +147,10 @@ public class Boat extends Entity
+         {
+             F();
+             for(int k = 0; k < 3; k++)
+-                a(ly.y.bc, 1, 0.0F);
++                a(ly.WoodPlank.bc, 1, 0.0F);
+ 
+             for(int l = 0; l < 2; l++)
+-                a(di.B.aS, 1, 0.0F);
++                a(di.Stick.aS, 1, 0.0F);
+ 
+         } else
+         {
+diff --git "a/temp\\src\\java/Entity.java" "b/src\\main\\java/Entity.java"
+index c7f52d1..1f2ac62 100644
+--- "a/temp\\src\\java/Entity.java"
++++ "b/src\\main\\java/Entity.java"
+@@ -397,9 +397,9 @@ public abstract class Entity
+             {
+                 b++;
+                 bb bb1 = ly.n[i3].bl;
+-                if(ag.a(l, j1 + 1, l1) == ly.aT.bc)
++                if(ag.a(l, j1 + 1, l1) == ly.Snow.bc)
+                 {
+-                    bb1 = ly.aT.bl;
++                    bb1 = ly.Snow.bl;
+                     ag.a(this, bb1.d(), bb1.b() * 0.15F, bb1.c());
+                 } else
+                 if(!ly.n[i3].bn.d())
+diff --git "a/temp\\src\\java/EntityCow.java" "b/src\\main\\java/EntityCow.java"
+index e03f539..c95b5d0 100644
+--- "a/temp\\src\\java/EntityCow.java"
++++ "b/src\\main\\java/EntityCow.java"
+@@ -54,7 +54,7 @@ public class EntityCow extends EntityPassive
+     public boolean a(EntityPlayer entityPlayer1)
+     {
+         ev ev1 = entityPlayer1.b.a();
+-        if(ev1 != null && ev1.id == di.au.aS)
++        if(ev1 != null && ev1.id == di.Bucket.aS)
+         {
+             entityPlayer1.b.a(entityPlayer1.b.d, new ev(di.aE));
+             return true;
+diff --git "a/temp\\src\\java/EntityCreeper.java" "b/src\\main\\java/EntityCreeper.java"
+index 91d7878..1fae038 100644
+--- "a/temp\\src\\java/EntityCreeper.java"
++++ "b/src\\main\\java/EntityCreeper.java"
+@@ -81,6 +81,6 @@ public class EntityCreeper extends EntityMonster
+ 
+     protected int g()
+     {
+-        return di.K.aS;
++        return di.GunPowder.aS;
+     }
+ }
+diff --git "a/temp\\src\\java/EntityMob.java" "b/src\\main\\java/EntityMob.java"
+index 21d8674..89c7bdd 100644
+--- "a/temp\\src\\java/EntityMob.java"
++++ "b/src\\main\\java/EntityMob.java"
+@@ -473,7 +473,7 @@ public class EntityMob extends Entity
+         int i1 = MathLib.castIgnoringSign(posX);
+         int j1 = MathLib.castIgnoringSign(au.b);
+         int k1 = MathLib.castIgnoringSign(posZ);
+-        return ag.a(i1, j1, k1) == ly.aG.bc || ag.a(i1, j1 + 1, k1) == ly.aG.bc;
++        return ag.a(i1, j1, k1) == ly.Ladder.bc || ag.a(i1, j1 + 1, k1) == ly.Ladder.bc;
+     }
+ 
+     public void writeToTag(TagCompound tagCompound1)
+diff --git "a/temp\\src\\java/EntityPassive.java" "b/src\\main\\java/EntityPassive.java"
+index cb01247..358020d 100644
+--- "a/temp\\src\\java/EntityPassive.java"
++++ "b/src\\main\\java/EntityPassive.java"
+@@ -13,7 +13,7 @@ public abstract class EntityPassive extends EntityAnimal
+ 
+     protected float a(int i, int j, int k)
+     {
+-        if(ag.a(i, j - 1, k) == ly.v.bc)
++        if(ag.a(i, j - 1, k) == ly.Grass.bc)
+             return 10F;
+         else
+             return ag.c(i, j, k) - 0.5F;
+@@ -34,7 +34,7 @@ public abstract class EntityPassive extends EntityAnimal
+         int i = MathLib.castIgnoringSign(posX);
+         int j = MathLib.castIgnoringSign(au.b);
+         int k = MathLib.castIgnoringSign(posZ);
+-        return ag.a(i, j - 1, k) == ly.v.bc && ag.j(i, j, k) > 8 && super.a();
++        return ag.a(i, j - 1, k) == ly.Grass.bc && ag.j(i, j, k) > 8 && super.a();
+     }
+ 
+     public int b()
+diff --git "a/temp\\src\\java/EntitySheep.java" "b/src\\main\\java/EntitySheep.java"
+index 32f0dea..27d1c3a 100644
+--- "a/temp\\src\\java/EntitySheep.java"
++++ "b/src\\main\\java/EntitySheep.java"
+@@ -23,7 +23,7 @@ public class EntitySheep extends EntityPassive
+             int j = 1 + rnd.nextInt(3);
+             for(int k = 0; k < j; k++)
+             {
+-                Item item1 = a(ly.ac.bc, 1, 1.0F);
++                Item item1 = a(ly.Wool.bc, 1, 1.0F);
+                 item1.motionY += rnd.nextFloat() * 0.05F;
+                 item1.motionX += (rnd.nextFloat() - rnd.nextFloat()) * 0.1F;
+                 item1.motionZ += (rnd.nextFloat() - rnd.nextFloat()) * 0.1F;
+diff --git "a/temp\\src\\java/EntitySpider.java" "b/src\\main\\java/EntitySpider.java"
+index 5005ba4..7121e29 100644
+--- "a/temp\\src\\java/EntitySpider.java"
++++ "b/src\\main\\java/EntitySpider.java"
+@@ -83,6 +83,6 @@ public class EntitySpider extends EntityMonster
+ 
+     protected int g()
+     {
+-        return di.I.aS;
++        return di.StringLine.aS;
+     }
+ }
+diff --git "a/temp\\src\\java/Furnace.java" "b/src\\main\\java/Furnace.java"
+index ce0b768..07e7b98 100644
+--- "a/temp\\src\\java/Furnace.java"
++++ "b/src\\main\\java/Furnace.java"
+@@ -198,18 +198,18 @@ public class Furnace extends ic
+ 
+     private int d(int k)
+     {
+-        if(k == ly.I.bc)
+-            return di.m.aS;
+-        if(k == ly.H.bc)
++        if(k == ly.IronOre.bc)
++            return di.IronIngot.aS;
++        if(k == ly.GoldOre.bc)
+             return di.n.aS;
+-        if(k == ly.ax.bc)
+-            return di.l.aS;
+-        if(k == ly.F.bc)
+-            return ly.N.bc;
++        if(k == ly.DiamondOre.bc)
++            return di.Diamond.aS;
++        if(k == ly.Sand.bc)
++            return ly.Glass.bc;
+         if(k == di.ao.aS)
+             return di.ap.aS;
+-        if(k == ly.x.bc)
+-            return ly.u.bc;
++        if(k == ly.CobbleStone.bc)
++            return ly.Stone.bc;
+         if(k == di.aG.aS)
+             return di.aF.aS;
+         else
+@@ -223,7 +223,7 @@ public class Furnace extends ic
+         int k = ev1.a().aS;
+         if(k < 256 && ly.n[k].bn == gb.c)
+             return 300;
+-        if(k == di.B.aS)
++        if(k == di.Stick.aS)
+             return 100;
+         if(k == di.k.aS)
+             return 1600;
+diff --git "a/temp\\src\\java/lm.java" "b/src\\main\\java/Gui.java"
+similarity index 98%
+rename from "temp\\src\\java/lm.java"
+rename to "src\\main\\java/Gui.java"
+index a5b03c5..7eba7f8 100644
+--- "a/temp\\src\\java/lm.java"
++++ "b/src\\main\\java/Gui.java"
+@@ -2,12 +2,12 @@
+ // Decompiler options: fullnames deadcode fieldsfirst safe 
+ // Source File Name:   SourceFile
+ 
+-public class lm
++public class Gui
+ {
+ 
+     protected float k;
+ 
+-    public lm()
++    public Gui()
+     {
+         k = 0.0F;
+     }
+diff --git "a/temp\\src\\java/fk.java" "b/src\\main\\java/GuiButton.java"
+similarity index 91%
+rename from "temp\\src\\java/fk.java"
+rename to "src\\main\\java/GuiButton.java"
+index 188d9c5..034bf77 100644
+--- "a/temp\\src\\java/fk.java"
++++ "b/src\\main\\java/GuiButton.java"
+@@ -4,7 +4,7 @@
+ 
+ //import Minecraft;
+ 
+-public class fk extends lm
++public class GuiButton extends Gui
+ {
+ 
+     protected int a;
+@@ -16,12 +16,12 @@ public class fk extends lm
+     public boolean g;
+     public boolean h;
+ 
+-    public fk(int i, int j, int k, String s)
++    public GuiButton(int i, int j, int k, String s)
+     {
+         this(i, j, k, 200, 20, s);
+     }
+ 
+-    protected fk(int i, int j, int k, int l, int i1, String s)
++    protected GuiButton(int i, int j, int k, int l, int i1, String s)
+     {
+         a = 200;
+         b = 20;
+diff --git "a/temp\\src\\java/Minecart.java" "b/src\\main\\java/Minecart.java"
+index ce125c7..c61c9bf 100644
+--- "a/temp\\src\\java/Minecart.java"
++++ "b/src\\main\\java/Minecart.java"
+@@ -140,12 +140,12 @@ public class Minecart extends Entity
+         a += i1 * 10;
+         if(a > 40)
+         {
+-            a(di.ax.aS, 1, 0.0F);
++            a(di.Minecart.aS, 1, 0.0F);
+             if(type == 1)
+-                a(ly.av.bc, 1, 0.0F);
++                a(ly.Chest.bc, 1, 0.0F);
+             else
+             if(type == 2)
+-                a(ly.aC.bc, 1, 0.0F);
++                a(ly.Furnace.bc, 1, 0.0F);
+             F();
+         }
+         return true;
+@@ -222,12 +222,12 @@ label0:
+         int i1 = MathLib.castIgnoringSign(posX);
+         int j1 = MathLib.castIgnoringSign(posY);
+         int k1 = MathLib.castIgnoringSign(posZ);
+-        if(ag.a(i1, j1 - 1, k1) == ly.aH.bc)
++        if(ag.a(i1, j1 - 1, k1) == ly.Rail.bc)
+             j1--;
+         double d3 = 0.40000000000000002D;
+         boolean flag = false;
+         double d6 = 0.0078125D;
+-        if(ag.a(i1, j1, k1) == ly.aH.bc)
++        if(ag.a(i1, j1, k1) == ly.Rail.bc)
+         {
+             Vec3 vec31 = g(posX, posY, posZ);
+             int l1 = ag.e(i1, j1, k1);
+@@ -441,9 +441,9 @@ label0:
+         int i1 = MathLib.castIgnoringSign(d1);
+         int j1 = MathLib.castIgnoringSign(d2);
+         int k1 = MathLib.castIgnoringSign(d3);
+-        if(ag.a(i1, j1 - 1, k1) == ly.aH.bc)
++        if(ag.a(i1, j1 - 1, k1) == ly.Rail.bc)
+             j1--;
+-        if(ag.a(i1, j1, k1) == ly.aH.bc)
++        if(ag.a(i1, j1, k1) == ly.Rail.bc)
+         {
+             int l1 = ag.e(i1, j1, k1);
+             d2 = j1;
+@@ -474,9 +474,9 @@ label0:
+         int i1 = MathLib.castIgnoringSign(d1);
+         int j1 = MathLib.castIgnoringSign(d2);
+         int k1 = MathLib.castIgnoringSign(d3);
+-        if(ag.a(i1, j1 - 1, k1) == ly.aH.bc)
++        if(ag.a(i1, j1 - 1, k1) == ly.Rail.bc)
+             j1--;
+-        if(ag.a(i1, j1, k1) == ly.aH.bc)
++        if(ag.a(i1, j1, k1) == ly.Rail.bc)
+         {
+             int l1 = ag.e(i1, j1, k1);
+             d2 = j1;
+diff --git "a/temp\\src\\java/Minecraft.java" "b/src\\main\\java/Minecraft.java"
+index 3951d3d..b565178 100644
+--- "a/temp\\src\\java/Minecraft.java"
++++ "b/src\\main\\java/Minecraft.java"
+@@ -704,7 +704,7 @@ public abstract class Minecraft
+             if(i1 == 0)
+             {
+                 world.i(j1, k1, i2, x.e);
+-                if(ly1 != ly.A || g.c >= 100)
++                if(ly1 != ly.Bedrock || g.c >= 100)
+                     b.a(j1, k1, i2, x.e);
+             } else
+             {
+@@ -812,12 +812,12 @@ public abstract class Minecraft
+         if(x != null)
+         {
+             int i1 = world.a(x.b, x.c, x.d);
+-            if(i1 == ly.v.bc)
+-                i1 = ly.w.bc;
+-            if(i1 == ly.ak.bc)
+-                i1 = ly.al.bc;
+-            if(i1 == ly.A.bc)
+-                i1 = ly.u.bc;
++            if(i1 == ly.Grass.bc)
++                i1 = ly.Dirt.bc;
++            if(i1 == ly.DoubleStoneSlab.bc)
++                i1 = ly.CobbleSlab.bc;
++            if(i1 == ly.Bedrock.bc)
++                i1 = ly.Stone.bc;
+             g.b.a(i1, b instanceof il);
+         }
+     }
+diff --git "a/temp\\src\\java/Painting.java" "b/src\\main\\java/Painting.java"
+index bcbd588..217a335 100644
+--- "a/temp\\src\\java/Painting.java"
++++ "b/src\\main\\java/Painting.java"
+@@ -99,7 +99,7 @@ public class Painting extends Entity
+         {
+             c = 0;
+             F();
+-            ag.a(((Entity) (new Item(ag, posX, posY, posZ, new ev(di.aq)))));
++            ag.a(((Entity) (new Item(ag, posX, posY, posZ, new ev(di.Painting)))));
+         }
+     }
+ 
+@@ -152,7 +152,7 @@ public class Painting extends Entity
+     public boolean a(Entity entity1, int j)
+     {
+         F();
+-        ag.a(((Entity) (new Item(ag, posX, posY, posZ, new ev(di.aq)))));
++        ag.a(((Entity) (new Item(ag, posX, posY, posZ, new ev(di.Painting)))));
+         return true;
+     }
+ 
+diff --git "a/temp\\src\\java/World.java" "b/src\\main\\java/World.java"
+index 4028f93..8987616 100644
+--- "a/temp\\src\\java/World.java"
++++ "b/src\\main\\java/World.java"
+@@ -254,7 +254,7 @@ public class World
+     private boolean f(int i1, int j1)
+     {
+         int k1 = g(i1, j1);
+-        return k1 == ly.F.bc;
++        return k1 == ly.Sand.bc;
+     }
+ 
+     private int g(int i1, int j1)
+@@ -576,7 +576,7 @@ public class World
+         if(flag)
+         {
+             int l1 = a(i1, j1, k1);
+-            if(l1 == ly.al.bc || l1 == ly.aB.bc)
++            if(l1 == ly.CobbleSlab.bc || l1 == ly.Farmland.bc)
+             {
+                 int j2 = a(i1, j1 + 1, k1, false);
+                 int k2 = a(i1 + 1, j1, k1, false);
+@@ -1234,7 +1234,7 @@ public class World
+                 for(int i3 = i2; i3 < j2; i3++)
+                 {
+                     int j3 = a(k2, l2, i3);
+-                    if(j3 == ly.as.bc || j3 == ly.D.bc || j3 == ly.E.bc)
++                    if(j3 == ly.Fire.bc || j3 == ly.FlowingLava.bc || j3 == ly.StillLava.bc)
+                         return true;
+                 }
+ 
+@@ -1393,7 +1393,7 @@ public class World
+             i1--;
+         if(l1 == 5)
+             i1++;
+-        if(a(i1, j1, k1) == ly.as.bc)
++        if(a(i1, j1, k1) == ly.Fire.bc)
+         {
+             a((float)i1 + 0.5F, (float)j1 + 0.5F, (float)k1 + 0.5F, "random.fizz", 0.5F, 2.6F + (n.nextFloat() - n.nextFloat()) * 0.8F);
+             d(i1, j1, k1, 0);
+@@ -1569,10 +1569,10 @@ public class World
+                 if(j5 >= 0 && j5 < 128 && chunk1.a(by.b, l3, j5, k4) < 10)
+                 {
+                     int i6 = chunk1.a(l3, j5 - 1, k4);
+-                    if(chunk1.a(l3, j5, k4) == 0 && ly.aT.a(this, l3 + k1, j5, k4 + i2))
+-                        d(l3 + k1, j5, k4 + i2, ly.aT.bc);
+-                    if(i6 == ly.C.bc && chunk1.b(l3, j5 - 1, k4) == 0)
+-                        d(l3 + k1, j5 - 1, k4 + i2, ly.aU.bc);
++                    if(chunk1.a(l3, j5, k4) == 0 && ly.Snow.a(this, l3 + k1, j5, k4 + i2))
++                        d(l3 + k1, j5, k4 + i2, ly.Snow.bc);
++                    if(i6 == ly.StillWater.bc && chunk1.b(l3, j5 - 1, k4) == 0)
++                        d(l3 + k1, j5 - 1, k4 + i2, ly.Ice.bc);
+                 }
+             }
+             int i3 = 0;
+@@ -1724,7 +1724,7 @@ public class World
+             cf1 = null;
+         if(cf1 != null && !a(cf1))
+             return false;
+-        if(ly1 == ly.B || ly1 == ly.C || ly1 == ly.D || ly1 == ly.E || ly1 == ly.as || ly1 == ly.aT)
++        if(ly1 == ly.FlowingWater || ly1 == ly.StillWater || ly1 == ly.FlowingLava || ly1 == ly.StillLava || ly1 == ly.Fire || ly1 == ly.Snow)
+             return true;
+         return i1 > 0 && ly1 == null && ly2.a(this, j1, k1, l1);
+     }
+diff --git "a/temp\\src\\java/ab.java" "b/src\\main\\java/ab.java"
+index bbdd51a..6c7fff8 100644
+--- "a/temp\\src\\java/ab.java"
++++ "b/src\\main\\java/ab.java"
+@@ -40,7 +40,7 @@ public class ab extends ak
+             org.lwjgl.opengl.GL11.glRotatef(f3, 0.0F, 1.0F, 0.0F);
+             a("/terrain.png");
+             float f4 = 0.25F;
+-            if(!ly.n[ev1.id].c() && ev1.id != ly.al.bc)
++            if(!ly.n[ev1.id].c() && ev1.id != ly.CobbleSlab.bc)
+                 f4 = 0.5F;
+             org.lwjgl.opengl.GL11.glScalef(f4, f4, f4);
+             for(int j = 0; j < byte0; j++)
+diff --git "a/temp\\src\\java/ac.java" "b/src\\main\\java/ac.java"
+index 443e836..14be477 100644
+--- "a/temp\\src\\java/ac.java"
++++ "b/src\\main\\java/ac.java"
+@@ -57,7 +57,7 @@ public class ac extends di
+             } else
+             {
+                 if(a < 0)
+-                    return new ev(di.au);
++                    return new ev(di.Bucket);
+                 if(mf1.e == 0)
+                     j--;
+                 if(mf1.e == 1)
+@@ -73,7 +73,7 @@ public class ac extends di
+                 if(world1.a(i, j, k) == 0 || !world1.f(i, j, k).a())
+                 {
+                     world1.b(i, j, k, a, 0);
+-                    return new ev(di.au);
++                    return new ev(di.Bucket);
+                 }
+             }
+         } else
+diff --git "a/temp\\src\\java/ai.java" "b/src\\main\\java/ai.java"
+index 8dca878..deb2a72 100644
+--- "a/temp\\src\\java/ai.java"
++++ "b/src\\main\\java/ai.java"
+@@ -41,19 +41,19 @@ public class ai extends ly
+     private void h(World world1, int j, int k, int l)
+     {
+         i(world1, j, k, l);
+-        if(bc == ly.aO.bc)
+-            world1.d(j, k, l, ly.aP.bc);
++        if(bc == ly.RedstoneOre.bc)
++            world1.d(j, k, l, ly.GlowingRedstoneOre.bc);
+     }
+ 
+     public void a(World world1, int j, int k, int l, java.util.Random random)
+     {
+-        if(bc == ly.aP.bc)
+-            world1.d(j, k, l, ly.aO.bc);
++        if(bc == ly.GlowingRedstoneOre.bc)
++            world1.d(j, k, l, ly.RedstoneOre.bc);
+     }
+ 
+     public int a(int j, java.util.Random random)
+     {
+-        return di.aA.aS;
++        return di.Redstone.aS;
+     }
+ 
+     public int a(java.util.Random random)
+diff --git "a/temp\\src\\java/ak.java" "b/src\\main\\java/ak.java"
+index dceaf2c..8c8a9b6 100644
+--- "a/temp\\src\\java/ak.java"
++++ "b/src\\main\\java/ak.java"
+@@ -38,7 +38,7 @@ public abstract class ak
+                    float f)
+     {
+         org.lwjgl.opengl.GL11.glDisable(2896);
+-        int i = ly.as.bb;
++        int i = ly.Fire.bb;
+         int j = (i & 0xf) << 4;
+         int k = i & 0xf0;
+         float f1 = (float)j / 256F;
+diff --git "a/temp\\src\\java/ap.java" "b/src\\main\\java/ap.java"
+index 4b5199e..e769c2b 100644
+--- "a/temp\\src\\java/ap.java"
++++ "b/src\\main\\java/ap.java"
+@@ -14,6 +14,6 @@ public class ap extends oj
+     public ev a(ev ev1, World world, EntityPlayer entityPlayer)
+     {
+         super.a(ev1, world, entityPlayer);
+-        return new ev(di.C);
++        return new ev(di.Bowl);
+     }
+ }
+diff --git "a/temp\\src\\java/at.java" "b/src\\main\\java/at.java"
+index d691447..dfb7940 100644
+--- "a/temp\\src\\java/at.java"
++++ "b/src\\main\\java/at.java"
+@@ -13,7 +13,7 @@ public class at extends z
+ 
+     public at()
+     {
+-        super(ly.D.bb);
++        super(ly.FlowingLava.bb);
+         g = new float[256];
+         h = new float[256];
+         i = new float[256];
+diff --git "a/temp\\src\\java/au.java" "b/src\\main\\java/au.java"
+index b4ca448..58d6592 100644
+--- "a/temp\\src\\java/au.java"
++++ "b/src\\main\\java/au.java"
+@@ -15,25 +15,25 @@ public class au extends bh
+     public void a()
+     {
+         e.clear();
+-        e.add(((Object) (new fk(1, c / 2 - 100, d / 4 + 72, "Respawn"))));
+-        e.add(((Object) (new fk(2, c / 2 - 100, d / 4 + 96, "Title menu"))));
++        e.add(((Object) (new GuiButton(1, c / 2 - 100, d / 4 + 72, "Respawn"))));
++        e.add(((Object) (new GuiButton(2, c / 2 - 100, d / 4 + 96, "Title menu"))));
+         if(b.i == null)
+-            ((fk)e.get(1)).g = false;
++            ((GuiButton)e.get(1)).g = false;
+     }
+ 
+     protected void a(char c, int i)
+     {
+     }
+ 
+-    protected void a(fk fk1)
++    protected void a(GuiButton guiButton1)
+     {
+-        if(fk1.f != 0);
+-        if(fk1.f == 1)
++        if(guiButton1.f != 0);
++        if(guiButton1.f == 1)
+         {
+             b.o();
+             b.a(((bh) (null)));
+         }
+-        if(fk1.f == 2)
++        if(guiButton1.f == 2)
+         {
+             b.a(((World) (null)));
+             b.a(((bh) (new cx())));
+diff --git "a/temp\\src\\java/av.java" "b/src\\main\\java/av.java"
+index 3ff455a..141b3c0 100644
+--- "a/temp\\src\\java/av.java"
++++ "b/src\\main\\java/av.java"
+@@ -17,7 +17,7 @@ public class av extends di
+ 
+     public boolean a(ev ev1, EntityPlayer entityPlayer, World world1, int i, int j, int k, int l)
+     {
+-        if(world1.a(i, j, k) == ly.aT.bc)
++        if(world1.a(i, j, k) == ly.Snow.bc)
+         {
+             l = 0;
+         } else
+diff --git "a/temp\\src\\java/ay.java" "b/src\\main\\java/ay.java"
+index f3b2ad3..885ce2e 100644
+--- "a/temp\\src\\java/ay.java"
++++ "b/src\\main\\java/ay.java"
+@@ -29,22 +29,22 @@ public class ay extends bh
+                 e.add(((Object) (new mo(j, (c / 2 - 155) + (j % 2) * 160, d / 6 + 24 * (j >> 1), j, i.d(j), i.c(j)))));
+         }
+ 
+-        e.add(((Object) (new fk(100, c / 2 - 100, d / 6 + 120 + 12, "Controls..."))));
+-        e.add(((Object) (new fk(200, c / 2 - 100, d / 6 + 168, "Done"))));
++        e.add(((Object) (new GuiButton(100, c / 2 - 100, d / 6 + 120 + 12, "Controls..."))));
++        e.add(((Object) (new GuiButton(200, c / 2 - 100, d / 6 + 168, "Done"))));
+     }
+ 
+-    protected void a(fk fk1)
++    protected void a(GuiButton guiButton1)
+     {
+-        if(!fk1.g)
++        if(!guiButton1.g)
+             return;
+-        if(fk1.f < 100)
++        if(guiButton1.f < 100)
+         {
+-            i.b(fk1.f, 1);
+-            fk1.e = i.d(fk1.f);
++            i.b(guiButton1.f, 1);
++            guiButton1.e = i.d(guiButton1.f);
+         }
+-        if(fk1.f == 100)
++        if(guiButton1.f == 100)
+             b.a(((bh) (new lw(((bh) (this)), i))));
+-        if(fk1.f == 200)
++        if(guiButton1.f == 200)
+             b.a(h);
+     }
+ 
+diff --git "a/temp\\src\\java/bc.java" "b/src\\main\\java/bc.java"
+index 3f12bad..31031c0 100644
+--- "a/temp\\src\\java/bc.java"
++++ "b/src\\main\\java/bc.java"
+@@ -103,7 +103,7 @@ public class bc
+         ho ho1 = ho.a;
+         boolean flag1 = b >= 0;
+         if(!flag1)
+-            b = ly.x.bb;
++            b = ly.CobbleStone.bb;
+         float f1 = 0.25F;
+         float f2 = 0.1875F;
+         float f3 = 0.1875F;
+@@ -274,7 +274,7 @@ public class bc
+         double d5 = (float)j2 / 256F;
+         double d7 = ((float)j2 + 15.99F) / 256F;
+         float f2 = 1.4F;
+-        if(a.g(i1, j1 - 1, k1) || ly.as.b(a, i1, j1 - 1, k1))
++        if(a.g(i1, j1 - 1, k1) || ly.Fire.b(a, i1, j1 - 1, k1))
+         {
+             double d9 = (double)i1 + 0.5D + 0.20000000000000001D;
+             double d10 = ((double)i1 + 0.5D) - 0.20000000000000001D;
+@@ -349,7 +349,7 @@ public class bc
+                 d3 = d1;
+                 d1 = d11;
+             }
+-            if(ly.as.b(a, i1 - 1, j1, k1))
++            if(ly.Fire.b(a, i1 - 1, j1, k1))
+             {
+                 ho1.a((float)i1 + f4, (float)j1 + f2 + f5, k1 + 1, d3, d5);
+                 ho1.a(i1 + 0, (float)(j1 + 0) + f5, k1 + 1, d3, d7);
+@@ -360,7 +360,7 @@ public class bc
+                 ho1.a(i1 + 0, (float)(j1 + 0) + f5, k1 + 1, d3, d7);
+                 ho1.a((float)i1 + f4, (float)j1 + f2 + f5, k1 + 1, d3, d5);
+             }
+-            if(ly.as.b(a, i1 + 1, j1, k1))
++            if(ly.Fire.b(a, i1 + 1, j1, k1))
+             {
+                 ho1.a((float)(i1 + 1) - f4, (float)j1 + f2 + f5, k1 + 0, d1, d5);
+                 ho1.a((i1 + 1) - 0, (float)(j1 + 0) + f5, k1 + 0, d1, d7);
+@@ -371,7 +371,7 @@ public class bc
+                 ho1.a((i1 + 1) - 0, (float)(j1 + 0) + f5, k1 + 0, d1, d7);
+                 ho1.a((float)(i1 + 1) - f4, (float)j1 + f2 + f5, k1 + 0, d1, d5);
+             }
+-            if(ly.as.b(a, i1, j1, k1 - 1))
++            if(ly.Fire.b(a, i1, j1, k1 - 1))
+             {
+                 ho1.a(i1 + 0, (float)j1 + f2 + f5, (float)k1 + f4, d3, d5);
+                 ho1.a(i1 + 0, (float)(j1 + 0) + f5, k1 + 0, d3, d7);
+@@ -382,7 +382,7 @@ public class bc
+                 ho1.a(i1 + 0, (float)(j1 + 0) + f5, k1 + 0, d3, d7);
+                 ho1.a(i1 + 0, (float)j1 + f2 + f5, (float)k1 + f4, d3, d5);
+             }
+-            if(ly.as.b(a, i1, j1, k1 + 1))
++            if(ly.Fire.b(a, i1, j1, k1 + 1))
+             {
+                 ho1.a(i1 + 1, (float)j1 + f2 + f5, (float)(k1 + 1) - f4, d1, d5);
+                 ho1.a(i1 + 1, (float)(j1 + 0) + f5, (k1 + 1) - 0, d1, d7);
+@@ -393,7 +393,7 @@ public class bc
+                 ho1.a(i1 + 1, (float)(j1 + 0) + f5, (k1 + 1) - 0, d1, d7);
+                 ho1.a(i1 + 1, (float)j1 + f2 + f5, (float)(k1 + 1) - f4, d1, d5);
+             }
+-            if(ly.as.b(a, i1, j1 + 1, k1))
++            if(ly.Fire.b(a, i1, j1 + 1, k1))
+             {
+                 double d12 = (double)i1 + 0.5D + 0.5D;
+                 double d14 = ((double)i1 + 0.5D) - 0.5D;
+@@ -537,28 +537,28 @@ public class bc
+         d4 = ((float)j2 + 15.99F) / 256F;
+         if(!a.g(i1, j1 + 1, k1))
+         {
+-            if(a.g(i1 - 1, j1, k1) && a.a(i1 - 1, j1 + 1, k1) == ly.aw.bc)
++            if(a.g(i1 - 1, j1, k1) && a.a(i1 - 1, j1 + 1, k1) == ly.RedstoneWire.bc)
+             {
+                 ho1.a((float)i1 + f3, (float)(j1 + 1) + f2, (float)(k1 + 1) + f2, d2, d3);
+                 ho1.a((float)i1 + f3, (float)(j1 + 0) - f2, (float)(k1 + 1) + f2, d1, d3);
+                 ho1.a((float)i1 + f3, (float)(j1 + 0) - f2, (float)(k1 + 0) - f2, d1, d4);
+                 ho1.a((float)i1 + f3, (float)(j1 + 1) + f2, (float)(k1 + 0) - f2, d2, d4);
+             }
+-            if(a.g(i1 + 1, j1, k1) && a.a(i1 + 1, j1 + 1, k1) == ly.aw.bc)
++            if(a.g(i1 + 1, j1, k1) && a.a(i1 + 1, j1 + 1, k1) == ly.RedstoneWire.bc)
+             {
+                 ho1.a((float)(i1 + 1) - f3, (float)(j1 + 0) - f2, (float)(k1 + 1) + f2, d1, d4);
+                 ho1.a((float)(i1 + 1) - f3, (float)(j1 + 1) + f2, (float)(k1 + 1) + f2, d2, d4);
+                 ho1.a((float)(i1 + 1) - f3, (float)(j1 + 1) + f2, (float)(k1 + 0) - f2, d2, d3);
+                 ho1.a((float)(i1 + 1) - f3, (float)(j1 + 0) - f2, (float)(k1 + 0) - f2, d1, d3);
+             }
+-            if(a.g(i1, j1, k1 - 1) && a.a(i1, j1 + 1, k1 - 1) == ly.aw.bc)
++            if(a.g(i1, j1, k1 - 1) && a.a(i1, j1 + 1, k1 - 1) == ly.RedstoneWire.bc)
+             {
+                 ho1.a((float)(i1 + 1) + f2, (float)(j1 + 0) - f2, (float)k1 + f3, d1, d4);
+                 ho1.a((float)(i1 + 1) + f2, (float)(j1 + 1) + f2, (float)k1 + f3, d2, d4);
+                 ho1.a((float)(i1 + 0) - f2, (float)(j1 + 1) + f2, (float)k1 + f3, d2, d3);
+                 ho1.a((float)(i1 + 0) - f2, (float)(j1 + 0) - f2, (float)k1 + f3, d1, d3);
+             }
+-            if(a.g(i1, j1, k1 + 1) && a.a(i1, j1 + 1, k1 + 1) == ly.aw.bc)
++            if(a.g(i1, j1, k1 + 1) && a.a(i1, j1 + 1, k1 + 1) == ly.RedstoneWire.bc)
+             {
+                 ho1.a((float)(i1 + 1) + f2, (float)(j1 + 1) + f2, (float)(k1 + 1) - f3, d2, d3);
+                 ho1.a((float)(i1 + 1) + f2, (float)(j1 + 0) - f2, (float)(k1 + 1) - f3, d1, d3);
+diff --git "a/temp\\src\\java/bg.java" "b/src\\main\\java/bg.java"
+index e3cbee4..3fef890 100644
+--- "a/temp\\src\\java/bg.java"
++++ "b/src\\main\\java/bg.java"
+@@ -13,7 +13,7 @@ public class bg extends mj
+     public int a(int i, int j)
+     {
+         if(i == 1)
+-            return ly.aw.a(i, j);
++            return ly.RedstoneWire.a(i, j);
+         else
+             return super.a(i, j);
+     }
+@@ -112,7 +112,7 @@ public class bg extends mj
+         {
+             if(flag)
+             {
+-                world1.b(i, j, k, ly.aQ.bc, world1.e(i, j, k));
++                world1.b(i, j, k, ly.RedstoneTorchOff.bc, world1.e(i, j, k));
+                 if(a(world1, i, j, k, true))
+                 {
+                     world1.a((float)i + 0.5F, (float)j + 0.5F, (float)k + 0.5F, "random.fizz", 0.5F, 2.6F + (world1.n.nextFloat() - world1.n.nextFloat()) * 0.8F);
+@@ -128,7 +128,7 @@ public class bg extends mj
+             }
+         } else
+         if(!flag && !a(world1, i, j, k, false))
+-            world1.b(i, j, k, ly.aR.bc, world1.e(i, j, k));
++            world1.b(i, j, k, ly.RedstoneTorchOn.bc, world1.e(i, j, k));
+     }
+ 
+     public void a(World world1, int i, int j, int k, int l)
+@@ -147,7 +147,7 @@ public class bg extends mj
+ 
+     public int a(int i, java.util.Random random)
+     {
+-        return ly.aR.bc;
++        return ly.RedstoneTorchOn.bc;
+     }
+ 
+     public boolean d()
+diff --git "a/temp\\src\\java/bh.java" "b/src\\main\\java/bh.java"
+index 54075cd..12baa8d 100644
+--- "a/temp\\src\\java/bh.java"
++++ "b/src\\main\\java/bh.java"
+@@ -6,7 +6,7 @@ import java.util.ArrayList;
+ //import Minecraft;
+ 
+ 
+-public class bh extends lm
++public class bh extends Gui
+ {
+ 
+     protected Minecraft b;
+@@ -15,7 +15,7 @@ public class bh extends lm
+     protected java.util.List e;
+     public boolean f;
+     protected kd g;
+-    private fk a;
++    private GuiButton a;
+ 
+     public bh()
+     {
+@@ -28,8 +28,8 @@ public class bh extends lm
+     {
+         for(int l = 0; l < e.size(); l++)
+         {
+-            fk fk1 = (fk)e.get(l);
+-            fk1.a(b, j, k);
++            GuiButton guiButton1 = (GuiButton)e.get(l);
++            guiButton1.a(b, j, k);
+         }
+ 
+     }
+@@ -64,12 +64,12 @@ public class bh extends lm
+         {
+             for(int i1 = 0; i1 < e.size(); i1++)
+             {
+-                fk fk1 = (fk)e.get(i1);
+-                if(fk1.c(b, j, k))
++                GuiButton guiButton1 = (GuiButton)e.get(i1);
++                if(guiButton1.c(b, j, k))
+                 {
+-                    a = fk1;
++                    a = guiButton1;
+                     b.A.a("random.click", 1.0F, 1.0F);
+-                    a(fk1);
++                    a(guiButton1);
+                 }
+             }
+ 
+@@ -85,7 +85,7 @@ public class bh extends lm
+         }
+     }
+ 
+-    protected void a(fk fk1)
++    protected void a(GuiButton guiButton1)
+     {
+     }
+ 
+diff --git "a/temp\\src\\java/ce.java" "b/src\\main\\java/ce.java"
+index bbf37d9..1ef2f76 100644
+--- "a/temp\\src\\java/ce.java"
++++ "b/src\\main\\java/ce.java"
+@@ -12,6 +12,6 @@ public class ce extends ly
+ 
+     public int a(int i, java.util.Random random)
+     {
+-        return ly.x.bc;
++        return ly.CobbleStone.bc;
+     }
+ }
+diff --git "a/temp\\src\\java/cg.java" "b/src\\main\\java/cg.java"
+index 10d011f..0afe62d 100644
+--- "a/temp\\src\\java/cg.java"
++++ "b/src\\main\\java/cg.java"
+@@ -51,9 +51,9 @@ public class cg extends ik
+                         if(!world1.f(l1, k2, j3).a())
+                             continue;
+                         if(k2 == j - 1 && random.nextInt(4) != 0)
+-                            world1.d(l1, k2, j3, ly.ap.bc);
++                            world1.d(l1, k2, j3, ly.MossStone.bc);
+                         else
+-                            world1.d(l1, k2, j3, ly.x.bc);
++                            world1.d(l1, k2, j3, ly.CobbleStone.bc);
+                     } else
+                     {
+                         world1.d(l1, k2, j3, 0);
+@@ -84,7 +84,7 @@ label0:
+                     j4++;
+                 if(j4 != 1)
+                     continue;
+-                world1.d(k3, l3, i4, ly.av.bc);
++                world1.d(k3, l3, i4, ly.Chest.bc);
+                 Chest chest1 = (Chest) world1.b(k3, l3, i4);
+                 int k4 = 0;
+                 do
+@@ -100,7 +100,7 @@ label0:
+ 
+         }
+ 
+-        world1.d(i, j, k, ly.at.bc);
++        world1.d(i, j, k, ly.MonsterSpawner.bc);
+         MobSpawner mobSpawner1 = (MobSpawner) world1.b(i, j, k);
+         mobSpawner1.entityId = b(random);
+         return true;
+@@ -112,21 +112,21 @@ label0:
+         if(i == 0)
+             return new ev(di.ay);
+         if(i == 1)
+-            return new ev(di.m, random.nextInt(4) + 1);
++            return new ev(di.IronIngot, random.nextInt(4) + 1);
+         if(i == 2)
+             return new ev(di.S);
+         if(i == 3)
+             return new ev(di.R, random.nextInt(4) + 1);
+         if(i == 4)
+-            return new ev(di.K, random.nextInt(4) + 1);
++            return new ev(di.GunPowder, random.nextInt(4) + 1);
+         if(i == 5)
+-            return new ev(di.I, random.nextInt(4) + 1);
++            return new ev(di.StringLine, random.nextInt(4) + 1);
+         if(i == 6)
+-            return new ev(di.au);
++            return new ev(di.Bucket);
+         if(i == 7 && random.nextInt(100) == 0)
+             return new ev(di.ar);
+         if(i == 8 && random.nextInt(2) == 0)
+-            return new ev(di.aA, random.nextInt(4) + 1);
++            return new ev(di.Redstone, random.nextInt(4) + 1);
+         if(i == 9 && random.nextInt(10) == 0)
+             return new ev(di.c[di.aQ.aS + random.nextInt(2)]);
+         else
+diff --git "a/temp\\src\\java/ci.java" "b/src\\main\\java/ci.java"
+index 9728c26..42b18e6 100644
+--- "a/temp\\src\\java/ci.java"
++++ "b/src\\main\\java/ci.java"
+@@ -68,7 +68,7 @@ public class ci
+         if(flag)
+         {
+             int l = a(i, j, k);
+-            if(l == ly.al.bc || l == ly.aB.bc)
++            if(l == ly.CobbleSlab.bc || l == ly.Farmland.bc)
+             {
+                 int k1 = a(i, j + 1, k, false);
+                 int i2 = a(i + 1, j, k, false);
+diff --git "a/temp\\src\\java/cj.java" "b/src\\main\\java/cj.java"
+index 9030495..5dcb0fe 100644
+--- "a/temp\\src\\java/cj.java"
++++ "b/src\\main\\java/cj.java"
+@@ -27,12 +27,12 @@ public class cj extends bh
+     public void a()
+     {
+         e.clear();
+-        e.add(((Object) (new fk(0, c / 2 - 100, d / 4 + 120 + 12, "Back to title screen"))));
++        e.add(((Object) (new GuiButton(0, c / 2 - 100, d / 4 + 120 + 12, "Back to title screen"))));
+     }
+ 
+-    protected void a(fk fk1)
++    protected void a(GuiButton guiButton1)
+     {
+-        if(fk1.f == 0)
++        if(guiButton1.f == 0)
+             b.a(((bh) (new cx())));
+     }
+ 
+diff --git "a/temp\\src\\java/cm.java" "b/src\\main\\java/cm.java"
+index 70fcb89..0ef07ae 100644
+--- "a/temp\\src\\java/cm.java"
++++ "b/src\\main\\java/cm.java"
+@@ -17,6 +17,6 @@ public class cm extends ce
+ 
+     public int a(int i, java.util.Random random)
+     {
+-        return ly.aq.bc;
++        return ly.Obsidian.bc;
+     }
+ }
+diff --git "a/temp\\src\\java/cs.java" "b/src\\main\\java/cs.java"
+index 841d34f..a6e308a 100644
+--- "a/temp\\src\\java/cs.java"
++++ "b/src\\main\\java/cs.java"
+@@ -17,7 +17,7 @@ public class cs extends ly
+         if(i == 1)
+             return bb - 16;
+         if(i == 0)
+-            return ly.y.a(0);
++            return ly.WoodPlank.a(0);
+         if(i == 2 || i == 4)
+             return bb + 1;
+         else
+diff --git "a/temp\\src\\java/cu.java" "b/src\\main\\java/cu.java"
+index 8ae17ff..d0cfb24 100644
+--- "a/temp\\src\\java/cu.java"
++++ "b/src\\main\\java/cu.java"
+@@ -40,7 +40,7 @@ public class cu extends ik
+                         double d12 = (((double)i1 + 0.5D) - d6) / (d10 / 2D);
+                         double d13 = (((double)j1 + 0.5D) - d7) / (d11 / 2D);
+                         double d14 = (((double)k1 + 0.5D) - d8) / (d10 / 2D);
+-                        if(d12 * d12 + d13 * d13 + d14 * d14 < 1.0D && world1.a(i1, j1, k1) == ly.u.bc)
++                        if(d12 * d12 + d13 * d13 + d14 * d14 < 1.0D && world1.a(i1, j1, k1) == ly.Stone.bc)
+                             world1.a(i1, j1, k1, a);
+                     }
+ 
+diff --git "a/temp\\src\\java/cx.java" "b/src\\main\\java/cx.java"
+index 231e35a..388dcf3 100644
+--- "a/temp\\src\\java/cx.java"
++++ "b/src\\main\\java/cx.java"
+@@ -79,22 +79,22 @@ public class cx extends bh
+         if(calendar.get(2) + 1 == 1 && calendar.get(5) == 1)
+             l = "Happy new year!";
+         e.clear();
+-        e.add(((Object) (new fk(1, c / 2 - 100, d / 4 + 48, "Singleplayer"))));
+-        e.add(((Object) (new fk(2, c / 2 - 100, d / 4 + 72, "Multiplayer"))));
+-        e.add(((Object) (new fk(3, c / 2 - 100, d / 4 + 96, "Play tutorial level"))));
+-        e.add(((Object) (new fk(0, c / 2 - 100, d / 4 + 120 + 12, "Options..."))));
+-        ((fk)e.get(2)).g = false;
++        e.add(((Object) (new GuiButton(1, c / 2 - 100, d / 4 + 48, "Singleplayer"))));
++        e.add(((Object) (new GuiButton(2, c / 2 - 100, d / 4 + 72, "Multiplayer"))));
++        e.add(((Object) (new GuiButton(3, c / 2 - 100, d / 4 + 96, "Play tutorial level"))));
++        e.add(((Object) (new GuiButton(0, c / 2 - 100, d / 4 + 120 + 12, "Options..."))));
++        ((GuiButton)e.get(2)).g = false;
+         if(b.i == null)
+-            ((fk)e.get(1)).g = false;
++            ((GuiButton)e.get(1)).g = false;
+     }
+ 
+-    protected void a(fk fk1)
++    protected void a(GuiButton guiButton1)
+     {
+-        if(fk1.f == 0)
++        if(guiButton1.f == 0)
+             b.a(((bh) (new ay(((bh) (this)), b.y))));
+-        if(fk1.f == 1)
++        if(guiButton1.f == 1)
+             b.a(((bh) (new jq(((bh) (this))))));
+-        if(fk1.f == 2)
++        if(guiButton1.f == 2)
+             b.a(((bh) (new gc(((bh) (this))))));
+     }
+ 
+@@ -205,7 +205,7 @@ public class cx extends bh
+                     org.lwjgl.opengl.GL11.glTranslatef(i2, l1, f1);
+                     org.lwjgl.opengl.GL11.glScalef(f2, f2, f2);
+                     org.lwjgl.opengl.GL11.glRotatef(f4, 0.0F, 1.0F, 0.0F);
+-                    bc1.a(ly.u, f3);
++                    bc1.a(ly.Stone, f3);
+                     org.lwjgl.opengl.GL11.glPopMatrix();
+                 }
+ 
+diff --git "a/temp\\src\\java/da.java" "b/src\\main\\java/da.java"
+index 734e179..0619350 100644
+--- "a/temp\\src\\java/da.java"
++++ "b/src\\main\\java/da.java"
+@@ -20,8 +20,8 @@ public class da extends ik
+                 continue;
+             int l1 = 1 + random.nextInt(random.nextInt(3) + 1);
+             for(int i2 = 0; i2 < l1; i2++)
+-                if(ly.aW.g(world1, i1, j1 + i2, k1))
+-                    world1.a(i1, j1 + i2, k1, ly.aW.bc);
++                if(ly.Cactus.g(world1, i1, j1 + i2, k1))
++                    world1.a(i1, j1 + i2, k1, ly.Cactus.bc);
+ 
+         }
+ 
+diff --git "a/temp\\src\\java/dg.java" "b/src\\main\\java/dg.java"
+index 455022e..3f30e39 100644
+--- "a/temp\\src\\java/dg.java"
++++ "b/src\\main\\java/dg.java"
+@@ -32,7 +32,7 @@ public class dg extends bh
+             a.a();
+     }
+ 
+-    protected void a(fk fk)
++    protected void a(GuiButton guiButton)
+     {
+     }
+ 
+diff --git "a/temp\\src\\java/dh.java" "b/src\\main\\java/dh.java"
+index d6b5033..0c5e102 100644
+--- "a/temp\\src\\java/dh.java"
++++ "b/src\\main\\java/dh.java"
+@@ -53,7 +53,7 @@ public class dh extends ly
+         int l = world1.a(i, j, k);
+         if(l == 0)
+             return true;
+-        if(l == ly.as.bc)
++        if(l == ly.Fire.bc)
+             return true;
+         gb gb1 = ly.n[l].bn;
+         if(gb1 == gb.f)
+diff --git "a/temp\\src\\java/di.java" "b/src\\main\\java/di.java"
+index d30c2af..2869449 100644
+--- "a/temp\\src\\java/di.java"
++++ "b/src\\main\\java/di.java"
+@@ -17,8 +17,8 @@ public class di
+     public static di i = (new jg(5)).a(21);
+     public static di j = (new di(6)).a(37);
+     public static di k = (new di(7)).a(7);
+-    public static di l = (new di(8)).a(55);
+-    public static di m = (new di(9)).a(23);
++    public static di Diamond = (new di(8)).a(55);
++    public static di IronIngot = (new di(9)).a(23);
+     public static di n = (new di(10)).a(39);
+     public static di o = (new iu(11, 2)).a(66);
+     public static di p = (new iu(12, 0)).a(64);
+@@ -33,16 +33,16 @@ public class di
+     public static di y = (new ms(21, 3)).a(83);
+     public static di z = (new y(22, 3)).a(99);
+     public static di A = (new ks(23, 3)).a(115);
+-    public static di B = (new di(24)).a(53).d();
+-    public static di C = (new di(25)).a(71);
++    public static di Stick = (new di(24)).a(53).d();
++    public static di Bowl = (new di(25)).a(71);
+     public static di D = (new ap(26, 10)).a(72);
+     public static di E = (new iu(27, 0)).a(68);
+     public static di F = (new ms(28, 0)).a(84);
+     public static di G = (new y(29, 0)).a(100);
+     public static di H = (new ks(30, 0)).a(116);
+-    public static di I = (new di(31)).a(8);
++    public static di StringLine = (new di(31)).a(8);
+     public static di J = (new di(32)).a(24);
+-    public static di K = (new di(33)).a(40);
++    public static di GunPowder = (new di(33)).a(40);
+     public static di L = (new fu(34, 0)).a(128);
+     public static di M = (new fu(35, 1)).a(129);
+     public static di N = (new fu(36, 2)).a(130);
+@@ -71,35 +71,35 @@ public class di
+     public static di ak = (new mr(59, 1, 4, 1)).a(20);
+     public static di al = (new mr(60, 1, 4, 2)).a(36);
+     public static di am = (new mr(61, 1, 4, 3)).a(52);
+-    public static di an = (new di(62)).a(6);
++    public static di FlintSteel = (new di(62)).a(6);
+     public static di ao = (new oj(63, 3)).a(87);
+     public static di ap = (new oj(64, 8)).a(88);
+-    public static di aq = (new od(65)).a(26);
++    public static di Painting = (new od(65)).a(26);
+     public static di ar = (new oj(66, 42)).a(11);
+-    public static di as = (new md(67)).a(42);
+-    public static di at;
+-    public static di au = (new ac(69, 0)).a(74);
++    public static di Sign = (new md(67)).a(42);
++    public static di WoodDoor;
++    public static di Bucket = (new ac(69, 0)).a(74);
+     public static di av;
+     public static di aw;
+-    public static di ax = (new jo(72, 0)).a(135);
++    public static di Minecart = (new jo(72, 0)).a(135);
+     public static di ay = (new jw(73)).a(104);
+-    public static di az;
+-    public static di aA = (new ef(75)).a(56);
++    public static di IronDoor;
++    public static di Redstone = (new ef(75)).a(56);
+     public static di aB = (new bp(76)).a(14);
+-    public static di aC = (new me(77)).a(136);
++    public static di Boat = (new me(77)).a(136);
+     public static di aD = (new di(78)).a(103);
+     public static di aE = (new ac(79, -1)).a(77);
+     public static di aF = (new di(80)).a(22);
+     public static di aG = (new di(81)).a(57);
+     public static di aH;
+     public static di aI = (new di(83)).a(58);
+-    public static di aJ = (new di(84)).a(59);
++    public static di Book = (new di(84)).a(59);
+     public static di aK = (new di(85)).a(30);
+     public static di aL = (new jo(86, 1)).a(151);
+     public static di aM = (new jo(87, 2)).a(167);
+     public static di aN = (new di(88)).a(12);
+     public static di aO = (new di(89)).a(54);
+-    public static di aP = (new di(90)).a(69);
++    public static di FishingRod = (new di(90)).a(69);
+     public static di aQ = (new lg(2000, "13")).a(240);
+     public static di aR = (new lg(2001, "cat")).a(241);
+     public final int aS;
+@@ -190,11 +190,11 @@ public class di
+ 
+     static 
+     {
+-        Q = (new jn(39, ly.aA.bc)).a(9);
+-        at = (new ec(68, gb.c)).a(43);
+-        av = (new ac(70, ly.B.bc)).a(75);
+-        aw = (new ac(71, ly.D.bc)).a(76);
+-        az = (new ec(74, gb.e)).a(44);
+-        aH = (new gf(82, ly.aY)).a(27);
++        Q = (new jn(39, ly.WheatCrops.bc)).a(9);
++        WoodDoor = (new ec(68, gb.c)).a(43);
++        av = (new ac(70, ly.FlowingWater.bc)).a(75);
++        aw = (new ac(71, ly.FlowingLava.bc)).a(76);
++        IronDoor = (new ec(74, gb.e)).a(44);
++        aH = (new gf(82, ly.SugarCanes)).a(27);
+     }
+ }
+diff --git "a/temp\\src\\java/dl.java" "b/src\\main\\java/dl.java"
+index 7f92fe8..dd8450a 100644
+--- "a/temp\\src\\java/dl.java"
++++ "b/src\\main\\java/dl.java"
+@@ -21,34 +21,34 @@ public class dl
+     static 
+     {
+         a = ((java.util.List) (new ArrayList()));
+-        a.add(((Object) (ly.u)));
+-        a.add(((Object) (ly.x)));
+-        a.add(((Object) (ly.am)));
+-        a.add(((Object) (ly.w)));
+-        a.add(((Object) (ly.y)));
+-        a.add(((Object) (ly.K)));
+-        a.add(((Object) (ly.L)));
+-        a.add(((Object) (ly.ar)));
+-        a.add(((Object) (ly.al)));
+-        a.add(((Object) (ly.N)));
+-        a.add(((Object) (ly.ap)));
+-        a.add(((Object) (ly.z)));
+-        a.add(((Object) (ly.ae)));
+-        a.add(((Object) (ly.af)));
+-        a.add(((Object) (ly.ag)));
+-        a.add(((Object) (ly.ah)));
+-        a.add(((Object) (ly.F)));
+-        a.add(((Object) (ly.G)));
+-        a.add(((Object) (ly.M)));
+-        a.add(((Object) (ly.ac)));
+-        a.add(((Object) (ly.J)));
+-        a.add(((Object) (ly.I)));
+-        a.add(((Object) (ly.H)));
+-        a.add(((Object) (ly.aj)));
+-        a.add(((Object) (ly.ai)));
+-        a.add(((Object) (ly.ao)));
+-        a.add(((Object) (ly.an)));
+-        a.add(((Object) (ly.aq)));
++        a.add(((Object) (ly.Stone)));
++        a.add(((Object) (ly.CobbleStone)));
++        a.add(((Object) (ly.Bricks)));
++        a.add(((Object) (ly.Dirt)));
++        a.add(((Object) (ly.WoodPlank)));
++        a.add(((Object) (ly.WoodLog)));
++        a.add(((Object) (ly.OakLeaves)));
++        a.add(((Object) (ly.Torch)));
++        a.add(((Object) (ly.CobbleSlab)));
++        a.add(((Object) (ly.Glass)));
++        a.add(((Object) (ly.MossStone)));
++        a.add(((Object) (ly.OakSapling)));
++        a.add(((Object) (ly.Dandelion)));
++        a.add(((Object) (ly.Poppy)));
++        a.add(((Object) (ly.BrownMushroom)));
++        a.add(((Object) (ly.RedMushroom)));
++        a.add(((Object) (ly.Sand)));
++        a.add(((Object) (ly.Gravel)));
++        a.add(((Object) (ly.Sponge)));
++        a.add(((Object) (ly.Wool)));
++        a.add(((Object) (ly.CoalOre)));
++        a.add(((Object) (ly.IronOre)));
++        a.add(((Object) (ly.GoldOre)));
++        a.add(((Object) (ly.IronBlock)));
++        a.add(((Object) (ly.GoldBlock)));
++        a.add(((Object) (ly.BookShelf)));
++        a.add(((Object) (ly.Tnt)));
++        a.add(((Object) (ly.Obsidian)));
+         java.lang.System.out.println(a.size());
+     }
+ }
+diff --git "a/temp\\src\\java/dr.java" "b/src\\main\\java/dr.java"
+index 5524ed7..e4f4c1d 100644
+--- "a/temp\\src\\java/dr.java"
++++ "b/src\\main\\java/dr.java"
+@@ -23,7 +23,7 @@ public class dr
+     {
+         b = (new Object[][] {
+             new Object[] {
+-                ly.y, ly.x, di.m, di.l, di.n
++                ly.WoodPlank, ly.CobbleStone, di.IronIngot, di.Diamond, di.n
+             }, new Object[] {
+                 di.r, di.v, di.e, di.z, di.G
+             }, new Object[] {
+@@ -45,7 +45,7 @@ public class dr
+             {
+                 di di1 = (di)b[j + 1][i];
+                 dw1.a(new ev(di1), new Object[] {
+-                    a[j], java.lang.Character.valueOf('#'), di.B, java.lang.Character.valueOf('X'), obj
++                    a[j], java.lang.Character.valueOf('#'), di.Stick, java.lang.Character.valueOf('X'), obj
+                 });
+             }
+ 
+diff --git "a/temp\\src\\java/dw.java" "b/src\\main\\java/dw.java"
+index c121e4a..1dd972c 100644
+--- "a/temp\\src\\java/dw.java"
++++ "b/src\\main\\java/dw.java"
+@@ -28,116 +28,116 @@ public class dw
+         a(new ev(di.aI, 3), new Object[] {
+             "###", java.lang.Character.valueOf('#'), di.aH
+         });
+-        a(new ev(di.aJ, 1), new Object[] {
++        a(new ev(di.Book, 1), new Object[] {
+             "#", "#", "#", java.lang.Character.valueOf('#'), di.aI
+         });
+-        a(new ev(ly.ba, 2), new Object[] {
+-            "###", "###", java.lang.Character.valueOf('#'), di.B
++        a(new ev(ly.TrapDoor, 2), new Object[] {
++            "###", "###", java.lang.Character.valueOf('#'), di.Stick
+         });
+-        a(new ev(ly.aZ, 1), new Object[] {
+-            "###", "#X#", "###", java.lang.Character.valueOf('#'), ly.y, java.lang.Character.valueOf('X'), di.l
++        a(new ev(ly.JukeBox, 1), new Object[] {
++            "###", "#X#", "###", java.lang.Character.valueOf('#'), ly.WoodPlank, java.lang.Character.valueOf('X'), di.Diamond
+         });
+-        a(new ev(ly.ao, 1), new Object[] {
+-            "###", "XXX", "###", java.lang.Character.valueOf('#'), ly.y, java.lang.Character.valueOf('X'), di.aJ
++        a(new ev(ly.BookShelf, 1), new Object[] {
++            "###", "XXX", "###", java.lang.Character.valueOf('#'), ly.WoodPlank, java.lang.Character.valueOf('X'), di.Book
+         });
+-        a(new ev(ly.aV, 1), new Object[] {
++        a(new ev(ly.SnowBlock, 1), new Object[] {
+             "##", "##", java.lang.Character.valueOf('#'), di.aB
+         });
+-        a(new ev(ly.aX, 1), new Object[] {
++        a(new ev(ly.Clay, 1), new Object[] {
+             "##", "##", java.lang.Character.valueOf('#'), di.aG
+         });
+-        a(new ev(ly.am, 1), new Object[] {
++        a(new ev(ly.Bricks, 1), new Object[] {
+             "##", "##", java.lang.Character.valueOf('#'), di.aF
+         });
+-        a(new ev(ly.ac, 1), new Object[] {
+-            "###", "###", "###", java.lang.Character.valueOf('#'), di.I
++        a(new ev(ly.Wool, 1), new Object[] {
++            "###", "###", "###", java.lang.Character.valueOf('#'), di.StringLine
+         });
+-        a(new ev(ly.an, 1), new Object[] {
+-            "X#X", "#X#", "X#X", java.lang.Character.valueOf('X'), di.K, java.lang.Character.valueOf('#'), ly.F
++        a(new ev(ly.Tnt, 1), new Object[] {
++            "X#X", "#X#", "X#X", java.lang.Character.valueOf('X'), di.GunPowder, java.lang.Character.valueOf('#'), ly.Sand
+         });
+-        a(new ev(ly.al, 3), new Object[] {
+-            "###", java.lang.Character.valueOf('#'), ly.x
++        a(new ev(ly.CobbleSlab, 3), new Object[] {
++            "###", java.lang.Character.valueOf('#'), ly.CobbleStone
+         });
+-        a(new ev(ly.aG, 1), new Object[] {
+-            "# #", "###", "# #", java.lang.Character.valueOf('#'), di.B
++        a(new ev(ly.Ladder, 1), new Object[] {
++            "# #", "###", "# #", java.lang.Character.valueOf('#'), di.Stick
+         });
+-        a(new ev(di.at, 1), new Object[] {
+-            "##", "##", "##", java.lang.Character.valueOf('#'), ly.y
++        a(new ev(di.WoodDoor, 1), new Object[] {
++            "##", "##", "##", java.lang.Character.valueOf('#'), ly.WoodPlank
+         });
+-        a(new ev(di.az, 1), new Object[] {
+-            "##", "##", "##", java.lang.Character.valueOf('#'), di.m
++        a(new ev(di.IronDoor, 1), new Object[] {
++            "##", "##", "##", java.lang.Character.valueOf('#'), di.IronIngot
+         });
+-        a(new ev(di.as, 1), new Object[] {
+-            "###", "###", " X ", java.lang.Character.valueOf('#'), ly.y, java.lang.Character.valueOf('X'), di.B
++        a(new ev(di.Sign, 1), new Object[] {
++            "###", "###", " X ", java.lang.Character.valueOf('#'), ly.WoodPlank, java.lang.Character.valueOf('X'), di.Stick
+         });
+-        a(new ev(ly.y, 4), new Object[] {
+-            "#", java.lang.Character.valueOf('#'), ly.K
++        a(new ev(ly.WoodPlank, 4), new Object[] {
++            "#", java.lang.Character.valueOf('#'), ly.WoodLog
+         });
+-        a(new ev(di.B, 4), new Object[] {
+-            "#", "#", java.lang.Character.valueOf('#'), ly.y
++        a(new ev(di.Stick, 4), new Object[] {
++            "#", "#", java.lang.Character.valueOf('#'), ly.WoodPlank
+         });
+-        a(new ev(ly.ar, 4), new Object[] {
+-            "X", "#", java.lang.Character.valueOf('X'), di.k, java.lang.Character.valueOf('#'), di.B
++        a(new ev(ly.Torch, 4), new Object[] {
++            "X", "#", java.lang.Character.valueOf('X'), di.k, java.lang.Character.valueOf('#'), di.Stick
+         });
+-        a(new ev(di.C, 4), new Object[] {
+-            "# #", " # ", java.lang.Character.valueOf('#'), ly.y
++        a(new ev(di.Bowl, 4), new Object[] {
++            "# #", " # ", java.lang.Character.valueOf('#'), ly.WoodPlank
+         });
+-        a(new ev(ly.aH, 16), new Object[] {
+-            "X X", "X#X", "X X", java.lang.Character.valueOf('X'), di.m, java.lang.Character.valueOf('#'), di.B
++        a(new ev(ly.Rail, 16), new Object[] {
++            "X X", "X#X", "X X", java.lang.Character.valueOf('X'), di.IronIngot, java.lang.Character.valueOf('#'), di.Stick
+         });
+-        a(new ev(di.ax, 1), new Object[] {
+-            "# #", "###", java.lang.Character.valueOf('#'), di.m
++        a(new ev(di.Minecart, 1), new Object[] {
++            "# #", "###", java.lang.Character.valueOf('#'), di.IronIngot
+         });
+         a(new ev(di.aL, 1), new Object[] {
+-            "A", "B", java.lang.Character.valueOf('A'), ly.av, java.lang.Character.valueOf('B'), di.ax
++            "A", "B", java.lang.Character.valueOf('A'), ly.Chest, java.lang.Character.valueOf('B'), di.Minecart
+         });
+         a(new ev(di.aM, 1), new Object[] {
+-            "A", "B", java.lang.Character.valueOf('A'), ly.aC, java.lang.Character.valueOf('B'), di.ax
++            "A", "B", java.lang.Character.valueOf('A'), ly.Furnace, java.lang.Character.valueOf('B'), di.Minecart
+         });
+-        a(new ev(di.aC, 1), new Object[] {
+-            "# #", "###", java.lang.Character.valueOf('#'), ly.y
++        a(new ev(di.Boat, 1), new Object[] {
++            "# #", "###", java.lang.Character.valueOf('#'), ly.WoodPlank
+         });
+-        a(new ev(di.au, 1), new Object[] {
+-            "# #", " # ", java.lang.Character.valueOf('#'), di.m
++        a(new ev(di.Bucket, 1), new Object[] {
++            "# #", " # ", java.lang.Character.valueOf('#'), di.IronIngot
+         });
+         a(new ev(di.g, 1), new Object[] {
+-            "A ", " B", java.lang.Character.valueOf('A'), di.m, java.lang.Character.valueOf('B'), di.an
++            "A ", " B", java.lang.Character.valueOf('A'), di.IronIngot, java.lang.Character.valueOf('B'), di.FlintSteel
+         });
+         a(new ev(di.S, 1), new Object[] {
+             "###", java.lang.Character.valueOf('#'), di.R
+         });
+-        a(new ev(ly.au, 4), new Object[] {
+-            "#  ", "## ", "###", java.lang.Character.valueOf('#'), ly.y
++        a(new ev(ly.WoodStair, 4), new Object[] {
++            "#  ", "## ", "###", java.lang.Character.valueOf('#'), ly.WoodPlank
+         });
+-        a(new ev(di.aP, 1), new Object[] {
+-            "  #", " #X", "# X", java.lang.Character.valueOf('#'), di.B, java.lang.Character.valueOf('X'), di.I
++        a(new ev(di.FishingRod, 1), new Object[] {
++            "  #", " #X", "# X", java.lang.Character.valueOf('#'), di.Stick, java.lang.Character.valueOf('X'), di.StringLine
+         });
+-        a(new ev(ly.aI, 4), new Object[] {
+-            "#  ", "## ", "###", java.lang.Character.valueOf('#'), ly.x
++        a(new ev(ly.CobbleStair, 4), new Object[] {
++            "#  ", "## ", "###", java.lang.Character.valueOf('#'), ly.CobbleStone
+         });
+-        a(new ev(di.aq, 1), new Object[] {
+-            "###", "#X#", "###", java.lang.Character.valueOf('#'), di.B, java.lang.Character.valueOf('X'), ly.ac
++        a(new ev(di.Painting, 1), new Object[] {
++            "###", "#X#", "###", java.lang.Character.valueOf('#'), di.Stick, java.lang.Character.valueOf('X'), ly.Wool
+         });
+         a(new ev(di.ar, 1), new Object[] {
+-            "###", "#X#", "###", java.lang.Character.valueOf('#'), ly.ai, java.lang.Character.valueOf('X'), di.h
++            "###", "#X#", "###", java.lang.Character.valueOf('#'), ly.GoldBlock, java.lang.Character.valueOf('X'), di.h
+         });
+-        a(new ev(ly.aK, 1), new Object[] {
+-            "X", "#", java.lang.Character.valueOf('#'), ly.x, java.lang.Character.valueOf('X'), di.B
++        a(new ev(ly.Lever, 1), new Object[] {
++            "X", "#", java.lang.Character.valueOf('#'), ly.CobbleStone, java.lang.Character.valueOf('X'), di.Stick
+         });
+-        a(new ev(ly.aR, 1), new Object[] {
+-            "X", "#", java.lang.Character.valueOf('#'), di.B, java.lang.Character.valueOf('X'), di.aA
++        a(new ev(ly.RedstoneTorchOn, 1), new Object[] {
++            "X", "#", java.lang.Character.valueOf('#'), di.Stick, java.lang.Character.valueOf('X'), di.Redstone
+         });
+         a(new ev(di.aO, 1), new Object[] {
+-            " # ", "#X#", " # ", java.lang.Character.valueOf('#'), di.m, java.lang.Character.valueOf('X'), di.aA
++            " # ", "#X#", " # ", java.lang.Character.valueOf('#'), di.IronIngot, java.lang.Character.valueOf('X'), di.Redstone
+         });
+-        a(new ev(ly.aS, 1), new Object[] {
+-            "#", "#", java.lang.Character.valueOf('#'), ly.u
++        a(new ev(ly.StoneButton, 1), new Object[] {
++            "#", "#", java.lang.Character.valueOf('#'), ly.Stone
+         });
+-        a(new ev(ly.aL, 1), new Object[] {
+-            "###", java.lang.Character.valueOf('#'), ly.u
++        a(new ev(ly.StonePressurePlate, 1), new Object[] {
++            "###", java.lang.Character.valueOf('#'), ly.Stone
+         });
+-        a(new ev(ly.aN, 1), new Object[] {
+-            "###", java.lang.Character.valueOf('#'), ly.y
++        a(new ev(ly.WoodSlab, 1), new Object[] {
++            "###", java.lang.Character.valueOf('#'), ly.WoodPlank
+         });
+         java.util.Collections.sort(b, ((java.util.Comparator) (new fs(this))));
+         java.lang.System.out.println((new StringBuilder()).append(b.size()).append(" recipes").toString());
+diff --git "a/temp\\src\\java/e.java" "b/src\\main\\java/e.java"
+index 33f393d..ac7fdd6 100644
+--- "a/temp\\src\\java/e.java"
++++ "b/src\\main\\java/e.java"
+@@ -208,7 +208,7 @@ public class e
+ 
+     public void a()
+     {
+-        ly.L.a(t.y.i);
++        ly.OakLeaves.a(t.y.i);
+         H = t.y.e;
+         if(o != null)
+         {
+@@ -885,7 +885,7 @@ public class e
+                 ho1.b(-d1, -d2, -d3);
+                 ho1.c();
+                 if(ly1 == null)
+-                    ly1 = ly.u;
++                    ly1 = ly.Stone;
+                 u.a(ly1, mf1.b, mf1.c, mf1.d, 240 + (int)(i * 10F));
+                 ho1.a();
+                 ho1.b(0.0D, 0.0D, 0.0D);
+diff --git "a/temp\\src\\java/ec.java" "b/src\\main\\java/ec.java"
+index 4dabaa0..6f503e3 100644
+--- "a/temp\\src\\java/ec.java"
++++ "b/src\\main\\java/ec.java"
+@@ -23,9 +23,9 @@ public class ec extends di
+         j++;
+         ly ly1;
+         if(a == gb.c)
+-            ly1 = ly.aF;
++            ly1 = ly.OakDoorBlock;
+         else
+-            ly1 = ly.aM;
++            ly1 = ly.IronDoorBlock;
+         if(!ly1.a(world1, i, j, k))
+             return false;
+         int i1 = MathLib.castIgnoringSign((double)(((entityPlayer1.yaw + 180F) * 4F) / 360F) - 0.5D) & 3;
+diff --git "a/temp\\src\\java/ef.java" "b/src\\main\\java/ef.java"
+index cc36b59..eea824b 100644
+--- "a/temp\\src\\java/ef.java"
++++ "b/src\\main\\java/ef.java"
+@@ -27,10 +27,10 @@ public class ef extends di
+             i++;
+         if(world1.a(i, j, k) != 0)
+             return false;
+-        if(ly.aw.a(world1, i, j, k))
++        if(ly.RedstoneWire.a(world1, i, j, k))
+         {
+             ev1.count--;
+-            world1.d(i, j, k, ly.aw.bc);
++            world1.d(i, j, k, ly.RedstoneWire.bc);
+         }
+         return true;
+     }
+diff --git "a/temp\\src\\java/eg.java" "b/src\\main\\java/eg.java"
+index aad2a66..98dd993 100644
+--- "a/temp\\src\\java/eg.java"
++++ "b/src\\main\\java/eg.java"
+@@ -14,7 +14,7 @@ public class eg extends z
+ 
+     public eg()
+     {
+-        super(ly.D.bb + 1);
++        super(ly.FlowingLava.bb + 1);
+         g = new float[256];
+         h = new float[256];
+         i = new float[256];
+diff --git "a/temp\\src\\java/es.java" "b/src\\main\\java/es.java"
+index a9b04a0..bcdcf6a 100644
+--- "a/temp\\src\\java/es.java"
++++ "b/src\\main\\java/es.java"
+@@ -20,8 +20,8 @@ public class es extends ik
+                 continue;
+             int l1 = 2 + random.nextInt(random.nextInt(3) + 1);
+             for(int i2 = 0; i2 < l1; i2++)
+-                if(ly.aY.g(world1, i1, j1 + i2, k1))
+-                    world1.a(i1, j1 + i2, k1, ly.aY.bc);
++                if(ly.SugarCanes.g(world1, i1, j1 + i2, k1))
++                    world1.a(i1, j1 + i2, k1, ly.SugarCanes.bc);
+ 
+         }
+ 
+diff --git "a/temp\\src\\java/fj.java" "b/src\\main\\java/fj.java"
+index 8124acc..0dd845a 100644
+--- "a/temp\\src\\java/fj.java"
++++ "b/src\\main\\java/fj.java"
+@@ -12,14 +12,14 @@ public class fj
+ 
+     public void a(dw dw1)
+     {
+-        dw1.a(new ev(ly.av), new Object[] {
+-            "###", "# #", "###", java.lang.Character.valueOf('#'), ly.y
++        dw1.a(new ev(ly.Chest), new Object[] {
++            "###", "# #", "###", java.lang.Character.valueOf('#'), ly.WoodPlank
+         });
+-        dw1.a(new ev(ly.aC), new Object[] {
+-            "###", "# #", "###", java.lang.Character.valueOf('#'), ly.x
++        dw1.a(new ev(ly.Furnace), new Object[] {
++            "###", "# #", "###", java.lang.Character.valueOf('#'), ly.CobbleStone
+         });
+-        dw1.a(new ev(ly.az), new Object[] {
+-            "##", "##", java.lang.Character.valueOf('#'), ly.y
++        dw1.a(new ev(ly.CraftingTable), new Object[] {
++            "##", "##", java.lang.Character.valueOf('#'), ly.WoodPlank
+         });
+     }
+ }
+diff --git "a/temp\\src\\java/fu.java" "b/src\\main\\java/fu.java"
+index 66a8b2e..5a8cb8f 100644
+--- "a/temp\\src\\java/fu.java"
++++ "b/src\\main\\java/fu.java"
+@@ -16,13 +16,13 @@ public class fu extends di
+     {
+         int i1 = world1.a(i, j, k);
+         gb gb1 = world1.f(i, j + 1, k);
+-        if(!gb1.a() && i1 == ly.v.bc || i1 == ly.w.bc)
++        if(!gb1.a() && i1 == ly.Grass.bc || i1 == ly.Dirt.bc)
+         {
+-            ly ly1 = ly.aB;
++            ly ly1 = ly.Farmland;
+             world1.a((float)i + 0.5F, (float)j + 0.5F, (float)k + 0.5F, ly1.bl.d(), (ly1.bl.b() + 1.0F) / 2.0F, ly1.bl.c() * 0.8F);
+             world1.d(i, j, k, ly1.bc);
+             ev1.b(1);
+-            if(world1.n.nextInt(8) == 0 && i1 == ly.v.bc)
++            if(world1.n.nextInt(8) == 0 && i1 == ly.Grass.bc)
+             {
+                 int j1 = 1;
+                 for(int k1 = 0; k1 < j1; k1++)
+diff --git "a/temp\\src\\java/fw.java" "b/src\\main\\java/fw.java"
+index 21a9b5b..b920ae7 100644
+--- "a/temp\\src\\java/fw.java"
++++ "b/src\\main\\java/fw.java"
+@@ -166,9 +166,9 @@ public class fw extends ly
+         if((i & 8) != 0)
+             return 0;
+         if(bn == gb.e)
+-            return di.az.aS;
++            return di.IronDoor.aS;
+         else
+-            return di.at.aS;
++            return di.WoodDoor.aS;
+     }
+ 
+     public mf a(World world1, int i, int j, int k, Vec3 vec3, Vec3 vec31)
+diff --git "a/temp\\src\\java/gc.java" "b/src\\main\\java/gc.java"
+index cc0b68c..be1c1ea 100644
+--- "a/temp\\src\\java/gc.java"
++++ "b/src\\main\\java/gc.java"
+@@ -26,19 +26,19 @@ public class gc extends bh
+     public void a()
+     {
+         e.clear();
+-        e.add(((Object) (new fk(0, c / 2 - 100, d / 4 + 96 + 12, "Connect"))));
+-        e.add(((Object) (new fk(1, c / 2 - 100, d / 4 + 120 + 12, "Cancel"))));
+-        ((fk)e.get(0)).g = false;
++        e.add(((Object) (new GuiButton(0, c / 2 - 100, d / 4 + 96 + 12, "Connect"))));
++        e.add(((Object) (new GuiButton(1, c / 2 - 100, d / 4 + 120 + 12, "Cancel"))));
++        ((GuiButton)e.get(0)).g = false;
+     }
+ 
+-    protected void a(fk fk1)
++    protected void a(GuiButton guiButton1)
+     {
+-        if(!fk1.g)
++        if(!guiButton1.g)
+             return;
+-        if(fk1.f == 1)
++        if(guiButton1.f == 1)
+             b.a(a);
+         else
+-        if(fk1.f == 0)
++        if(guiButton1.f == 0)
+         {
+             String as[] = i.split(":");
+             b.a(((bh) (new mn(b, as[0], as.length <= 1 ? 25565 : java.lang.Integer.parseInt(as[1])))));
+@@ -57,14 +57,14 @@ public class gc extends bh
+             }
+           }
+           if (c == '\r') {
+-            a((fk)this.e.get(0));
++            a((GuiButton)this.e.get(0));
+           }
+ 
+           if ((c == 14) && (this.i.length() > 0)) this.i = this.i.substring(0, this.i.length() - 1);
+           if ((" !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_'abcdefghijklmnopqrstuvwxyz{|}~⌂ÇüéâäàåçêëèïîìÄÅÉæÆôöòûùÿÖÜø£Ø×ƒáíóúñÑªº¿®¬½¼¡«»".indexOf(c) >= 0) && (this.i.length() < 32)) {
+             this.i += c;
+           }
+-          ((fk)this.e.get(0)).g = (this.i.length() > 0);
++          ((GuiButton)this.e.get(0)).g = (this.i.length() > 0);
+     }
+ 
+     public void a(int j, int k, float f)
+diff --git "a/temp\\src\\java/gf.java" "b/src\\main\\java/gf.java"
+index 3956117..b4d06d3 100644
+--- "a/temp\\src\\java/gf.java"
++++ "b/src\\main\\java/gf.java"
+@@ -16,7 +16,7 @@ public class gf extends di
+ 
+     public boolean a(ev ev1, EntityPlayer entityPlayer, World world1, int i, int j, int k, int l)
+     {
+-        if(world1.a(i, j, k) == ly.aT.bc)
++        if(world1.a(i, j, k) == ly.Snow.bc)
+         {
+             l = 0;
+         } else
+diff --git "a/temp\\src\\java/gv.java" "b/src\\main\\java/gv.java"
+index 90ba39a..5604557 100644
+--- "a/temp\\src\\java/gv.java"
++++ "b/src\\main\\java/gv.java"
+@@ -10,7 +10,7 @@ public class gv extends ik
+ 
+     public gv(int i)
+     {
+-        a = ly.aX.bc;
++        a = ly.Clay.bc;
+         b = i;
+     }
+ 
+@@ -45,7 +45,7 @@ public class gv extends ik
+                         if(d12 * d12 + d13 * d13 + d14 * d14 >= 1.0D)
+                             continue;
+                         int l1 = world1.a(i1, j1, k1);
+-                        if(l1 == ly.F.bc)
++                        if(l1 == ly.Sand.bc)
+                             world1.a(i1, j1, k1, a);
+                     }
+ 
+diff --git "a/temp\\src\\java/gw.java" "b/src\\main\\java/gw.java"
+index 0265fb8..9954644 100644
+--- "a/temp\\src\\java/gw.java"
++++ "b/src\\main\\java/gw.java"
+@@ -12,10 +12,10 @@ public class gw extends ly
+ 
+     public int a(int i, java.util.Random random)
+     {
+-        if(bc == ly.J.bc)
++        if(bc == ly.CoalOre.bc)
+             return di.k.aS;
+-        if(bc == ly.ax.bc)
+-            return di.l.aS;
++        if(bc == ly.DiamondOre.bc)
++            return di.Diamond.aS;
+         else
+             return bc;
+     }
+diff --git "a/temp\\src\\java/gz.java" "b/src\\main\\java/gz.java"
+index d048381..9e8d113 100644
+--- "a/temp\\src\\java/gz.java"
++++ "b/src\\main\\java/gz.java"
+@@ -13,7 +13,7 @@ public class gz extends dh
+     public int a(int i, java.util.Random random)
+     {
+         if(random.nextInt(10) == 0)
+-            return di.an.aS;
++            return di.FlintSteel.aS;
+         else
+             return bc;
+     }
+diff --git "a/temp\\src\\java/hd.java" "b/src\\main\\java/hd.java"
+index 20d11ea..8db0e90 100644
+--- "a/temp\\src\\java/hd.java"
++++ "b/src\\main\\java/hd.java"
+@@ -16,7 +16,7 @@ public class hd extends mq
+ 
+     protected boolean b(int j)
+     {
+-        return j == ly.aB.bc;
++        return j == ly.Farmland.bc;
+     }
+ 
+     public void a(World world1, int j, int k, int l, java.util.Random random)
+@@ -57,7 +57,7 @@ public class hd extends mq
+             {
+                 int k3 = world1.a(i3, k - 1, j3);
+                 float f2 = 0.0F;
+-                if(k3 == ly.aB.bc)
++                if(k3 == ly.Farmland.bc)
+                 {
+                     f2 = 1.0F;
+                     if(world1.e(i3, k - 1, j3) > 0)
+diff --git "a/temp\\src\\java/he.java" "b/src\\main\\java/he.java"
+index af95995..cf84908 100644
+--- "a/temp\\src\\java/he.java"
++++ "b/src\\main\\java/he.java"
+@@ -26,7 +26,7 @@ public class he extends fc
+     {
+         gb gb1 = world1.f(i, j - 1, k);
+         if(gb1.c() || gb1.d())
+-            world1.d(i, j, k, ly.B.bc);
++            world1.d(i, j, k, ly.FlowingWater.bc);
+     }
+ 
+     public int a(java.util.Random random)
+@@ -39,7 +39,7 @@ public class he extends fc
+         if(world1.a(by.b, i, j, k) > 11 - ly.r[bc])
+         {
+             b_(world1, i, j, k, world1.e(i, j, k));
+-            world1.d(i, j, k, ly.C.bc);
++            world1.d(i, j, k, ly.StillWater.bc);
+         }
+     }
+ }
+diff --git "a/temp\\src\\java/hn.java" "b/src\\main\\java/hn.java"
+index 4e2471c..d348dd7 100644
+--- "a/temp\\src\\java/hn.java"
++++ "b/src\\main\\java/hn.java"
+@@ -45,7 +45,7 @@ public class hn extends jp
+                 {
+                     if(k(world1, i - 1, l, i1) || k(world1, i + 1, l, i1) || k(world1, i, l, i1 - 1) || k(world1, i, l, i1 + 1) || k(world1, i, l - 1, i1) || k(world1, i, l + 1, i1))
+                     {
+-                        world1.d(i, l, i1, ly.as.bc);
++                        world1.d(i, l, i1, ly.Fire.bc);
+                         return;
+                     }
+                     continue;
+diff --git "a/temp\\src\\java/hr.java" "b/src\\main\\java/hr.java"
+index 17e0e0b..a635431 100644
+--- "a/temp\\src\\java/hr.java"
++++ "b/src\\main\\java/hr.java"
+@@ -13,10 +13,10 @@ public class hr
+     public void a(dw dw1)
+     {
+         dw1.a(new ev(di.D), new Object[] {
+-            "Y", "X", "#", java.lang.Character.valueOf('X'), ly.ag, java.lang.Character.valueOf('Y'), ly.ah, java.lang.Character.valueOf('#'), di.C
++            "Y", "X", "#", java.lang.Character.valueOf('X'), ly.BrownMushroom, java.lang.Character.valueOf('Y'), ly.RedMushroom, java.lang.Character.valueOf('#'), di.Bowl
+         });
+         dw1.a(new ev(di.D), new Object[] {
+-            "Y", "X", "#", java.lang.Character.valueOf('X'), ly.ah, java.lang.Character.valueOf('Y'), ly.ag, java.lang.Character.valueOf('#'), di.C
++            "Y", "X", "#", java.lang.Character.valueOf('X'), ly.RedMushroom, java.lang.Character.valueOf('Y'), ly.BrownMushroom, java.lang.Character.valueOf('#'), di.Bowl
+         });
+     }
+ }
+diff --git "a/temp\\src\\java/ht.java" "b/src\\main\\java/ht.java"
+index 925c3b2..9e2fc92 100644
+--- "a/temp\\src\\java/ht.java"
++++ "b/src\\main\\java/ht.java"
+@@ -14,7 +14,7 @@ public class ht extends z
+ 
+     public ht()
+     {
+-        super(ly.B.bb + 1);
++        super(ly.FlowingWater.bb + 1);
+         g = new float[256];
+         h = new float[256];
+         i = new float[256];
+diff --git "a/temp\\src\\java/hv.java" "b/src\\main\\java/hv.java"
+index dfcb88e..f8f57b9 100644
+--- "a/temp\\src\\java/hv.java"
++++ "b/src\\main\\java/hv.java"
+@@ -188,7 +188,7 @@ public class hv extends jp
+     private boolean l(World world1, int i, int i1, int j1)
+     {
+         int k1 = world1.a(i, i1, j1);
+-        if(k1 == ly.aF.bc || k1 == ly.aM.bc || k1 == ly.aE.bc || k1 == ly.aG.bc || k1 == ly.aY.bc)
++        if(k1 == ly.OakDoorBlock.bc || k1 == ly.IronDoorBlock.bc || k1 == ly.StandingSignBlock.bc || k1 == ly.Ladder.bc || k1 == ly.SugarCanes.bc)
+             return true;
+         if(k1 == 0)
+             return false;
+diff --git "a/temp\\src\\java/hw.java" "b/src\\main\\java/hw.java"
+index 8ac24e8..d2e9bfe 100644
+--- "a/temp\\src\\java/hw.java"
++++ "b/src\\main\\java/hw.java"
+@@ -32,7 +32,7 @@ public class hw extends ak
+         }
+         float f3 = (1.0F - (((float) primedTnt1.a - f1) + 1.0F) / 100F) * 0.8F;
+         a("/terrain.png");
+-        d.a(ly.an);
++        d.a(ly.Tnt);
+         if((primedTnt1.a / 5) % 2 == 0)
+         {
+             org.lwjgl.opengl.GL11.glDisable(3553);
+@@ -40,7 +40,7 @@ public class hw extends ak
+             org.lwjgl.opengl.GL11.glEnable(3042);
+             org.lwjgl.opengl.GL11.glBlendFunc(770, 772);
+             org.lwjgl.opengl.GL11.glColor4f(1.0F, 1.0F, 1.0F, f3);
+-            d.a(ly.an);
++            d.a(ly.Tnt);
+             org.lwjgl.opengl.GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+             org.lwjgl.opengl.GL11.glDisable(3042);
+             org.lwjgl.opengl.GL11.glEnable(2896);
+diff --git "a/temp\\src\\java/hy.java" "b/src\\main\\java/hy.java"
+index 5f83f65..0117a81 100644
+--- "a/temp\\src\\java/hy.java"
++++ "b/src\\main\\java/hy.java"
+@@ -100,7 +100,7 @@ public class hy extends ly
+         } else
+         {
+             int l = world1.a(i, j - 1, k);
+-            return l == ly.aW.bc || l == ly.F.bc;
++            return l == ly.Cactus.bc || l == ly.Sand.bc;
+         }
+     }
+ 
+diff --git "a/temp\\src\\java/ib.java" "b/src\\main\\java/ib.java"
+index e4b66c2..13dee49 100644
+--- "a/temp\\src\\java/ib.java"
++++ "b/src\\main\\java/ib.java"
+@@ -15,7 +15,7 @@ public class ib extends jq
+ 
+     public void j()
+     {
+-        e.add(((Object) (new fk(6, c / 2 - 100, d / 6 + 168, "Cancel"))));
++        e.add(((Object) (new GuiButton(6, c / 2 - 100, d / 6 + 168, "Cancel"))));
+     }
+ 
+     public void c(int i)
+diff --git "a/temp\\src\\java/ie.java" "b/src\\main\\java/ie.java"
+index e50c1f6..ed382b4 100644
+--- "a/temp\\src\\java/ie.java"
++++ "b/src\\main\\java/ie.java"
+@@ -20,25 +20,25 @@ public class ie extends bh
+     {
+         a = 0;
+         e.clear();
+-        e.add(((Object) (new fk(1, c / 2 - 100, d / 4 + 48, "Save and quit to title"))));
++        e.add(((Object) (new GuiButton(1, c / 2 - 100, d / 4 + 48, "Save and quit to title"))));
+         if(b.j())
+-            ((fk)e.get(0)).e = "Disconnect";
+-        e.add(((Object) (new fk(4, c / 2 - 100, d / 4 + 24, "Back to game"))));
+-        e.add(((Object) (new fk(0, c / 2 - 100, d / 4 + 96, "Options..."))));
++            ((GuiButton)e.get(0)).e = "Disconnect";
++        e.add(((Object) (new GuiButton(4, c / 2 - 100, d / 4 + 24, "Back to game"))));
++        e.add(((Object) (new GuiButton(0, c / 2 - 100, d / 4 + 96, "Options..."))));
+     }
+ 
+-    protected void a(fk fk1)
++    protected void a(GuiButton guiButton1)
+     {
+-        if(fk1.f == 0)
++        if(guiButton1.f == 0)
+             b.a(((bh) (new ay(((bh) (this)), b.y))));
+-        if(fk1.f == 1)
++        if(guiButton1.f == 1)
+         {
+             if(b.j())
+                 b.world.k();
+             b.a(((World) (null)));
+             b.a(((bh) (new cx())));
+         }
+-        if(fk1.f == 4)
++        if(guiButton1.f == 4)
+         {
+             b.a(((bh) (null)));
+             b.e();
+diff --git "a/temp\\src\\java/ig.java" "b/src\\main\\java/ig.java"
+index ee76b63..1ae9019 100644
+--- "a/temp\\src\\java/ig.java"
++++ "b/src\\main\\java/ig.java"
+@@ -12,7 +12,7 @@ public class ig extends nq
+         super(world, d, d1, d2, 0.0D, 0.0D, 0.0D);
+         b = di1.a(((ev) (null)));
+         i = j = k = 1.0F;
+-        h = ly.aV.bm;
++        h = ly.SnowBlock.bm;
+         g /= 2.0F;
+     }
+ 
+diff --git "a/temp\\src\\java/in.java" "b/src\\main\\java/in.java"
+index 56b332a..e3583b6 100644
+--- "a/temp\\src\\java/in.java"
++++ "b/src\\main\\java/in.java"
+@@ -18,7 +18,7 @@ public class in extends ex
+         ly ly1 = sign1.g();
+         org.lwjgl.opengl.GL11.glPushMatrix();
+         float f1 = 0.6666667F;
+-        if(ly1 == ly.aE)
++        if(ly1 == ly.StandingSignBlock)
+         {
+             org.lwjgl.opengl.GL11.glTranslatef((float)d + 0.5F, (float)d1 + 0.75F * f1, (float)d2 + 0.5F);
+             float f2 = (float)(sign1.f() * 360) / 16F;
+diff --git "a/temp\\src\\java/iv.java" "b/src\\main\\java/iv.java"
+index a164e2f..d581c36 100644
+--- "a/temp\\src\\java/iv.java"
++++ "b/src\\main\\java/iv.java"
+@@ -22,14 +22,14 @@ public class iv extends bh
+     public void a()
+     {
+         e.clear();
+-        e.add(((Object) (new fk(0, c / 2 - 100, d / 4 + 120 + 12, "Back to title screen"))));
++        e.add(((Object) (new GuiButton(0, c / 2 - 100, d / 4 + 120 + 12, "Back to title screen"))));
+     }
+ 
+-    protected void a(fk fk1)
++    protected void a(GuiButton guiButton1)
+     {
+-        if(!fk1.g)
++        if(!guiButton1.g)
+             return;
+-        if(fk1.f == 0)
++        if(guiButton1.f == 0)
+             b.a(((bh) (new cx())));
+     }
+ 
+diff --git "a/temp\\src\\java/iz.java" "b/src\\main\\java/iz.java"
+index 6a684e1..be00377 100644
+--- "a/temp\\src\\java/iz.java"
++++ "b/src\\main\\java/iz.java"
+@@ -72,7 +72,7 @@ public class iz extends hi
+     private int g(World world1, int j, int k, int l, int i1)
+     {
+         int j1 = world1.a(j, k, l);
+-        if(j1 == ly.K.bc)
++        if(j1 == ly.WoodLog.bc)
+             return 16;
+         if(j1 == bc)
+         {
+@@ -111,7 +111,7 @@ public class iz extends hi
+ 
+     public int a(int j, java.util.Random random)
+     {
+-        return ly.z.bc;
++        return ly.OakSapling.bc;
+     }
+ 
+     public boolean b()
+diff --git "a/temp\\src\\java/ja.java" "b/src\\main\\java/ja.java"
+index 6601c5d..9c162f9 100644
+--- "a/temp\\src\\java/ja.java"
++++ "b/src\\main\\java/ja.java"
+@@ -24,9 +24,9 @@ public class ja extends bh
+         e.add(((Object) (new o(1, (c / 2 - 155) + 160, d / 6 + 96, "No"))));
+     }
+ 
+-    protected void a(fk fk1)
++    protected void a(GuiButton guiButton1)
+     {
+-        a.a(fk1.f == 0, j);
++        a.a(guiButton1.f == 0, j);
+     }
+ 
+     public void a(int k, int l, float f)
+diff --git "a/temp\\src\\java/jh.java" "b/src\\main\\java/jh.java"
+index c0c0411..1abbb18 100644
+--- "a/temp\\src\\java/jh.java"
++++ "b/src\\main\\java/jh.java"
+@@ -285,7 +285,7 @@ public class jh
+         for(int j = 0; j < 2; j++)
+         {
+             org.lwjgl.opengl.GL11.glPushMatrix();
+-            int k = ly.as.bb + j * 16;
++            int k = ly.Fire.bb + j * 16;
+             int l = (k & 0xf) << 4;
+             int i1 = k & 0xf0;
+             float f2 = (float)l / 256F;
+diff --git "a/temp\\src\\java/jm.java" "b/src\\main\\java/jm.java"
+index 021bd0e..91a2238 100644
+--- "a/temp\\src\\java/jm.java"
++++ "b/src\\main\\java/jm.java"
+@@ -40,7 +40,7 @@ public class jm extends ly
+         int l = world1.a(i, j - 1, k);
+         if(l == bc)
+             return true;
+-        if(l != ly.v.bc && l != ly.w.bc)
++        if(l != ly.Grass.bc && l != ly.Dirt.bc)
+             return false;
+         if(world1.f(i - 1, j - 1, k) == gb.f)
+             return true;
+diff --git "a/temp\\src\\java/jn.java" "b/src\\main\\java/jn.java"
+index 5138daa..86fc1b1 100644
+--- "a/temp\\src\\java/jn.java"
++++ "b/src\\main\\java/jn.java"
+@@ -19,7 +19,7 @@ public class jn extends di
+         if(l != 1)
+             return false;
+         int i1 = world1.a(i, j, k);
+-        if(i1 == ly.aB.bc)
++        if(i1 == ly.Farmland.bc)
+         {
+             world1.d(i, j + 1, k, a);
+             ev1.count--;
+diff --git "a/temp\\src\\java/jo.java" "b/src\\main\\java/jo.java"
+index 9de9237..4eeebf3 100644
+--- "a/temp\\src\\java/jo.java"
++++ "b/src\\main\\java/jo.java"
+@@ -18,7 +18,7 @@ public class jo extends di
+     public boolean a(ev ev1, EntityPlayer entityPlayer, World world1, int i, int j, int k, int l)
+     {
+         int i1 = world1.a(i, j, k);
+-        if(i1 == ly.aH.bc)
++        if(i1 == ly.Rail.bc)
+         {
+             world1.a(((Entity) (new Minecart(world1, (float)i + 0.5F, (float)j + 0.5F, (float)k + 0.5F, a))));
+             ev1.count--;
+diff --git "a/temp\\src\\java/jp.java" "b/src\\main\\java/jp.java"
+index e99a1fd..da8d51e 100644
+--- "a/temp\\src\\java/jp.java"
++++ "b/src\\main\\java/jp.java"
+@@ -217,9 +217,9 @@ public abstract class jp extends ly
+     {
+         Vec3 vec31 = null;
+         if(gb1 == gb.f)
+-            vec31 = ((jp)ly.B).e(nm1, k, l, i1);
++            vec31 = ((jp)ly.FlowingWater).e(nm1, k, l, i1);
+         if(gb1 == gb.g)
+-            vec31 = ((jp)ly.D).e(nm1, k, l, i1);
++            vec31 = ((jp)ly.FlowingLava).e(nm1, k, l, i1);
+         if(vec31.x == 0.0D && vec31.z == 0.0D)
+             return -1000D;
+         else
+@@ -257,10 +257,10 @@ public abstract class jp extends ly
+             {
+                 int j1 = world1.e(k, l, i1);
+                 if(j1 == 0)
+-                    world1.d(k, l, i1, ly.aq.bc);
++                    world1.d(k, l, i1, ly.Obsidian.bc);
+                 else
+                 if(j1 <= 4)
+-                    world1.d(k, l, i1, ly.x.bc);
++                    world1.d(k, l, i1, ly.CobbleStone.bc);
+                 i(world1, k, l, i1);
+             }
+         }
+diff --git "a/temp\\src\\java/jq.java" "b/src\\main\\java/jq.java"
+index 9f260d1..504668b 100644
+--- "a/temp\\src\\java/jq.java"
++++ "b/src\\main\\java/jq.java"
+@@ -26,13 +26,13 @@ public class jq extends bh
+             TagCompound tagCompound1 = World.a(file, (new StringBuilder()).append("World").append(k + 1).toString());
+             if(tagCompound1 == null)
+             {
+-                e.add(((Object) (new fk(k, c / 2 - 100, d / 6 + 24 * k, "- empty -"))));
++                e.add(((Object) (new GuiButton(k, c / 2 - 100, d / 6 + 24 * k, "- empty -"))));
+             } else
+             {
+                 String s = (new StringBuilder()).append("World ").append(k + 1).toString();
+                 long l = tagCompound1.getLong("SizeOnDisk");
+                 s = (new StringBuilder()).append(s).append(" (").append((float)(((l / 1024L) * 100L) / 1024L) / 100F).append(" MB)").toString();
+-                e.add(((Object) (new fk(k, c / 2 - 100, d / 6 + 24 * k, s))));
++                e.add(((Object) (new GuiButton(k, c / 2 - 100, d / 6 + 24 * k, s))));
+             }
+         }
+ 
+@@ -47,21 +47,21 @@ public class jq extends bh
+ 
+     public void j()
+     {
+-        e.add(((Object) (new fk(5, c / 2 - 100, d / 6 + 120 + 12, "Delete world..."))));
+-        e.add(((Object) (new fk(6, c / 2 - 100, d / 6 + 168, "Cancel"))));
++        e.add(((Object) (new GuiButton(5, c / 2 - 100, d / 6 + 120 + 12, "Delete world..."))));
++        e.add(((Object) (new GuiButton(6, c / 2 - 100, d / 6 + 168, "Cancel"))));
+     }
+ 
+-    protected void a(fk fk1)
++    protected void a(GuiButton guiButton1)
+     {
+-        if(!fk1.g)
++        if(!guiButton1.g)
+             return;
+-        if(fk1.f < 5)
+-            c(fk1.f + 1);
++        if(guiButton1.f < 5)
++            c(guiButton1.f + 1);
+         else
+-        if(fk1.f == 5)
++        if(guiButton1.f == 5)
+             b.a(((bh) (new ib(((bh) (this))))));
+         else
+-        if(fk1.f == 6)
++        if(guiButton1.f == 6)
+             b.a(a);
+     }
+ 
+diff --git "a/temp\\src\\java/jz.java" "b/src\\main\\java/jz.java"
+index c1f9875..24bda55 100644
+--- "a/temp\\src\\java/jz.java"
++++ "b/src\\main\\java/jz.java"
+@@ -11,7 +11,7 @@ public class jz extends z
+ 
+     public jz(int i)
+     {
+-        super(ly.as.bb + i * 16);
++        super(ly.Fire.bb + i * 16);
+         g = new float[320];
+         h = new float[320];
+     }
+diff --git "a/temp\\src\\java/kf.java" "b/src\\main\\java/kf.java"
+index 2ab27c7..b865f5a 100644
+--- "a/temp\\src\\java/kf.java"
++++ "b/src\\main\\java/kf.java"
+@@ -227,7 +227,7 @@ public class kf extends ly
+ 
+     public int a(int j, java.util.Random random)
+     {
+-        return di.aA.aS;
++        return di.Redstone.aS;
+     }
+ 
+     public boolean c(World world1, int j, int k, int l, int i1)
+@@ -291,7 +291,7 @@ public class kf extends ly
+     public static boolean b(nm nm1, int j, int k, int l)
+     {
+         int i1 = nm1.a(j, k, l);
+-        if(i1 == ly.aw.bc)
++        if(i1 == ly.RedstoneWire.bc)
+             return true;
+         if(i1 == 0)
+             return false;
+diff --git "a/temp\\src\\java/kk.java" "b/src\\main\\java/kk.java"
+index cda3a93..2bd3748 100644
+--- "a/temp\\src\\java/kk.java"
++++ "b/src\\main\\java/kk.java"
+@@ -102,7 +102,7 @@ public class kk extends cy
+                         int j3 = (j2 * 16 + l2) * 128 + i3;
+                         if(i3 < 0 || i3 >= 128)
+                             continue;
+-                        if(abyte0[j3] == ly.B.bc || abyte0[j3] == ly.C.bc)
++                        if(abyte0[j3] == ly.FlowingWater.bc || abyte0[j3] == ly.StillWater.bc)
+                             flag2 = true;
+                         if(i3 != d9 - 1 && j2 != d8 && j2 != k1 - 1 && l2 != d10 && l2 != i2 - 1)
+                             i3 = ((int) (d9));
+@@ -128,17 +128,17 @@ public class kk extends cy
+                         if(d14 > -0.69999999999999996D && d12 * d12 + d14 * d14 + d13 * d13 < 1.0D)
+                         {
+                             byte byte0 = abyte0[l3];
+-                            if(byte0 == ly.v.bc)
++                            if(byte0 == ly.Grass.bc)
+                                 flag3 = true;
+-                            if(byte0 == ly.u.bc || byte0 == ly.w.bc || byte0 == ly.v.bc)
++                            if(byte0 == ly.Stone.bc || byte0 == ly.Dirt.bc || byte0 == ly.Grass.bc)
+                                 if(i4 < 10)
+                                 {
+-                                    abyte0[l3] = (byte)ly.D.bc;
++                                    abyte0[l3] = (byte)ly.FlowingLava.bc;
+                                 } else
+                                 {
+                                     abyte0[l3] = 0;
+-                                    if(flag3 && abyte0[l3 - 1] == ly.w.bc)
+-                                        abyte0[l3 - 1] = (byte)ly.v.bc;
++                                    if(flag3 && abyte0[l3 - 1] == ly.Dirt.bc)
++                                        abyte0[l3 - 1] = (byte)ly.Grass.bc;
+                                 }
+                         }
+                         l3--;
+diff --git "a/temp\\src\\java/ks.java" "b/src\\main\\java/ks.java"
+index 7a35cba..42ec1a2 100644
+--- "a/temp\\src\\java/ks.java"
++++ "b/src\\main\\java/ks.java"
+@@ -16,7 +16,7 @@ public class ks extends bs
+     static 
+     {
+         aX = (new ly[] {
+-            ly.y, ly.ao, ly.K, ly.av
++            ly.WoodPlank, ly.BookShelf, ly.WoodLog, ly.Chest
+         });
+     }
+ }
+diff --git "a/temp\\src\\java/kt.java" "b/src\\main\\java/kt.java"
+index d4965d7..98f72b3 100644
+--- "a/temp\\src\\java/kt.java"
++++ "b/src\\main\\java/kt.java"
+@@ -59,10 +59,10 @@ public class kt extends ak
+             org.lwjgl.opengl.GL11.glTranslatef(0.0F, 0.3125F, 0.0F);
+             org.lwjgl.opengl.GL11.glRotatef(90F, 0.0F, 1.0F, 0.0F);
+             if(minecart1.type == 1)
+-                (new bc()).a(ly.av);
++                (new bc()).a(ly.Chest);
+             else
+             if(minecart1.type == 2)
+-                (new bc()).a(ly.aC);
++                (new bc()).a(ly.Furnace);
+             org.lwjgl.opengl.GL11.glRotatef(-90F, 0.0F, 1.0F, 0.0F);
+             org.lwjgl.opengl.GL11.glTranslatef(0.0F, -0.3125F, 0.0F);
+             org.lwjgl.opengl.GL11.glScalef(1.0F / f5, 1.0F / f5, 1.0F / f5);
+diff --git "a/temp\\src\\java/ku.java" "b/src\\main\\java/ku.java"
+index 005715f..73c401e 100644
+--- "a/temp\\src\\java/ku.java"
++++ "b/src\\main\\java/ku.java"
+@@ -16,7 +16,7 @@ public class ku extends jt
+ 
+     public int a(int i, java.util.Random random)
+     {
+-        return ly.aC.bc;
++        return ly.Furnace.bc;
+     }
+ 
+     public void e(World world1, int i, int j, int k)
+@@ -46,9 +46,9 @@ public class ku extends jt
+     public int a(nm nm1, int i, int j, int k, int l)
+     {
+         if(l == 1)
+-            return ly.u.bb;
++            return ly.Stone.bb;
+         if(l == 0)
+-            return ly.u.bb;
++            return ly.Stone.bb;
+         int i1 = nm1.e(i, j, k);
+         if(l != i1)
+             return bb;
+@@ -93,9 +93,9 @@ public class ku extends jt
+     public int a(int i)
+     {
+         if(i == 1)
+-            return ly.u.bc;
++            return ly.Stone.bc;
+         if(i == 0)
+-            return ly.u.bc;
++            return ly.Stone.bc;
+         if(i == 3)
+             return bb - 1;
+         else
+@@ -114,9 +114,9 @@ public class ku extends jt
+         int l = world1.e(i, j, k);
+         ic ic = world1.b(i, j, k);
+         if(flag)
+-            world1.d(i, j, k, ly.aD.bc);
++            world1.d(i, j, k, ly.BurningFurnace.bc);
+         else
+-            world1.d(i, j, k, ly.aC.bc);
++            world1.d(i, j, k, ly.Furnace.bc);
+         world1.b(i, j, k, l);
+         world1.a(i, j, k, ic);
+     }
+diff --git "a/temp\\src\\java/l.java" "b/src\\main\\java/l.java"
+index 9ece598..819b507 100644
+--- "a/temp\\src\\java/l.java"
++++ "b/src\\main\\java/l.java"
+@@ -23,7 +23,7 @@ public class l
+     {
+         b = (new Object[][] {
+             new Object[] {
+-                di.aD, ly.as, di.m, di.l, di.n
++                di.aD, ly.Fire, di.IronIngot, di.Diamond, di.n
+             }, new Object[] {
+                 di.T, di.X, di.ab, di.af, di.aj
+             }, new Object[] {
+diff --git "a/temp\\src\\java/lf.java" "b/src\\main\\java/lf.java"
+index e3da453..a1bca29 100644
+--- "a/temp\\src\\java/lf.java"
++++ "b/src\\main\\java/lf.java"
+@@ -12,11 +12,11 @@ public class lf
+     {
+         a = (new Object[][] {
+             new Object[] {
+-                ly.ai, di.n
++                ly.GoldBlock, di.n
+             }, new Object[] {
+-                ly.aj, di.m
++                ly.IronBlock, di.IronIngot
+             }, new Object[] {
+-                ly.ay, di.l
++                ly.DiamondBlock, di.Diamond
+             }
+         });
+     }
+diff --git "a/temp\\src\\java/lg.java" "b/src\\main\\java/lg.java"
+index 3a599b3..69fd66a 100644
+--- "a/temp\\src\\java/lg.java"
++++ "b/src\\main\\java/lg.java"
+@@ -17,7 +17,7 @@ public class lg extends di
+ 
+     public boolean a(ev ev1, EntityPlayer entityPlayer, World world1, int i, int j, int k, int l)
+     {
+-        if(world1.a(i, j, k) == ly.aZ.bc && world1.e(i, j, k) == 0)
++        if(world1.a(i, j, k) == ly.JukeBox.bc && world1.e(i, j, k) == 0)
+         {
+             world1.b(i, j, k, (aS - di.aQ.aS) + 1);
+             world1.a(a, i, j, k);
+diff --git "a/temp\\src\\java/lr.java" "b/src\\main\\java/lr.java"
+index 1fbde4a..e61d3a2 100644
+--- "a/temp\\src\\java/lr.java"
++++ "b/src\\main\\java/lr.java"
+@@ -80,7 +80,7 @@ public class lr extends jt
+ 
+     public int a(int i, java.util.Random random)
+     {
+-        return di.as.aS;
++        return di.Sign.aS;
+     }
+ 
+     public void a(World world1, int i, int j, int k, int l)
+diff --git "a/temp\\src\\java/lu.java" "b/src\\main\\java/lu.java"
+index 2bbdc21..a55ba9f 100644
+--- "a/temp\\src\\java/lu.java"
++++ "b/src\\main\\java/lu.java"
+@@ -7,7 +7,7 @@ import java.util.Random;
+ //import Minecraft;
+ 
+ 
+-public class lu extends lm
++public class lu extends Gui
+ {
+ 
+     private static ab d = new ab();
+diff --git "a/temp\\src\\java/lw.java" "b/src\\main\\java/lw.java"
+index 2c8999d..2bee889 100644
+--- "a/temp\\src\\java/lw.java"
++++ "b/src\\main\\java/lw.java"
+@@ -25,21 +25,21 @@ public class lw extends bh
+         for(int k = 0; k < i.t.length; k++)
+             e.add(((Object) (new o(k, (c / 2 - 155) + (k % 2) * 160, d / 6 + 24 * (k >> 1), i.a(k)))));
+ 
+-        e.add(((Object) (new fk(200, c / 2 - 100, d / 6 + 168, "Done"))));
++        e.add(((Object) (new GuiButton(200, c / 2 - 100, d / 6 + 168, "Done"))));
+     }
+ 
+-    protected void a(fk fk1)
++    protected void a(GuiButton guiButton1)
+     {
+         for(int k = 0; k < i.t.length; k++)
+-            ((fk)e.get(k)).e = i.a(k);
++            ((GuiButton)e.get(k)).e = i.a(k);
+ 
+-        if(fk1.f == 200)
++        if(guiButton1.f == 200)
+         {
+             b.a(h);
+         } else
+         {
+-            j = fk1.f;
+-            fk1.e = (new StringBuilder()).append("> ").append(i.a(fk1.f)).append(" <").toString();
++            j = guiButton1.f;
++            guiButton1.e = (new StringBuilder()).append("> ").append(i.a(guiButton1.f)).append(" <").toString();
+         }
+     }
+ 
+@@ -48,7 +48,7 @@ public class lw extends bh
+         if(j >= 0)
+         {
+             i.a(j, k);
+-            ((fk)e.get(j)).e = i.a(j);
++            ((GuiButton)e.get(j)).e = i.a(j);
+             j = -1;
+         } else
+         {
+diff --git "a/temp\\src\\java/ly.java" "b/src\\main\\java/ly.java"
+index 8647d36..cde8767 100644
+--- "a/temp\\src\\java/ly.java"
++++ "b/src\\main\\java/ly.java"
+@@ -21,26 +21,26 @@ public class ly
+     public static final int r[] = new int[256];
+     public static final boolean s[] = new boolean[256];
+     public static final int t[] = new int[256];
+-    public static final ly u;
+-    public static final my v;
+-    public static final ly w;
+-    public static final ly x;
+-    public static final ly y;
+-    public static final ly z;
+-    public static final ly A;
+-    public static final ly B;
+-    public static final ly C;
+-    public static final ly D;
+-    public static final ly E;
+-    public static final ly F;
+-    public static final ly G;
+-    public static final ly H;
+-    public static final ly I;
+-    public static final ly J;
+-    public static final ly K;
+-    public static final iz L;
+-    public static final ly M;
+-    public static final ly N;
++    public static final ly Stone;
++    public static final my Grass;
++    public static final ly Dirt;
++    public static final ly CobbleStone;
++    public static final ly WoodPlank;
++    public static final ly OakSapling;
++    public static final ly Bedrock;
++    public static final ly FlowingWater;
++    public static final ly StillWater;
++    public static final ly FlowingLava;
++    public static final ly StillLava;
++    public static final ly Sand;
++    public static final ly Gravel;
++    public static final ly GoldOre;
++    public static final ly IronOre;
++    public static final ly CoalOre;
++    public static final ly WoodLog;
++    public static final iz OakLeaves;
++    public static final ly Sponge;
++    public static final ly Glass;
+     public static final ly O = null;
+     public static final ly P = null;
+     public static final ly Q = null;
+@@ -55,57 +55,57 @@ public class ly
+     public static final ly Z = null;
+     public static final ly aa = null;
+     public static final ly ab = null;
+-    public static final ly ac;
++    public static final ly Wool;
+     public static final ly ad = null;
+-    public static final mq ae;
+-    public static final mq af;
+-    public static final mq ag;
+-    public static final mq ah;
+-    public static final ly ai;
+-    public static final ly aj;
+-    public static final ly ak;
+-    public static final ly al;
+-    public static final ly am;
+-    public static final ly an;
+-    public static final ly ao;
+-    public static final ly ap;
+-    public static final ly aq;
+-    public static final ly ar;
+-    public static final og as;
+-    public static final ly at;
+-    public static final ly au;
+-    public static final ly av;
+-    public static final ly aw;
+-    public static final ly ax;
+-    public static final ly ay;
+-    public static final ly az;
+-    public static final ly aA;
+-    public static final ly aB;
+-    public static final ly aC;
+-    public static final ly aD;
+-    public static final ly aE;
+-    public static final ly aF;
+-    public static final ly aG;
+-    public static final ly aH;
+-    public static final ly aI;
+-    public static final ly aJ;
+-    public static final ly aK;
+-    public static final ly aL;
+-    public static final ly aM;
+-    public static final ly aN;
+-    public static final ly aO;
+-    public static final ly aP;
+-    public static final ly aQ;
+-    public static final ly aR;
+-    public static final ly aS;
+-    public static final ly aT;
+-    public static final ly aU;
+-    public static final ly aV;
+-    public static final ly aW;
+-    public static final ly aX;
+-    public static final ly aY;
+-    public static final ly aZ;
+-    public static final ly ba;
++    public static final mq Dandelion;
++    public static final mq Poppy;
++    public static final mq BrownMushroom;
++    public static final mq RedMushroom;
++    public static final ly GoldBlock;
++    public static final ly IronBlock;
++    public static final ly DoubleStoneSlab;
++    public static final ly CobbleSlab;
++    public static final ly Bricks;
++    public static final ly Tnt;
++    public static final ly BookShelf;
++    public static final ly MossStone;
++    public static final ly Obsidian;
++    public static final ly Torch;
++    public static final og Fire;
++    public static final ly MonsterSpawner;
++    public static final ly WoodStair;
++    public static final ly Chest;
++    public static final ly RedstoneWire;
++    public static final ly DiamondOre;
++    public static final ly DiamondBlock;
++    public static final ly CraftingTable;
++    public static final ly WheatCrops;
++    public static final ly Farmland;
++    public static final ly Furnace;
++    public static final ly BurningFurnace;
++    public static final ly StandingSignBlock;
++    public static final ly OakDoorBlock;
++    public static final ly Ladder;
++    public static final ly Rail;
++    public static final ly CobbleStair;
++    public static final ly WallMountedSignBlock;
++    public static final ly Lever;
++    public static final ly StonePressurePlate;
++    public static final ly IronDoorBlock;
++    public static final ly WoodSlab;
++    public static final ly RedstoneOre;
++    public static final ly GlowingRedstoneOre;
++    public static final ly RedstoneTorchOff;
++    public static final ly RedstoneTorchOn;
++    public static final ly StoneButton;
++    public static final ly Snow;
++    public static final ly Ice;
++    public static final ly SnowBlock;
++    public static final ly Cactus;
++    public static final ly Clay;
++    public static final ly SugarCanes;
++    public static final ly JukeBox;
++    public static final ly TrapDoor;
+     public int bb;
+     public final int bc;
+     protected float bd;
+@@ -532,76 +532,76 @@ public class ly
+         l = new bb("cloth", 1.0F, 1.0F);
+         m = ((bb) (new t("sand", 1.0F, 1.0F)));
+         n = new ly[256];
+-        u = (new ce(1, 1)).c(1.5F).b(10F).a(i);
+-        v = (my)(new my(2)).c(0.6F).a(h);
+-        w = (new hz(3, 2)).c(0.5F).a(g);
+-        x = (new ly(4, 16, gb.d)).c(2.0F).b(10F).a(i);
+-        y = (new ly(5, 4, gb.c)).c(2.0F).b(5F).a(f);
+-        z = (new dt(6, 15)).c(0.0F).a(h);
+-        A = (new ly(7, 17, gb.d)).c(-1F).b(6000000F).a(i);
+-        B = (new hv(8, gb.f)).c(100F).d(3);
+-        C = (new hn(9, gb.f)).c(100F).d(3);
+-        D = (new hv(10, gb.g)).c(0.0F).a(1.0F).d(255);
+-        E = (new hn(11, gb.g)).c(100F).a(1.0F).d(255);
+-        F = (new dh(12, 18)).c(0.5F).a(m);
+-        G = (new gz(13, 19)).c(0.6F).a(g);
+-        H = (new gw(14, 32)).c(3F).b(5F).a(i);
+-        I = (new gw(15, 33)).c(3F).b(5F).a(i);
+-        J = (new gw(16, 34)).c(3F).b(5F).a(i);
+-        K = (new mg(17)).c(2.0F).a(f);
+-        L = (iz)(new iz(18, 52)).c(0.2F).d(1).a(h);
+-        M = (new ng(19)).c(0.6F).a(h);
+-        N = (new ct(20, 49, gb.o, false)).c(0.3F).a(k);
+-        ac = (new ly(35, 64, gb.k)).c(0.8F).a(l);
+-        ae = (mq)(new mq(37, 13)).c(0.0F).a(h);
+-        af = (mq)(new mq(38, 12)).c(0.0F).a(h);
+-        ag = (mq)(new ky(39, 29)).c(0.0F).a(h).a(0.125F);
+-        ah = (mq)(new ky(40, 28)).c(0.0F).a(h);
+-        ai = (new c(41, 39)).c(3F).b(10F).a(j);
+-        aj = (new c(42, 38)).c(5F).b(10F).a(j);
+-        ak = (new oi(43, true)).c(2.0F).b(10F).a(i);
+-        al = (new oi(44, false)).c(2.0F).b(10F).a(i);
+-        am = (new ly(45, 7, gb.d)).c(2.0F).b(10F).a(i);
+-        an = (new q(46, 8)).c(0.0F).a(h);
+-        ao = (new ds(47, 35)).c(1.5F).a(f);
+-        ap = (new ly(48, 36, gb.d)).c(2.0F).b(10F).a(i);
+-        aq = (new cm(49, 37)).c(10F).b(2000F).a(i);
+-        ar = (new mj(50, 80)).c(0.0F).a(0.9375F).a(f);
+-        as = (og)(og)(new og(51, 31)).c(0.0F).a(1.0F).a(f);
+-        at = (new bj(52, 65)).c(5F).a(j);
+-        au = ((ly) (new km(53, y)));
+-        av = (new b(54)).c(2.5F).a(f);
+-        aw = (new kf(55, 84)).c(0.0F).a(e);
+-        ax = (new gw(56, 50)).c(3F).b(5F).a(i);
+-        ay = (new c(57, 40)).c(5F).b(10F).a(j);
+-        az = (new cs(58)).c(2.5F).a(f);
+-        aA = (new hd(59, 88)).c(0.0F).a(h);
+-        aB = (new mi(60)).c(0.6F).a(g);
+-        aC = (new ku(61, false)).c(3.5F).a(i);
+-        aD = (new ku(62, true)).c(3.5F).a(i).a(0.875F);
+-        aE = (new lr(63, Sign.class, true)).c(1.0F).a(f);
+-        aF = (new fw(64, gb.c)).c(3F).a(f);
+-        aG = (new br(65, 83)).c(0.4F).a(f);
+-        aH = (new iffix(66, 128)).c(0.7F).a(j);
+-        aI = ((ly) (new km(67, x)));
+-        aJ = (new lr(68, Sign.class, false)).c(1.0F).a(f);
+-        aK = (new no(69, 96)).c(0.5F).a(f);
+-        aL = (new al(70, u.bb, js.b)).c(0.5F).a(i);
+-        aM = (new fw(71, gb.e)).c(5F).a(j);
+-        aN = (new al(72, y.bb, js.a)).c(0.5F).a(f);
+-        aO = (new ai(73, 51, false)).c(3F).b(5F).a(i);
+-        aP = (new ai(74, 51, true)).a(0.625F).c(3F).b(5F).a(i);
+-        aQ = (new bg(75, 115, false)).c(0.0F).a(f);
+-        aR = (new bg(76, 99, true)).c(0.0F).a(0.5F).a(f);
+-        aS = (new hu(77, u.bb)).c(0.5F).a(i);
+-        aT = (new fd(78, 66)).c(0.1F).a(l);
+-        aU = (new he(79, 67)).c(0.5F).d(3).a(k);
+-        aV = (new p(80, 66)).c(0.2F).a(l);
+-        aW = (new hy(81, 70)).c(0.4F).a(l);
+-        aX = (new jv(82, 72)).c(0.6F).a(g);
+-        aY = (new jm(83, 73)).c(0.0F).a(h);
+-        aZ = (new cv(84, 74)).c(2.0F).b(10F).a(i);
+-        ba = (new fh(85, 4)).c(2.0F).b(5F).a(f);
++        Stone = (new ce(1, 1)).c(1.5F).b(10F).a(i);
++        Grass = (my)(new my(2)).c(0.6F).a(h);
++        Dirt = (new hz(3, 2)).c(0.5F).a(g);
++        CobbleStone = (new ly(4, 16, gb.d)).c(2.0F).b(10F).a(i);
++        WoodPlank = (new ly(5, 4, gb.c)).c(2.0F).b(5F).a(f);
++        OakSapling = (new dt(6, 15)).c(0.0F).a(h);
++        Bedrock = (new ly(7, 17, gb.d)).c(-1F).b(6000000F).a(i);
++        FlowingWater = (new hv(8, gb.f)).c(100F).d(3);
++        StillWater = (new hn(9, gb.f)).c(100F).d(3);
++        FlowingLava = (new hv(10, gb.g)).c(0.0F).a(1.0F).d(255);
++        StillLava = (new hn(11, gb.g)).c(100F).a(1.0F).d(255);
++        Sand = (new dh(12, 18)).c(0.5F).a(m);
++        Gravel = (new gz(13, 19)).c(0.6F).a(g);
++        GoldOre = (new gw(14, 32)).c(3F).b(5F).a(i);
++        IronOre = (new gw(15, 33)).c(3F).b(5F).a(i);
++        CoalOre = (new gw(16, 34)).c(3F).b(5F).a(i);
++        WoodLog = (new mg(17)).c(2.0F).a(f);
++        OakLeaves = (iz)(new iz(18, 52)).c(0.2F).d(1).a(h);
++        Sponge = (new ng(19)).c(0.6F).a(h);
++        Glass = (new ct(20, 49, gb.o, false)).c(0.3F).a(k);
++        Wool = (new ly(35, 64, gb.k)).c(0.8F).a(l);
++        Dandelion = (mq)(new mq(37, 13)).c(0.0F).a(h);
++        Poppy = (mq)(new mq(38, 12)).c(0.0F).a(h);
++        BrownMushroom = (mq)(new ky(39, 29)).c(0.0F).a(h).a(0.125F);
++        RedMushroom = (mq)(new ky(40, 28)).c(0.0F).a(h);
++        GoldBlock = (new c(41, 39)).c(3F).b(10F).a(j);
++        IronBlock = (new c(42, 38)).c(5F).b(10F).a(j);
++        DoubleStoneSlab = (new oi(43, true)).c(2.0F).b(10F).a(i);
++        CobbleSlab = (new oi(44, false)).c(2.0F).b(10F).a(i);
++        Bricks = (new ly(45, 7, gb.d)).c(2.0F).b(10F).a(i);
++        Tnt = (new q(46, 8)).c(0.0F).a(h);
++        BookShelf = (new ds(47, 35)).c(1.5F).a(f);
++        MossStone = (new ly(48, 36, gb.d)).c(2.0F).b(10F).a(i);
++        Obsidian = (new cm(49, 37)).c(10F).b(2000F).a(i);
++        Torch = (new mj(50, 80)).c(0.0F).a(0.9375F).a(f);
++        Fire = (og)(og)(new og(51, 31)).c(0.0F).a(1.0F).a(f);
++        MonsterSpawner = (new bj(52, 65)).c(5F).a(j);
++        WoodStair = ((ly) (new km(53, WoodPlank)));
++        Chest = (new b(54)).c(2.5F).a(f);
++        RedstoneWire = (new kf(55, 84)).c(0.0F).a(e);
++        DiamondOre = (new gw(56, 50)).c(3F).b(5F).a(i);
++        DiamondBlock = (new c(57, 40)).c(5F).b(10F).a(j);
++        CraftingTable = (new cs(58)).c(2.5F).a(f);
++        WheatCrops = (new hd(59, 88)).c(0.0F).a(h);
++        Farmland = (new mi(60)).c(0.6F).a(g);
++        Furnace = (new ku(61, false)).c(3.5F).a(i);
++        BurningFurnace = (new ku(62, true)).c(3.5F).a(i).a(0.875F);
++        StandingSignBlock = (new lr(63, Sign.class, true)).c(1.0F).a(f);
++        OakDoorBlock = (new fw(64, gb.c)).c(3F).a(f);
++        Ladder = (new br(65, 83)).c(0.4F).a(f);
++        Rail = (new iffix(66, 128)).c(0.7F).a(j);
++        CobbleStair = ((ly) (new km(67, CobbleStone)));
++        WallMountedSignBlock = (new lr(68, Sign.class, false)).c(1.0F).a(f);
++        Lever = (new no(69, 96)).c(0.5F).a(f);
++        StonePressurePlate = (new al(70, Stone.bb, js.b)).c(0.5F).a(i);
++        IronDoorBlock = (new fw(71, gb.e)).c(5F).a(j);
++        WoodSlab = (new al(72, WoodPlank.bb, js.a)).c(0.5F).a(f);
++        RedstoneOre = (new ai(73, 51, false)).c(3F).b(5F).a(i);
++        GlowingRedstoneOre = (new ai(74, 51, true)).a(0.625F).c(3F).b(5F).a(i);
++        RedstoneTorchOff = (new bg(75, 115, false)).c(0.0F).a(f);
++        RedstoneTorchOn = (new bg(76, 99, true)).c(0.0F).a(0.5F).a(f);
++        StoneButton = (new hu(77, Stone.bb)).c(0.5F).a(i);
++        Snow = (new fd(78, 66)).c(0.1F).a(l);
++        Ice = (new he(79, 67)).c(0.5F).d(3).a(k);
++        SnowBlock = (new p(80, 66)).c(0.2F).a(l);
++        Cactus = (new hy(81, 70)).c(0.4F).a(l);
++        Clay = (new jv(82, 72)).c(0.6F).a(g);
++        SugarCanes = (new jm(83, 73)).c(0.0F).a(h);
++        JukeBox = (new cv(84, 74)).c(2.0F).b(10F).a(i);
++        TrapDoor = (new fh(85, 4)).c(2.0F).b(5F).a(f);
+         for(int i1 = 0; i1 < 256; i1++)
+             if(n[i1] != null)
+                 di.c[i1] = ((di) (new av(i1 - 256)));
+diff --git "a/temp\\src\\java/md.java" "b/src\\main\\java/md.java"
+index 67860db..90f53f1 100644
+--- "a/temp\\src\\java/md.java"
++++ "b/src\\main\\java/md.java"
+@@ -29,12 +29,12 @@ public class md extends di
+             i--;
+         if(l == 5)
+             i++;
+-        if(!ly.aE.a(world1, i, j, k))
++        if(!ly.StandingSignBlock.a(world1, i, j, k))
+             return false;
+         if(l == 1)
+-            world1.b(i, j, k, ly.aE.bc, MathLib.castIgnoringSign((double)(((entityPlayer1.yaw + 180F) * 16F) / 360F) + 0.5D) & 0xf);
++            world1.b(i, j, k, ly.StandingSignBlock.bc, MathLib.castIgnoringSign((double)(((entityPlayer1.yaw + 180F) * 16F) / 360F) + 0.5D) & 0xf);
+         else
+-            world1.b(i, j, k, ly.aJ.bc, l);
++            world1.b(i, j, k, ly.WallMountedSignBlock.bc, l);
+         ev1.count--;
+         entityPlayer1.a((Sign) world1.b(i, j, k));
+         return true;
+diff --git "a/temp\\src\\java/mg.java" "b/src\\main\\java/mg.java"
+index 6a57c29..4f517c3 100644
+--- "a/temp\\src\\java/mg.java"
++++ "b/src\\main\\java/mg.java"
+@@ -18,7 +18,7 @@ public class mg extends ly
+ 
+     public int a(int i, java.util.Random random)
+     {
+-        return ly.K.bc;
++        return ly.WoodLog.bc;
+     }
+ 
+     public int a(int i)
+diff --git "a/temp\\src\\java/mi.java" "b/src\\main\\java/mi.java"
+index c42143e..77bbb80 100644
+--- "a/temp\\src\\java/mi.java"
++++ "b/src\\main\\java/mi.java"
+@@ -52,14 +52,14 @@ public class mi extends ly
+                     world1.b(j, k, l, i1 - 1);
+                 else
+                 if(!h(world1, j, k, l))
+-                    world1.d(j, k, l, ly.w.bc);
++                    world1.d(j, k, l, ly.Dirt.bc);
+             }
+     }
+ 
+     public void a(World world1, int j, int k, int l, Entity entity)
+     {
+         if(world1.n.nextInt(4) == 0)
+-            world1.d(j, k, l, ly.w.bc);
++            world1.d(j, k, l, ly.Dirt.bc);
+     }
+ 
+     private boolean h(World world1, int j, int k, int l)
+@@ -68,7 +68,7 @@ public class mi extends ly
+         for(int j1 = j - i1; j1 <= j + i1; j1++)
+         {
+             for(int k1 = l - i1; k1 <= l + i1; k1++)
+-                if(world1.a(j1, k + 1, k1) == ly.aA.bc)
++                if(world1.a(j1, k + 1, k1) == ly.WheatCrops.bc)
+                     return true;
+ 
+         }
+@@ -98,11 +98,11 @@ public class mi extends ly
+         super.a(world1, j, k, l, i1);
+         gb gb1 = world1.f(j, k + 1, l);
+         if(gb1.a())
+-            world1.d(j, k, l, ly.w.bc);
++            world1.d(j, k, l, ly.Dirt.bc);
+     }
+ 
+     public int a(int j, java.util.Random random)
+     {
+-        return ly.w.a(0, random);
++        return ly.Dirt.a(0, random);
+     }
+ }
+diff --git "a/temp\\src\\java/ml.java" "b/src\\main\\java/ml.java"
+index 62860e5..bf8d7a1 100644
+--- "a/temp\\src\\java/ml.java"
++++ "b/src\\main\\java/ml.java"
+@@ -14,7 +14,7 @@ public class ml extends z
+ 
+     public ml()
+     {
+-        super(ly.B.bb);
++        super(ly.FlowingWater.bb);
+         g = new float[256];
+         h = new float[256];
+         i = new float[256];
+diff --git "a/temp\\src\\java/mn.java" "b/src\\main\\java/mn.java"
+index d54b03e..00920bb 100644
+--- "a/temp\\src\\java/mn.java"
++++ "b/src\\main\\java/mn.java"
+@@ -30,12 +30,12 @@ public class mn extends bh
+     public void a()
+     {
+         e.clear();
+-        e.add(((Object) (new fk(0, c / 2 - 100, d / 4 + 120 + 12, "Cancel"))));
++        e.add(((Object) (new GuiButton(0, c / 2 - 100, d / 4 + 120 + 12, "Cancel"))));
+     }
+ 
+-    protected void a(fk fk1)
++    protected void a(GuiButton guiButton1)
+     {
+-        if(fk1.f == 0)
++        if(guiButton1.f == 0)
+         {
+             h = true;
+             if(a != null)
+diff --git "a/temp\\src\\java/mo.java" "b/src\\main\\java/mo.java"
+index c40e133..6c396eb 100644
+--- "a/temp\\src\\java/mo.java"
++++ "b/src\\main\\java/mo.java"
+@@ -4,7 +4,7 @@
+ 
+ //import Minecraft;
+ 
+-public class mo extends fk
++public class mo extends GuiButton
+ {
+ 
+     public float i;
+diff --git "a/temp\\src\\java/mq.java" "b/src\\main\\java/mq.java"
+index 5e47267..97935e1 100644
+--- "a/temp\\src\\java/mq.java"
++++ "b/src\\main\\java/mq.java"
+@@ -21,7 +21,7 @@ public class mq extends ly
+ 
+     protected boolean b(int i)
+     {
+-        return i == ly.v.bc || i == ly.w.bc || i == ly.aB.bc;
++        return i == ly.Grass.bc || i == ly.Dirt.bc || i == ly.Farmland.bc;
+     }
+ 
+     public void a(World world1, int i, int j, int k, int l)
+diff --git "a/temp\\src\\java/ms.java" "b/src\\main\\java/ms.java"
+index ba76880..b54aac4 100644
+--- "a/temp\\src\\java/ms.java"
++++ "b/src\\main\\java/ms.java"
+@@ -15,15 +15,15 @@ public class ms extends bs
+ 
+     public boolean a(ly ly1)
+     {
+-        if(ly1 == ly.aT)
++        if(ly1 == ly.Snow)
+             return true;
+-        return ly1 == ly.aV;
++        return ly1 == ly.SnowBlock;
+     }
+ 
+     static 
+     {
+         aX = (new ly[] {
+-            ly.v, ly.w, ly.F, ly.G, ly.aT, ly.aV, ly.aX
++            ly.Grass, ly.Dirt, ly.Sand, ly.Gravel, ly.Snow, ly.SnowBlock, ly.Clay
+         });
+     }
+ }
+diff --git "a/temp\\src\\java/my.java" "b/src\\main\\java/my.java"
+index a741a5c..f2c2752 100644
+--- "a/temp\\src\\java/my.java"
++++ "b/src\\main\\java/my.java"
+@@ -28,20 +28,20 @@ public class my extends ly
+         {
+             if(random.nextInt(4) != 0)
+                 return;
+-            world1.d(i, j, k, ly.w.bc);
++            world1.d(i, j, k, ly.Dirt.bc);
+         } else
+         if(world1.j(i, j + 1, k) >= 9)
+         {
+             int l = (i + random.nextInt(3)) - 1;
+             int i1 = (j + random.nextInt(5)) - 3;
+             int j1 = (k + random.nextInt(3)) - 1;
+-            if(world1.a(l, i1, j1) == ly.w.bc && world1.j(l, i1 + 1, j1) >= 4 && !world1.f(l, i1 + 1, j1).b())
+-                world1.d(l, i1, j1, ly.v.bc);
++            if(world1.a(l, i1, j1) == ly.Dirt.bc && world1.j(l, i1 + 1, j1) >= 4 && !world1.f(l, i1 + 1, j1).b())
++                world1.d(l, i1, j1, ly.Grass.bc);
+         }
+     }
+ 
+     public int a(int i, java.util.Random random)
+     {
+-        return ly.w.a(0, random);
++        return ly.Dirt.a(0, random);
+     }
+ }
+diff --git "a/temp\\src\\java/nd.java" "b/src\\main\\java/nd.java"
+index b262ccb..2582355 100644
+--- "a/temp\\src\\java/nd.java"
++++ "b/src\\main\\java/nd.java"
+@@ -17,7 +17,7 @@ public class nd
+     {
+         b = (new Object[][] {
+             new Object[] {
+-                ly.y, ly.x, di.m, di.l, di.n
++                ly.WoodPlank, ly.CobbleStone, di.IronIngot, di.Diamond, di.n
+             }, new Object[] {
+                 di.p, di.t, di.o, di.x, di.E
+             }
+@@ -33,17 +33,17 @@ public class nd
+             {
+                 di di1 = (di)b[j + 1][i];
+                 dw1.a(new ev(di1), new Object[] {
+-                    a[j], java.lang.Character.valueOf('#'), di.B, java.lang.Character.valueOf('X'), obj
++                    a[j], java.lang.Character.valueOf('#'), di.Stick, java.lang.Character.valueOf('X'), obj
+                 });
+             }
+ 
+         }
+ 
+         dw1.a(new ev(di.i, 1), new Object[] {
+-            " #X", "# X", " #X", java.lang.Character.valueOf('X'), di.I, java.lang.Character.valueOf('#'), di.B
++            " #X", "# X", " #X", java.lang.Character.valueOf('X'), di.StringLine, java.lang.Character.valueOf('#'), di.Stick
+         });
+         dw1.a(new ev(di.j, 4), new Object[] {
+-            "X", "#", "Y", java.lang.Character.valueOf('Y'), di.J, java.lang.Character.valueOf('X'), di.an, java.lang.Character.valueOf('#'), di.B
++            "X", "#", "Y", java.lang.Character.valueOf('Y'), di.J, java.lang.Character.valueOf('X'), di.FlintSteel, java.lang.Character.valueOf('#'), di.Stick
+         });
+     }
+ }
+diff --git "a/temp\\src\\java/nn.java" "b/src\\main\\java/nn.java"
+index ad8dcef..9df2d31 100644
+--- "a/temp\\src\\java/nn.java"
++++ "b/src\\main\\java/nn.java"
+@@ -14,20 +14,20 @@ public class nn extends ik
+ 
+     public boolean a(World world1, java.util.Random random, int i, int j, int k)
+     {
+-        if(world1.a(i, j + 1, k) != ly.u.bc)
++        if(world1.a(i, j + 1, k) != ly.Stone.bc)
+             return false;
+-        if(world1.a(i, j - 1, k) != ly.u.bc)
++        if(world1.a(i, j - 1, k) != ly.Stone.bc)
+             return false;
+-        if(world1.a(i, j, k) != 0 && world1.a(i, j, k) != ly.u.bc)
++        if(world1.a(i, j, k) != 0 && world1.a(i, j, k) != ly.Stone.bc)
+             return false;
+         int l = 0;
+-        if(world1.a(i - 1, j, k) == ly.u.bc)
++        if(world1.a(i - 1, j, k) == ly.Stone.bc)
+             l++;
+-        if(world1.a(i + 1, j, k) == ly.u.bc)
++        if(world1.a(i + 1, j, k) == ly.Stone.bc)
+             l++;
+-        if(world1.a(i, j, k - 1) == ly.u.bc)
++        if(world1.a(i, j, k - 1) == ly.Stone.bc)
+             l++;
+-        if(world1.a(i, j, k + 1) == ly.u.bc)
++        if(world1.a(i, j, k + 1) == ly.Stone.bc)
+             l++;
+         int i1 = 0;
+         if(world1.a(i - 1, j, k) == 0)
+diff --git "a/temp\\src\\java/nv.java" "b/src\\main\\java/nv.java"
+index 9bfc082..87bba4d 100644
+--- "a/temp\\src\\java/nv.java"
++++ "b/src\\main\\java/nv.java"
+@@ -24,7 +24,7 @@ public class nv extends bh
+     {
+         e.clear();
+         org.lwjgl.input.Keyboard.enableRepeatEvents(true);
+-        e.add(((Object) (new fk(0, c / 2 - 100, d / 4 + 120, "Done"))));
++        e.add(((Object) (new GuiButton(0, c / 2 - 100, d / 4 + 120, "Done"))));
+     }
+ 
+     public void h()
+@@ -37,11 +37,11 @@ public class nv extends bh
+         i++;
+     }
+ 
+-    protected void a(fk fk1)
++    protected void a(GuiButton guiButton1)
+     {
+-        if(!fk1.g)
++        if(!guiButton1.g)
+             return;
+-        if(fk1.f == 0)
++        if(guiButton1.f == 0)
+         {
+             h.j_();
+             b.a(((bh) (null)));
+@@ -72,7 +72,7 @@ public class nv extends bh
+         org.lwjgl.opengl.GL11.glScalef(-f1, -f1, -f1);
+         org.lwjgl.opengl.GL11.glRotatef(180F, 0.0F, 1.0F, 0.0F);
+         ly ly1 = h.g();
+-        if(ly1 == ly.aE)
++        if(ly1 == ly.StandingSignBlock)
+         {
+             float f2 = (float)(h.f() * 360) / 16F;
+             org.lwjgl.opengl.GL11.glRotatef(f2, 0.0F, 1.0F, 0.0F);
+diff --git "a/temp\\src\\java/nw.java" "b/src\\main\\java/nw.java"
+index 68e83d5..f435b35 100644
+--- "a/temp\\src\\java/nw.java"
++++ "b/src\\main\\java/nw.java"
+@@ -91,11 +91,11 @@ public class nw
+                                 int l3 = 0;
+                                 if(k2 * 8 + l2 < byte1)
+                                     if(p.snowCovered && k2 * 8 + l2 >= byte1 - 1)
+-                                        l3 = ly.aU.bc;
++                                        l3 = ly.Ice.bc;
+                                     else
+-                                        l3 = ly.C.bc;
++                                        l3 = ly.StillWater.bc;
+                                 if(d16 > 0.0D)
+-                                    l3 = ly.u.bc;
++                                    l3 = ly.Stone.bc;
+                                 abyte0[j3] = (byte)l3;
+                                 j3 += ((int) (c1));
+                                 d16 += d17;
+@@ -134,14 +134,14 @@ public class nw
+                 boolean flag1 = s[k1 + l1 * 16] + j.nextDouble() * 0.20000000000000001D > 3D;
+                 int i2 = (int)(t[k1 + l1 * 16] / 3D + 3D + j.nextDouble() * 0.25D);
+                 int j2 = -1;
+-                byte byte1 = (byte)ly.v.bc;
+-                byte byte2 = (byte)ly.w.bc;
++                byte byte1 = (byte)ly.Grass.bc;
++                byte byte2 = (byte)ly.Dirt.bc;
+                 for(int k2 = 127; k2 >= 0; k2--)
+                 {
+                     int l2 = (k1 * 16 + l1) * 128 + k2;
+                     if(k2 <= (0 + j.nextInt(6)) - 1)
+                     {
+-                        abyte0[l2] = (byte)ly.A.bc;
++                        abyte0[l2] = (byte)ly.Bedrock.bc;
+                         continue;
+                     }
+                     byte byte3 = abyte0[l2];
+@@ -150,30 +150,30 @@ public class nw
+                         j2 = -1;
+                         continue;
+                     }
+-                    if(byte3 != ly.u.bc)
++                    if(byte3 != ly.Stone.bc)
+                         continue;
+                     if(j2 == -1)
+                     {
+                         if(i2 <= 0)
+                         {
+                             byte1 = 0;
+-                            byte2 = (byte)ly.u.bc;
++                            byte2 = (byte)ly.Stone.bc;
+                         } else
+                         if(k2 >= byte0 - 4 && k2 <= byte0 + 1)
+                         {
+-                            byte1 = (byte)ly.v.bc;
+-                            byte2 = (byte)ly.w.bc;
++                            byte1 = (byte)ly.Grass.bc;
++                            byte2 = (byte)ly.Dirt.bc;
+                             if(flag1)
+                                 byte1 = 0;
+                             if(flag1)
+-                                byte2 = (byte)ly.G.bc;
++                                byte2 = (byte)ly.Gravel.bc;
+                             if(flag)
+-                                byte1 = (byte)ly.F.bc;
++                                byte1 = (byte)ly.Sand.bc;
+                             if(flag)
+-                                byte2 = (byte)ly.F.bc;
++                                byte2 = (byte)ly.Sand.bc;
+                         }
+                         if(k2 < byte0 && byte1 == 0)
+-                            byte1 = (byte)ly.C.bc;
++                            byte1 = (byte)ly.StillWater.bc;
+                         j2 = i2;
+                         if(k2 >= byte0 - 1)
+                             abyte0[l2] = byte1;
+@@ -327,7 +327,7 @@ public class nw
+             int k5 = k1 + j.nextInt(16);
+             int l7 = j.nextInt(128);
+             int k12 = l1 + j.nextInt(16);
+-            (new cu(ly.w.bc, 32)).a(p, j, k5, l7, k12);
++            (new cu(ly.Dirt.bc, 32)).a(p, j, k5, l7, k12);
+         }
+ 
+         for(int i3 = 0; i3 < 10; i3++)
+@@ -335,7 +335,7 @@ public class nw
+             int l5 = k1 + j.nextInt(16);
+             int i8 = j.nextInt(128);
+             int l12 = l1 + j.nextInt(16);
+-            (new cu(ly.G.bc, 32)).a(p, j, l5, i8, l12);
++            (new cu(ly.Gravel.bc, 32)).a(p, j, l5, i8, l12);
+         }
+ 
+         for(int j3 = 0; j3 < 20; j3++)
+@@ -343,7 +343,7 @@ public class nw
+             int i6 = k1 + j.nextInt(16);
+             int j8 = j.nextInt(128);
+             int i13 = l1 + j.nextInt(16);
+-            (new cu(ly.J.bc, 16)).a(p, j, i6, j8, i13);
++            (new cu(ly.CoalOre.bc, 16)).a(p, j, i6, j8, i13);
+         }
+ 
+         for(int k3 = 0; k3 < 20; k3++)
+@@ -351,7 +351,7 @@ public class nw
+             int j6 = k1 + j.nextInt(16);
+             int k8 = j.nextInt(64);
+             int j13 = l1 + j.nextInt(16);
+-            (new cu(ly.I.bc, 8)).a(p, j, j6, k8, j13);
++            (new cu(ly.IronOre.bc, 8)).a(p, j, j6, k8, j13);
+         }
+ 
+         for(int i4 = 0; i4 < 2; i4++)
+@@ -359,7 +359,7 @@ public class nw
+             int k6 = k1 + j.nextInt(16);
+             int l8 = j.nextInt(32);
+             int k13 = l1 + j.nextInt(16);
+-            (new cu(ly.H.bc, 8)).a(p, j, k6, l8, k13);
++            (new cu(ly.GoldOre.bc, 8)).a(p, j, k6, l8, k13);
+         }
+ 
+         for(int j4 = 0; j4 < 8; j4++)
+@@ -367,7 +367,7 @@ public class nw
+             int l6 = k1 + j.nextInt(16);
+             int i9 = j.nextInt(16);
+             int l13 = l1 + j.nextInt(16);
+-            (new cu(ly.aO.bc, 7)).a(p, j, l6, i9, l13);
++            (new cu(ly.RedstoneOre.bc, 7)).a(p, j, l6, i9, l13);
+         }
+ 
+         for(int k4 = 0; k4 < 1; k4++)
+@@ -375,7 +375,7 @@ public class nw
+             int i7 = k1 + j.nextInt(16);
+             int j9 = j.nextInt(16);
+             int i14 = l1 + j.nextInt(16);
+-            (new cu(ly.ax.bc, 7)).a(p, j, i7, j9, i14);
++            (new cu(ly.DiamondOre.bc, 7)).a(p, j, i7, j9, i14);
+         }
+ 
+         d1 = 0.5D;
+@@ -400,7 +400,7 @@ public class nw
+             int k14 = k1 + j.nextInt(16) + 8;
+             int i17 = j.nextInt(128);
+             int j19 = l1 + j.nextInt(16) + 8;
+-            (new ae(ly.ae.bc)).a(p, j, k14, i17, j19);
++            (new ae(ly.Dandelion.bc)).a(p, j, k14, i17, j19);
+         }
+ 
+         if(j.nextInt(2) == 0)
+@@ -408,21 +408,21 @@ public class nw
+             int i10 = k1 + j.nextInt(16) + 8;
+             int l14 = j.nextInt(128);
+             int j17 = l1 + j.nextInt(16) + 8;
+-            (new ae(ly.af.bc)).a(p, j, i10, l14, j17);
++            (new ae(ly.Poppy.bc)).a(p, j, i10, l14, j17);
+         }
+         if(j.nextInt(4) == 0)
+         {
+             int j10 = k1 + j.nextInt(16) + 8;
+             int i15 = j.nextInt(128);
+             int k17 = l1 + j.nextInt(16) + 8;
+-            (new ae(ly.ag.bc)).a(p, j, j10, i15, k17);
++            (new ae(ly.BrownMushroom.bc)).a(p, j, j10, i15, k17);
+         }
+         if(j.nextInt(8) == 0)
+         {
+             int k10 = k1 + j.nextInt(16) + 8;
+             int j15 = j.nextInt(128);
+             int l17 = l1 + j.nextInt(16) + 8;
+-            (new ae(ly.ah.bc)).a(p, j, k10, j15, l17);
++            (new ae(ly.RedMushroom.bc)).a(p, j, k10, j15, l17);
+         }
+         for(int l10 = 0; l10 < 10; l10++)
+         {
+@@ -445,7 +445,7 @@ public class nw
+             int i16 = k1 + j.nextInt(16) + 8;
+             int k18 = j.nextInt(j.nextInt(120) + 8);
+             int i20 = l1 + j.nextInt(16) + 8;
+-            (new nn(ly.B.bc)).a(p, j, i16, k18, i20);
++            (new nn(ly.FlowingWater.bc)).a(p, j, i16, k18, i20);
+         }
+ 
+         for(int k11 = 0; k11 < 20; k11++)
+@@ -453,7 +453,7 @@ public class nw
+             int j16 = k1 + j.nextInt(16) + 8;
+             int l18 = j.nextInt(j.nextInt(j.nextInt(112) + 8) + 8);
+             int j20 = l1 + j.nextInt(16) + 8;
+-            (new nn(ly.D.bc)).a(p, j, j16, l18, j20);
++            (new nn(ly.FlowingLava.bc)).a(p, j, j16, l18, j20);
+         }
+ 
+         for(int l11 = k1 + 8 + 0; l11 < k1 + 8 + 16; l11++)
+@@ -462,7 +462,7 @@ public class nw
+             {
+                 int i19 = p.d(l11, k16);
+                 if(p.snowCovered && i19 > 0 && i19 < 128 && p.a(l11, i19, k16) == 0 && p.f(l11, i19 - 1, k16).c() && p.f(l11, i19 - 1, k16) != gb.r)
+-                    p.d(l11, i19, k16, ly.aT.bc);
++                    p.d(l11, i19, k16, ly.Snow.bc);
+             }
+ 
+         }
+diff --git "a/temp\\src\\java/nx.java" "b/src\\main\\java/nx.java"
+index b267eb3..103e549 100644
+--- "a/temp\\src\\java/nx.java"
++++ "b/src\\main\\java/nx.java"
+@@ -30,7 +30,7 @@ public class nx extends di
+         if(i1 == 0)
+         {
+             world1.a((double)i + 0.5D, (double)j + 0.5D, (double)k + 0.5D, "fire.ignite", 1.0F, b.nextFloat() * 0.4F + 0.8F);
+-            world1.d(i, j, k, ly.as.bc);
++            world1.d(i, j, k, ly.Fire.bc);
+         }
+         ev1.b(1);
+         return true;
+diff --git "a/temp\\src\\java/o.java" "b/src\\main\\java/o.java"
+index 5d6c48e..6091beb 100644
+--- "a/temp\\src\\java/o.java"
++++ "b/src\\main\\java/o.java"
+@@ -3,7 +3,7 @@
+ // Source File Name:   SourceFile
+ 
+ 
+-public class o extends fk
++public class o extends GuiButton
+ {
+ 
+     public o(int i, int j, int k, String s)
+diff --git "a/temp\\src\\java/oa.java" "b/src\\main\\java/oa.java"
+index cfb33b6..ae17f35 100644
+--- "a/temp\\src\\java/oa.java"
++++ "b/src\\main\\java/oa.java"
+@@ -28,7 +28,7 @@ public class oa extends ik
+                     if(i1 >= 0 && i1 < 128)
+                     {
+                         int j3 = world1.a(i2, i1, l2);
+-                        if(j3 != 0 && j3 != ly.L.bc)
++                        if(j3 != 0 && j3 != ly.OakLeaves.bc)
+                             flag = false;
+                     } else
+                     {
+@@ -42,9 +42,9 @@ public class oa extends ik
+         if(!flag)
+             return false;
+         int j1 = world1.a(i, j - 1, k);
+-        if(j1 != ly.v.bc && j1 != ly.w.bc || j >= 128 - l - 1)
++        if(j1 != ly.Grass.bc && j1 != ly.Dirt.bc || j >= 128 - l - 1)
+             return false;
+-        world1.a(i, j - 1, k, ly.w.bc);
++        world1.a(i, j - 1, k, ly.Dirt.bc);
+         for(int k1 = (j - 3) + l; k1 <= j + l; k1++)
+         {
+             int j2 = k1 - (j + l);
+@@ -56,7 +56,7 @@ public class oa extends ik
+                 {
+                     int j4 = i4 - k;
+                     if((java.lang.Math.abs(l3) != i3 || java.lang.Math.abs(j4) != i3 || random.nextInt(2) != 0 && j2 != 0) && !ly.p[world1.a(k3, k1, i4)])
+-                        world1.a(k3, k1, i4, ly.L.bc);
++                        world1.a(k3, k1, i4, ly.OakLeaves.bc);
+                 }
+ 
+             }
+@@ -66,8 +66,8 @@ public class oa extends ik
+         for(int l1 = 0; l1 < l; l1++)
+         {
+             int k2 = world1.a(i, j + l1, k);
+-            if(k2 == 0 || k2 == ly.L.bc)
+-                world1.a(i, j + l1, k, ly.K.bc);
++            if(k2 == 0 || k2 == ly.OakLeaves.bc)
++                world1.a(i, j + l1, k, ly.WoodLog.bc);
+         }
+ 
+         return true;
+diff --git "a/temp\\src\\java/og.java" "b/src\\main\\java/og.java"
+index 982a44e..fbf62d8 100644
+--- "a/temp\\src\\java/og.java"
++++ "b/src\\main\\java/og.java"
+@@ -13,12 +13,12 @@ public class og extends ly
+         super(j, k, gb.l);
+         a = new int[256];
+         b = new int[256];
+-        a(ly.y.bc, 5, 20);
+-        a(ly.K.bc, 5, 5);
+-        a(ly.L.bc, 30, 60);
+-        a(ly.ao.bc, 30, 20);
+-        a(ly.an.bc, 15, 100);
+-        a(ly.ac.bc, 30, 60);
++        a(ly.WoodPlank.bc, 5, 20);
++        a(ly.WoodLog.bc, 5, 5);
++        a(ly.OakLeaves.bc, 30, 60);
++        a(ly.BookShelf.bc, 30, 20);
++        a(ly.Tnt.bc, 15, 100);
++        a(ly.Wool.bc, 30, 60);
+         b(true);
+     }
+ 
+@@ -113,13 +113,13 @@ public class og extends ly
+         int j1 = b[world1.a(j, k, l)];
+         if(random.nextInt(i1) < j1)
+         {
+-            boolean flag = world1.a(j, k, l) == ly.an.bc;
++            boolean flag = world1.a(j, k, l) == ly.Tnt.bc;
+             if(random.nextInt(2) == 0)
+                 world1.d(j, k, l, bc);
+             else
+                 world1.d(j, k, l, 0);
+             if(flag)
+-                ly.an.b(world1, j, k, l, 0);
++                ly.Tnt.b(world1, j, k, l, 0);
+         }
+     }
+ 
+@@ -209,7 +209,7 @@ public class og extends ly
+     {
+         if(random.nextInt(24) == 0)
+             world1.a((float)j + 0.5F, (float)k + 0.5F, (float)l + 0.5F, "fire.fire", 1.0F + random.nextFloat(), random.nextFloat() * 0.7F + 0.3F);
+-        if(world1.g(j, k - 1, l) || ly.as.b(((nm) (world1)), j, k - 1, l))
++        if(world1.g(j, k - 1, l) || ly.Fire.b(((nm) (world1)), j, k - 1, l))
+         {
+             for(int i1 = 0; i1 < 3; i1++)
+             {
+@@ -221,7 +221,7 @@ public class og extends ly
+ 
+         } else
+         {
+-            if(ly.as.b(((nm) (world1)), j - 1, k, l))
++            if(ly.Fire.b(((nm) (world1)), j - 1, k, l))
+             {
+                 for(int j1 = 0; j1 < 2; j1++)
+                 {
+@@ -232,7 +232,7 @@ public class og extends ly
+                 }
+ 
+             }
+-            if(ly.as.b(((nm) (world1)), j + 1, k, l))
++            if(ly.Fire.b(((nm) (world1)), j + 1, k, l))
+             {
+                 for(int k1 = 0; k1 < 2; k1++)
+                 {
+@@ -243,7 +243,7 @@ public class og extends ly
+                 }
+ 
+             }
+-            if(ly.as.b(((nm) (world1)), j, k, l - 1))
++            if(ly.Fire.b(((nm) (world1)), j, k, l - 1))
+             {
+                 for(int l1 = 0; l1 < 2; l1++)
+                 {
+@@ -254,7 +254,7 @@ public class og extends ly
+                 }
+ 
+             }
+-            if(ly.as.b(((nm) (world1)), j, k, l + 1))
++            if(ly.Fire.b(((nm) (world1)), j, k, l + 1))
+             {
+                 for(int i2 = 0; i2 < 2; i2++)
+                 {
+@@ -265,7 +265,7 @@ public class og extends ly
+                 }
+ 
+             }
+-            if(ly.as.b(((nm) (world1)), j, k + 1, l))
++            if(ly.Fire.b(((nm) (world1)), j, k + 1, l))
+             {
+                 for(int j2 = 0; j2 < 2; j2++)
+                 {
+diff --git "a/temp\\src\\java/oi.java" "b/src\\main\\java/oi.java"
+index d8e007d..22d3f2a 100644
+--- "a/temp\\src\\java/oi.java"
++++ "b/src\\main\\java/oi.java"
+@@ -28,7 +28,7 @@ public class oi extends ly
+ 
+     public void a(World world1, int i, int j, int k, int l)
+     {
+-        if(this != ly.al)
++        if(this != ly.CobbleSlab)
+             return;
+         else
+             return;
+@@ -36,19 +36,19 @@ public class oi extends ly
+ 
+     public void e(World world1, int i, int j, int k)
+     {
+-        if(this != ly.al)
++        if(this != ly.CobbleSlab)
+             super.e(world1, i, j, k);
+         int l = world1.a(i, j - 1, k);
+-        if(l == al.bc)
++        if(l == CobbleSlab.bc)
+         {
+             world1.d(i, j, k, 0);
+-            world1.d(i, j - 1, k, ly.ak.bc);
++            world1.d(i, j - 1, k, ly.DoubleStoneSlab.bc);
+         }
+     }
+ 
+     public int a(int i, java.util.Random random)
+     {
+-        return ly.al.bc;
++        return ly.CobbleSlab.bc;
+     }
+ 
+     public boolean c()
+@@ -58,7 +58,7 @@ public class oi extends ly
+ 
+     public boolean c(nm nm1, int i, int j, int k, int l)
+     {
+-        if(this != ly.al)
++        if(this != ly.CobbleSlab)
+             super.c(nm1, i, j, k, l);
+         if(l == 1)
+             return true;
+diff --git "a/temp\\src\\java/y.java" "b/src\\main\\java/y.java"
+index 2f1e8c8..5f8f1dd 100644
+--- "a/temp\\src\\java/y.java"
++++ "b/src\\main\\java/y.java"
+@@ -17,15 +17,15 @@ public class y extends bs
+ 
+     public boolean a(ly ly1)
+     {
+-        if(ly1 == ly.aq)
++        if(ly1 == ly.Obsidian)
+             return aY == 3;
+-        if(ly1 == ly.ay || ly1 == ly.ax)
++        if(ly1 == ly.DiamondBlock || ly1 == ly.DiamondOre)
+             return aY >= 2;
+-        if(ly1 == ly.ai || ly1 == ly.H)
++        if(ly1 == ly.GoldBlock || ly1 == ly.GoldOre)
+             return aY >= 2;
+-        if(ly1 == ly.aj || ly1 == ly.I)
++        if(ly1 == ly.IronBlock || ly1 == ly.IronOre)
+             return aY >= 1;
+-        if(ly1 == ly.aO || ly1 == ly.aP)
++        if(ly1 == ly.RedstoneOre || ly1 == ly.GlowingRedstoneOre)
+             return aY >= 2;
+         if(ly1.bn == gb.d)
+             return true;
+@@ -35,8 +35,8 @@ public class y extends bs
+     static 
+     {
+         aX = (new ly[] {
+-            ly.x, ly.ak, ly.al, ly.u, ly.ap, ly.I, ly.aj, ly.J, ly.ai, ly.H, 
+-            ly.ax, ly.ay, ly.aU
++            ly.CobbleStone, ly.DoubleStoneSlab, ly.CobbleSlab, ly.Stone, ly.MossStone, ly.IronOre, ly.IronBlock, ly.CoalOre, ly.GoldBlock, ly.GoldOre,
++            ly.DiamondOre, ly.DiamondBlock, ly.Ice
+         });
+     }
+ }

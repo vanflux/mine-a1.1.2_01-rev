@@ -67,6 +67,7 @@ echo -=#=- >logs.log
 echo Applying patches
 call tools\apply_patch_temp patches\0
 call tools\apply_patch_temp patches\1
+call tools\apply_patch_temp patches\2
 echo Patches applied, waiting 3 seconds
 timeout /t 3
 
